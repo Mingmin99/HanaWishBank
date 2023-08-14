@@ -166,6 +166,15 @@ main {
 	justify-content: center; */
 }
 /* 위시리스트 조회------------------------------------------------------------------------------------------------------- */
+.wishListTitle {
+	margin-top: 48px;
+	font-size: 24px;
+	font-weight: 500;
+	font-family: 'Helvetica', sans-serif;
+	color: #4F4F4F;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 .card-img-top {
 	border-radius: 0.5rem 0.5rem 0 0;
 }
@@ -182,9 +191,9 @@ main {
 }
 
 .card-title {
-	font-size: 1rem;
-	font-weight: bold;
-	margin-bottom: 0.5rem;
+	font-size: 1.1rem;
+	font-weight: bolder;
+	margin-bottom: 1rem;
 	white-space: normal; /* 줄바꿈을 위한 속성 */
 	word-wrap: break-word; /* 긴 단어의 줄바꿈을 위한 속성 */
 	text-align: center;
@@ -192,20 +201,39 @@ main {
 
 /* 가격 정보 스타일링 */
 .card-text {
-	font-size: 0.5rem;
+	font-size: 1rem;
 	color: #555;
 	margin-bottom: 0.5rem;
 	text-align: center;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn {
+	margin-top: 15px;
+	display: flex !important;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	display: flex !important;
 }
 
 .btn-primary {
+	display: flex !important;
 	background-color: #ABCBCD !important;
 	border-color: #C7AFAF !important;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
 }
 
 .btn-primary:hover {
+	display: flex !important;
 	background-color: #ABCBCD !important;
 	border-color: #C7AFAF !important;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
 }
 
 /* 푸터 ------------------------------------------------------------------------------------------------------- */
@@ -311,10 +339,10 @@ main {
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" href="myExpansePattern.jsp">나의 소비패턴</a></li>
-						<li class="nav-item"><a class="nav-link" href="checkMyWishList.jsp">나의
-								위시리스트</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">나의
-								구매계획리스트</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="checkMyWishList.jsp">나의 위시리스트</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="checkrMyPurchasePlanList.jsp">나의 구매계획리스트</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">나의 챌린지
 								계좌</a></li>
 					</ul>
@@ -359,6 +387,9 @@ main {
 		</div>
 		<hr class="divider">
 		<!---위시리스트 조회   ------------------------------------------------------------------------------------------------------- -->
+
+		<div class="wishListTitle">◆ 나의 위시리스트 목록</div>
+
 
 		<div class="row">
 			<div class="col">

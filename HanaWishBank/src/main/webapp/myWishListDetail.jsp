@@ -400,10 +400,10 @@ main {
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" href="myExpansePattern.jsp">나의 소비패턴</a></li>
-						<li class="nav-item"><a class="nav-link" href="checkMyWishList.jsp">나의
-								위시리스트</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">나의
-								구매계획리스트</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="checkMyWishList.jsp">나의 위시리스트</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="checkrMyPurchasePlanList.jsp">나의 구매계획리스트</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">나의 챌린지
 								계좌</a></li>
 					</ul>
@@ -517,7 +517,8 @@ main {
 				<div class="col">
 					<c:url var="goPurchasePlanListButton"
 						value="/btn_goPurchasePlanList.svg" />
-					<a class="goPurchasePlanListButton" href="registerMyPurchasePlanList.jsp"> <img
+					<a class="goPurchasePlanListButton"
+						href="registerMyPurchasePlanList.jsp"> <img
 						src="${goPurchasePlanListButton}" alt="버튼"
 						class="goPurchasePlanListButton">
 					</a>

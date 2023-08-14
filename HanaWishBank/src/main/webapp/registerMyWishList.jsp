@@ -384,12 +384,12 @@ main {
 				<div class="collapse navbar-collapse ml-auto"
 					id="navbarSupportedContent1">
 					<!-- 첫 번째 메뉴 내용 -->
-					<ul class="navbar-nav">
+						<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" href="myExpansePattern.jsp">나의 소비패턴</a></li>
-						<li class="nav-item"><a class="nav-link" href="checkMyWishList.jsp">나의
-								위시리스트</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">나의
+						<li class="nav-item"><a class="nav-link"
+							href="checkMyWishList.jsp">나의 위시리스트</a></li>
+						<li class="nav-item"><a class="nav-link" href="checkrMyPurchasePlanList.jsp">나의
 								구매계획리스트</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">나의 챌린지
 								계좌</a></li>
