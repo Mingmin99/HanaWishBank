@@ -1,0 +1,78 @@
+.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: white;
+    justify-content: space-between;
+}
+
+.navbar > .container-fluid {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.navbar-brand {
+    margin-left: 4rem;
+}
+
+.navbar-nav {
+    margin-left: 16%;
+}
+
+.navbar-nav .nav-item {
+    margin-left: 2rem;
+}
+
+.navbar-divider {
+    border-top: 2px solid #009591;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.login-register .logout, .login, .signup {
+    margin-left: 2rem;
+    color: #605757;
+    font-size: 15px;
+
+    text-decoration-line: none;
+    font-weight: bold;
+}
+
+.login-register {
+    margin-top: 0.4rem;
+}
+
+.navbar-nav .nav-link {
+    color: #605757;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.logo-img {
+    max-width: 160px; /* 로고 이미지 크기 조절 */
+    max-height: 160px; /* 로고 이미지 크기 조절 */
+}
+
+
+/* 반응형 스타일 */
+@media ( max-width: 768px) {
+    .navbar-nav {
+        margin-left: 0;
+    }
+
+    .navbar-brand {
+        margin-left: 1rem;
+    }
+
+    .navbar-nav .nav-item {
+        margin-left: 0.5rem;
+    }
+
+    .a {
+        text-decoration-line: none;
+    }
+
+
+}

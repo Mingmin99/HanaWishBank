@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kopo.finalproject.HWBMember.model.dao.HWBMemberMapper">
+    <!-- 회원 전체 조회 -->
+    <!--    <select id="getAllMember" parameterType="com.kopo.finalproject.guest.model.dto.Guest"-->
+    <!--            resultType="com.kopo.finalproject.guest.model.dto.Guest">-->
+    <!--        SELECT *-->
+    <!--        FROM guest-->
+    <!--    </select>-->
+
+    <!-- 로그인 -->
+    <select id="loginMember" parameterType="HashMap" resultType="com.kopo.finalproject.HWBMember.model.dto.HWBMember">
+        SELECT *
+        FROM HWBMember
+        where MemberID = #{memberID}
+          and MemberPW = #{memberPW}
+    </select>
+
+    <!--    <select id="selectNameOfMember" parameterType="String" resultType="com.kopo.finalproject.guest.model.dto.Guest">-->
+    <!--        SELECT-->
+    <!--            email as email,-->
+    <!--            password as pw,-->
+    <!--            name as name,-->
+    <!--            phone as phone-->
+    <!--        FROM member-->
+    <!--        where email = #{email}-->
+    <!--    </select>-->
+</mapper>

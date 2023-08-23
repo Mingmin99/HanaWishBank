@@ -1,0 +1,80 @@
+/* 기본 스타일 */
+.BankFooter {
+    padding: 30px 0;
+    background-color: #ffffff;
+}
+
+.BankFooterContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.FooterRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.FooterLinks {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+.FooterLinks li {
+    margin-right: 20px;
+}
+
+.FooterLinks li:last-child {
+    margin-right: 0;
+}
+
+.FooterLinks a {
+    color: #136c62;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease-in-out;
+}
+
+.FooterLinks a:hover {
+    color: #0f4c48;
+}
+
+/* 연락처 섹션 스타일 */
+.ContactItem {
+    display: flex;
+    align-items: center;
+}
+
+.ContactTitle {
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.ContactNumbers {
+    display: flex;
+    align-items: center;
+}
+
+.ContactNumber {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.Strong15881111, .Strong15991111 {
+    margin: 0 5px;
+}
+
+.ContactSeparator {
+    margin: 0 10px;
+}
+
+/* 푸터 설명 스타일 */
+.FooterDescription {
+    font-size: 14px;
+    color: #888;
+    margin-top: 20px;
+    font-weight: bold;
+}
