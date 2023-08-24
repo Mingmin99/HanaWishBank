@@ -221,19 +221,7 @@
 
     <div class="wishListTitle">◆ 나의 위시리스트 목록</div>
     <div class="row" id="item-container">
-        <div class="col">
-            <div class="card" style="width: 18rem; margin-top: 2rem;">
-                <div class="text-center">
-                    <img src="../../resources/img/ic_patternChart.svg" class="card-img-top mx-auto" alt="..."
-                         style="width: 18rem; height: 10.125rem; display: block; margin-top: 1rem;">
-                </div>
-                <div class="card-body">
-                    <h5 class="item-name">ㅋㅋㅋㅋ${item.itemName}</h5>
-                    <p class="item-price">${item.price}원</p>
-                    <a href="myWishListDetail.jsp" class="btn btn-primary">상세보기</a>
-                </div>
-            </div>
-        </div>
+
     </div>
     <script>
         $(document).ready(function () {
@@ -241,28 +229,57 @@
             $.ajax({
                 type: "GET",
                 url: "/wish-list",
-                dataType: "json", // 데이터 타입을 JSON으로 설정
+                contentType : "application/json",
                 success: function (data) {
-                    var itemContainer = $("#item-container");
-                    console.log(data);
                     // 각 아이템을 순회하며 화면에 추가
                     $.each(data, function (index, item) {
-                        var cardHtml = `
-                        <div class="col">
-                            <div class="card" style="width: 18rem; margin-top: 2rem;">
-                                <div class="text-center">
-                                    <img src="${item.image}" class="card-img-top mx-auto" alt="..."
-                                         style="width: 18rem; height: 10.125rem; display: block; margin-top: 1rem;">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="item-name">${item.itemName}</h5>
-                                    <p class="item-price">${item.price}원</p>
-                                    <a href="myWishListDetail.jsp" class="btn btn-primary">상세보기</a>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                        itemContainer.append(cardHtml); // 컨테이너에 추가
+                        const itemContainer = document.getElementById("item-container");
+                        const card = document.createElement("div");
+                        card.classList.add("col");
+                        card.classList.add("card");
+                        card.style.width = "18rem";
+                        card.style.marginTop = "2rem";
+
+                        const textCenter = document.createElement("div");
+                        textCenter.classList.add("text-center");
+
+                        const img = document.createElement("img");
+                        img.src = item.image;
+                        img.classList.add("card-img-top");
+                        img.classList.add("mx-auto");
+                        img.alt = "...";
+                        img.style.width = "18rem";
+                        img.style.height = "10.125rem";
+                        img.style.display = "block";
+                        img.style.marginTop = "1rem";
+
+                        textCenter.appendChild(img);
+
+                        const cardBody = document.createElement("div");
+                        cardBody.classList.add("card-body");
+
+                        const itemName = document.createElement("h5");
+                        itemName.classList.add("item-name");
+                        itemName.textContent = item.itemName;
+
+                        const itemPrice = document.createElement("p");
+                        itemPrice.classList.add("item-price");
+                        itemPrice.textContent = item.price + "원";
+
+                        const detailLink = document.createElement("a");
+                        detailLink.href = "myWishListDetail.jsp";
+                        detailLink.classList.add("btn");
+                        detailLink.classList.add("btn-primary");
+                        detailLink.textContent = "상세보기";
+
+                        cardBody.appendChild(itemName);
+                        cardBody.appendChild(itemPrice);
+                        cardBody.appendChild(detailLink);
+
+                        card.appendChild(textCenter);
+                        card.appendChild(cardBody);
+
+                        itemContainer.appendChild(card);
                     });
                 },
                 error: function (xhr, status, error) {

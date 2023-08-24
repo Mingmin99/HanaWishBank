@@ -2,10 +2,9 @@ package com.kopo.finalproject.WishList.controller;
 
 import com.kopo.finalproject.WishList.model.dto.WishListItem;
 import com.kopo.finalproject.WishList.service.WishListService;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,18 +21,28 @@ public class wishListController {
         this.wishListService = wishListService;
     }
 
-    @RequestMapping("/checkMyPurchasePlanList")
-    public ModelAndView checkMyPurchasePlanList() {
+    @RequestMapping("/checkMyWishList")
+    public ModelAndView checkMyWishList() {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("checkMyPurchasePlanList");
+        mav.setViewName("checkMyWishList");
         return mav;
     }
-
+/*
     @GetMapping("/wish-list")
-    public String getAllWishListItems(Model model) {
+    public ModelAndView getAllWishListItems(Model model) {
         List<WishListItem> itemList = wishListService.getAllWishListItems();
-        model.addAttribute("itemList", itemList);
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("itemList", itemList);
+
+//        model.addAttribute("itemList", itemList);
+
         System.out.println("Fetched items: " + itemList); // 로그 추가
-        return "checkMyPurchasePlanList"; // JSP 페이지 이름
+        return mav; // JSP 페이지 이름
+    }*/
+    @GetMapping("/wish-list")
+    public ResponseEntity<List<WishListItem>> getAllWishListItems() {
+        List<WishListItem> itemList = wishListService.getAllWishListItems();
+        System.out.println(itemList + " 테스트");
+        return ResponseEntity.ok(itemList);
     }
 }

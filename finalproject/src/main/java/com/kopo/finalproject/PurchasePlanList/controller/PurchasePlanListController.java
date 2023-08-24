@@ -6,12 +6,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class PurchasePlanListController {
-    
 
-    @RequestMapping("/checkMyWishList")
-    public ModelAndView checkMyWishList() {
+
+    @RequestMapping("/checkMyPurchasePlanList")
+    public ModelAndView checkMyPurchasePlanList() {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("checkMyWishList");
+        mav.setViewName("checkMyPurchasePlanList");
         return mav;
     }
+
 }

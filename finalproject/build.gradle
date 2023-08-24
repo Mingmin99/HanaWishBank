@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
     implementation 'javax.servlet:jstl'
     implementation 'org.springframework.boot:spring-boot-starter-web'
