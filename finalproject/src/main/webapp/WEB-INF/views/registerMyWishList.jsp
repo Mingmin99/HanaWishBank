@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+         pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -20,51 +22,6 @@
             justify-content: space-between;
         }
 
-        .navbar>.container-fluid {
-            padding-top: 25px;
-            padding-bottom: 25px;
-        }
-
-        .navbar-brand {
-            margin-left: 4rem;
-        }
-
-        .navbar-nav {
-            margin-left: 15%;
-        }
-
-        .navbar-nav .nav-item {
-            margin-left: 2rem;
-        }
-
-        .navbar-nav .nav-link {
-            color: #605757;
-            font-size: 15px;
-            font-weight: bold;
-        }
-
-        .logo-img {
-            max-width: 160px; /* 로고 이미지 크기 조절 */
-            max-height: 160px; /* 로고 이미지 크기 조절 */
-        } /* 반응형 스타일 */
-        @media ( max-width : 768px) {
-            .navbar-nav {
-                margin-left: 0;
-            }
-            .navbar-brand {
-                margin-left: 1rem;
-            }
-            .navbar-nav .nav-item {
-                margin-left: 0.5rem;
-            }
-        }
-
-        .navbar-divider {
-            border-top: 2px solid #009591;
-            margin-top: 0;
-            margin-bottom: 0;
-            width: 100%;
-        }
         /* 사이드 바 ------------------------------------------------------------------------------------------------------- */
         .sidebar {
             margin-top: 3%;
@@ -124,11 +81,12 @@
             background-color: #009591;
             color: white;
         }
+
         /* 메인 ------------------------------------------------------------------------------------------------------- */
         main {
             margin-top: 3%;
             margin-left: 25%;
-            height: 1800px;
+            height: 3000px;
         }
 
         .title {
@@ -165,257 +123,167 @@
             /* 	display: flex;
             justify-content: center; */
         }
-        /* 차트  ------------------------------------------------------------------------------------------------------- */
-        .chartTitle {
+
+        .wishListSearchTitle {
             margin-top: 48px;
-            font-size: 28px;
-            font-weight: 600;
+            font-size: 24px;
+            font-weight: 500;
             font-family: 'Helvetica', sans-serif;
             color: #4F4F4F;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
         }
 
-        .expense-section {
-            margin-top: 30px;
-            margin-bottom: 50px;
+        #search-results h3 {
+            margin-top: 48px;
+            font-size: 24px;
+            font-weight: 500;
+            font-family: 'Helvetica', sans-serif;
+            color: #4F4F4F;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+        }
+
+        #search-form {
             display: flex;
-            justify-content: space-between;
+
             align-items: center;
+            margin: 20px 0;
         }
 
-        /* 테이블  ------------------------------------------------------------------------------------------------------- */
-        .expense-summary {
-            margin-top: 20px;
-            margin-right: 5%;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            overflow: hidden;
+        #search-query {
+            padding: 10px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            background-color: #f2f2f2;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-right: 5%;
+            width: 500px;
+            transition: background-color 0.3s, box-shadow 0.3s;
         }
 
-        .expense-summary table {
-            border-collapse: separate;
-            border-spacing: 0;
-            width: 100%;
+        #search-query::placeholder {
+            color: #aaa;
+        }
+
+        #search-query:focus {
             background-color: #fff;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            outline: none;
         }
 
-        .expense-summary th, .expense-summary td {
-            padding: 10px;
-            border: 1px solid #ccc;
-            text-align: center;
+        #search-button {
+            background-color: #009591;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 30px;
+            font-size: 18px;
+            margin-left: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
         }
 
-        .expense-summary th {
-            background-color: #F3E1E6;
-            font-weight: bold;
-            color: #333;
+        #search-button:hover {
+            background-color: #009591;
+            transform: scale(1.05);
         }
 
-        .expense-summary tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
 
-        .expense-summary th:first-child, .expense-summary td:first-child {
-            border-left: none;
-        }
-
-        .expense-summary th:last-child, .expense-summary td:last-child {
-            border-right: none;
-        }
-
-        .result-box {
-            margin-top: 20px;
-            padding: 4px; /* 텍스트 내용과 테두리 사이의 간격 */
-            border-radius: 20px;
-            max-width: 800px;
-        }
-
-        .result-text1 {
-            padding: 10px;
-            font-size: 24px;
-            font-weight: 500;
-            font-family: 'Helvetica', sans-serif;
-            color: #5A5A5A;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .result-text2 {
-            padding: 10px;
-            font-size: 22px;
-            font-weight: 500;
-            font-family: 'Helvetica', sans-serif;
-            color: #5A5A5A;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            /* 	display: flex;
-            justify-content: center; */
-        }
-
-        /* 이번 달 ------------------------------------------------------------------------------------------------------- */
-        .thisMonthTitle {
-            margin-left: 5%;
-            margin-top: 30px;
-            font-size: 24px;
-            font-weight: 600;
-            font-family: 'Helvetica', sans-serif;
-            color: #4B9D9B;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .monthlyKing {
-            margin-top: -80px;
-            margin-bottom: 20px;
-            margin-left: 35%;
-            font-size: 24px;
-            font-weight: 600;
-            font-family: 'Helvetica', sans-serif;
-            color: #4F4F4F;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
-        }
-
-        .thisMonthContainer {
-            margin-right: 10%;
-            margin-top: 50px;
+        table {
             width: 90%;
-            border: 4px dashed #ccc;
-            border-radius: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-collapse: collapse;
+            border: 1px solid #ddd;
         }
 
-        /* 푸터 ------------------------------------------------------------------------------------------------------- */
-        .BankFooter {
-            padding: 30px 0;
-            background-color: #ffffff;
+        th, td {
+            font-size: medium;
+            padding: 10px;
+            vertical-align: middle;
         }
 
-        .BankFooterContent {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
+        th {
+            background-color: #f2f2f2;
         }
 
-        .FooterRow {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
         }
 
-        .FooterLinks {
-            list-style: none;
-            padding: 0;
-            display: flex;
+        tr:hover {
+            background-color: #ddd;
         }
 
-        .FooterLinks li {
-            margin-right: 20px;
-        }
-
-        .FooterLinks li:last-child {
-            margin-right: 0;
-        }
-
-        .FooterLinks a {
-            color: #136c62;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.2s ease-in-out;
-        }
-
-        .FooterLinks a:hover {
-            color: #0f4c48;
-        }
-
-        /* 연락처 섹션 스타일 */
-        .ContactItem {
+        .item-info {
             display: flex;
             align-items: center;
         }
 
-        .ContactTitle {
-            font-size: 16px;
-            font-weight: bold;
+        .item-image {
+            width: 10%;
             margin-right: 10px;
         }
 
-        .ContactNumbers {
-            display: flex;
-            align-items: center;
-        }
-
-        .ContactNumber {
-            font-size: 16px;
+        .title {
             font-weight: bold;
+            word-wrap: break-word;
+            max-width: 200px;
+            font-size: medium;
+            margin-bottom: 5px;
+            text-align: left;
         }
 
-        .Strong15881111, .Strong15991111 {
-            margin: 0 5px;
+        .price {
+            margin-left: auto;
+            font-size: medium;
         }
 
-        .ContactSeparator {
-            margin: 0 10px;
+        .left-align {
+            text-align: left;
         }
 
-        /* 푸터 설명 스타일 */
-        .FooterDescription {
-            font-size: 14px;
-            color: #888;
+        .right-align {
+            text-align: right;
+        }
+
+        .pagination {
             margin-top: 20px;
-            font-weight: bold;
+            text-align: center;
         }
+
+        .pagination a, .pagination span {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .pagination a:hover {
+            background-color: #f2f2f2;
+        }
+
+        .current-page {
+            background-color: #007bff;
+            color: #fff;
+            border: 1px solid #007bff;
+        }
+
     </style>
-
     <!-- 부트스트랩 연결 -->
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
+<%@ include file="include/header.jsp" %>
 <body>
-<div class="header">
-    <!-- 메뉴바 내용 -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <c:url var="logoUrl" value="/logo.png" />
-            <a class="navbar-brand" href="index.jsp"> <img src="${logoUrl}"
-                                                           alt="로고" class="logo-img">
-            </a>
 
-            <div class="collapse navbar-collapse ml-auto"
-                 id="navbarSupportedContent1">
-                <!-- 첫 번째 메뉴 내용 -->
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active"
-                                            aria-current="page" href="checkMyExpansePattern.jsp">나의 소비패턴</a></li>
-                    <li class="nav-item"><a class="nav-link"
-                                            href="checkMyWishList.jsp">나의 위시리스트</a></li>
-                    <li class="nav-item"><a class="nav-link" href="checkMyPurchasePlanList.jsp">나의
-                        구매계획리스트</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">나의 챌린지
-                        계좌</a></li>
-                </ul>
-            </div>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent2">
-                <!-- 두 번째 메뉴 내용 -->
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#">로그인</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">회원가입</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
-                </ul>
-            </div>
-
-        </div>
-    </nav>
-</div>
-<hr class="navbar-divider">
 
 <!-- 사이드바  ------------------------------------------------------------------------------------------------------- -->
 <div class="sidebar">
     <h3>나의 위시리스트</h3>
     <ul>
-        <li><a href="checkMyWishList.jsp">나의 위시리스트 조회</a></li>
-        <li><a href="registerMyWishList.jsp">나의 위시리스트 등록</a></li>
+        <li><a href="/checkMyWishList">나의 위시리스트 조회</a></li>
+        <li><a href="/registerMyWishList">나의 위시리스트 등록</a></li>
         <!-- <li><a href="#">대출신청</a></li>
         <li><a href="#">카드신청</a></li>
         <li><a href="#">고객센터</a></li> -->
@@ -424,59 +292,109 @@
 <!---메인  ------------------------------------------------------------------------------------------------------- -->
 <main>
     <div class="title">
-        <img src="<c:url value='ic_wishList.svg' />" alt="Main Wish List"
+        <img src="<c:url value='../../resources/img/ic_wishList.svg' />" alt="Main Wish List"
              width="80" style="vertical-align: middle;"> 나의 위시리스트 등록
     </div>
 
     <div class="description-box">
         <div class="description-text1">💍 사고 싶은 것들이 너무 많나요? 고민하지 말아요!
-            😎</div>
+            😎
+        </div>
         <div class="description-text2">➡️ 위시리스트 등록 후 나만의 위시리스트를 작성해보세요!</div>
     </div>
     <hr class="divider">
     <!-- 검색 api  ------------------------------------------------------------------------------------------------------- -->
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-    <h1>위시리스트 아이템 검색</h1>
-    <form id="search-form">
-        <input type="text" id="search-query" placeholder="아이템 검색">
-        <button type="button" id="search-button">검색</button>
+    <div class="wishListSearchTitle">◆ 나의 위시리스트 아이템 검색</div>
+    <form id="search-form" action="/search" method="get">
+        <input type="text" id="search-query" name="text" placeholder="아이템 검색">
+        <button type="submit" id="search-button">검색</button>
     </form>
-    <div id="search-results"></div>
+
+
+    <div id="search-results">
+        <h3>◆ 검색결과</h3>
+
+        <table>
+            <thead>
+            <tr>
+                <th>이미지</th>
+                <th>상품명</th>
+                <th>가격</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="item" items="${items}" varStatus="status">
+                <tr>
+                    <td><img src="<c:out value="${item.image}" />" alt="<c:out value="${item.image}" />" width="100">
+                    </td>
+                    <td>
+                        <div class="item-info">
+                            <span class="title">${item.title}</span>
+                        </div>
+                    </td>
+                    <td class="price">
+                        <c:set var="formattedLprice">
+                            <fmt:formatNumber value="${item.lprice}" pattern="###,###"></fmt:formatNumber>
+                        </c:set>
+                            ${formattedLprice} 원
+                    </td>
+                </tr>
+                <c:if test="${status.index % 3 == 2}"></c:if>
+            </c:forEach>
+            </tbody>
+        </table>
+
+
+        <script>
+            const titleElements = document.querySelectorAll('.title');
+            titleElements.forEach(element => {
+                element.innerHTML = element.textContent; // <b> 태그 제거
+            });
+        </script>
+
+        <!-- 페이지네이션 UI -->
+        <%--        <div class="pagination">--%>
+        <%--            <c:choose>--%>
+        <%--                <c:when test="${totalPages > 1}">--%>
+        <%--                    <c:forEach begin="1" end="${totalPages}" varStatus="pageStatus">--%>
+        <%--                        <c:choose>--%>
+        <%--                            <c:when test="${pageStatus.index + 1 == currentPage}">--%>
+        <%--                                <a href="?page=${pageStatus.index + 1}&text=${param.text}" class="current-page">${pageStatus.index + 1}</a>--%>
+        <%--                            </c:when>--%>
+        <%--                            <c:otherwise>--%>
+        <%--                                <c:if test="${pageStatus.index < 5}">--%>
+        <%--                                    <a href="?page=${pageStatus.index + 1}&text=${param.text}">${pageStatus.index + 1}</a>--%>
+        <%--                                </c:if>--%>
+        <%--                            </c:otherwise>--%>
+        <%--                        </c:choose>--%>
+        <%--                    </c:forEach>--%>
+        <%--                </c:when>--%>
+        <%--            </c:choose>--%>
+        <%--        </div>--%>
+
+
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js"></script>
+
+
 </main>
 
 
-
-
-
-
-<!--푸터  ------------------------------------------------------------------------------------------------------- -->
-<footer class="BankFooter">
-    <div class="BankFooterContent">
-        <div class="FooterRow">
-            <ul class="FooterLinks">
-                <li><a href="#">이용약관</a></li>
-                <li><a href="#">개인정보처리방침</a></li>
-                <li><a href="#">보안정책</a></li>
-                <li><a href="#">고객센터</a></li>
-            </ul>
-            <div class="ContactItem">
-                <div class="ContactTitle">고객센터</div>
-                <div class="ContactNumbers">
-                    <span class="ContactNumber Strong15881111">1588-1111</span> <span
-                        class="ContactSeparator">/</span> <span
-                        class="ContactNumber Strong15991111">1599-1111</span>
-                </div>
-            </div>
-        </div>
-        <p class="FooterDescription">© 2023 HANA WISH BANK. All rights
-            reserved.</p>
-    </div>
-</footer>
+<!-- 푸터 -->
+<%@ include file="include/footer.jsp" %>
+<!-- 부트스트랩 JavaScript 연결 -->
+<!-- 부트스트랩 CSS 연결 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
 
 <!-- 부트스트랩 JavaScript 연결 -->
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+
+<!-- Unpkg AOS 연결 -->
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+
+<!-- jQuery 연결 -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </body>
 </html>

@@ -123,14 +123,11 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        .card-img-top {
-            border-radius: 0.5rem 0.5rem 0 0;
-        }
 
-        /* 카드 전체에 그림자 효과 추가 */
         .card {
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s;
+            margin: 1rem;
         }
 
         /* 카드에 마우스 호버 시 약간 확대 효과 */
@@ -138,14 +135,24 @@
             transform: scale(1.02);
         }
 
-        .item-name {
+        .card-img-top {
+            border-radius: 0.5rem 0.5rem 0 0;
+            width: 15rem; /* 이미지의 너비 조절 */
+            height: 10.125rem; /* 이미지의 높이 조절 */
+            display: block;
+            margin: 1rem auto;
+        }
+
+        .item-Title {
             font-size: 1.1rem;
             font-weight: bolder;
             margin-bottom: 1rem;
             white-space: normal; /* 줄바꿈을 위한 속성 */
             word-wrap: break-word; /* 긴 단어의 줄바꿈을 위한 속성 */
             text-align: center;
+            color: #555;
         }
+
 
         .item-price {
             font-size: 1rem;
@@ -196,8 +203,8 @@
 <div class="sidebar">
     <h3>나의 위시리스트</h3>
     <ul>
-        <li><a href="checkMyWishList.jsp">나의 위시리스트 조회</a></li>
-        <li><a href="registerMyWishList.jsp">나의 위시리스트 등록</a></li>
+        <li><a href="/checkMyWishList">나의 위시리스트 조회</a></li>
+        <li><a href="/registerMyWishList">나의 위시리스트 등록</a></li>
         <!-- <li><a href="#">대출신청</a></li>
         <li><a href="#">카드신청</a></li>
         <li><a href="#">고객센터</a></li> -->
@@ -229,7 +236,7 @@
             $.ajax({
                 type: "GET",
                 url: "/wish-list",
-                contentType : "application/json",
+                contentType: "application/json",
                 success: function (data) {
                     // 각 아이템을 순회하며 화면에 추가
                     $.each(data, function (index, item) {
@@ -237,7 +244,7 @@
                         const card = document.createElement("div");
                         card.classList.add("col");
                         card.classList.add("card");
-                        card.style.width = "18rem";
+                        card.style.maxWidth = "18rem";
                         card.style.marginTop = "2rem";
 
                         const textCenter = document.createElement("div");
@@ -258,9 +265,9 @@
                         const cardBody = document.createElement("div");
                         cardBody.classList.add("card-body");
 
-                        const itemName = document.createElement("h5");
-                        itemName.classList.add("item-name");
-                        itemName.textContent = item.itemName;
+                        const itemTitle = document.createElement("h5");
+                        itemTitle.classList.add("item-title");
+                        itemTitle.textContent = item.itemTitle;
 
                         const itemPrice = document.createElement("p");
                         itemPrice.classList.add("item-price");
@@ -272,7 +279,7 @@
                         detailLink.classList.add("btn-primary");
                         detailLink.textContent = "상세보기";
 
-                        cardBody.appendChild(itemName);
+                        cardBody.appendChild(itemTitle);
                         cardBody.appendChild(itemPrice);
                         cardBody.appendChild(detailLink);
 
@@ -287,12 +294,11 @@
                 }
             });
         });
+
     </script>
 
 
 </main>
-
-
 
 
 <!-- 푸터 -->
