@@ -177,15 +177,15 @@
             margin-left: 2rem;
         }
     </style>
+
     <!-- 부트스트랩 연결 -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <%@ include file="include/header.jsp" %>
 <body>
-
-
-
-
 <!-- 사이드바  ------------------------------------------------------------------------------------------------------- -->
 <div class="sidebar">
     <h4>나의 구매계획리스트</h4>
@@ -287,16 +287,13 @@
 </main>
 
 
-<!-- 푸터 -->
+<!-- 푸터 추가 -->
+<!-- <footer class="bg-dark text-light text-center py-3"> © 2023
+    Your Website. All rights reserved. </footer> -->
 <%@ include file="include/footer.jsp" %>
 
 <!-- 부트스트랩 JavaScript 연결 -->
 <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script
-        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script
-        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

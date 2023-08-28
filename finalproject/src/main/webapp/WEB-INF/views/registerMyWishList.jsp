@@ -89,7 +89,7 @@
             height: 3000px;
         }
 
-        .title {
+        .RegisterMyWishListtitle {
             font-size: 32px;
             font-weight: 600;
             font-family: 'Helvetica', sans-serif;
@@ -144,9 +144,19 @@
 
         }
 
+        .howToRegister {
+            margin-top: 1%;
+            font-size: 16px;
+            font-weight: 500;
+            font-family: "Hana2.0 CM";
+            color: #4F4F4F;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+
+        }
+
         #search-form {
             display: flex;
-
             align-items: center;
             margin: 20px 0;
         }
@@ -173,7 +183,7 @@
         }
 
         #search-button {
-            background-color: #009591;
+            background-color: #7ba299;
             color: #fff;
             border: none;
             border-radius: 50px;
@@ -185,25 +195,28 @@
         }
 
         #search-button:hover {
-            background-color: #009591;
+            background-color: #7ba299;
             transform: scale(1.05);
         }
 
 
         table {
+            margin-top: 1%;
             width: 90%;
             border-collapse: collapse;
             border: 1px solid #ddd;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         }
 
         th, td {
             font-size: medium;
             padding: 10px;
             vertical-align: middle;
+            font-family: "Hana2.0 CM";
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: #99aca8;
         }
 
         tr:nth-child(even) {
@@ -215,8 +228,11 @@
         }
 
         .item-info {
+            color: #4F4F4F;
             display: flex;
             align-items: center;
+
+
         }
 
         .item-image {
@@ -224,18 +240,36 @@
             margin-right: 10px;
         }
 
+        .item-title {
+            color: #4F4F4F !important;
+            font-family: "Hana2.0 CM";
+        }
+
+
         .title {
+            color: #4F4F4F;
             font-weight: bold;
             word-wrap: break-word;
             max-width: 200px;
             font-size: medium;
             margin-bottom: 5px;
             text-align: left;
+            font-family: "Hana2.0 CM";
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        a {
+            color: #0d6efd;
+            text-decoration: none !important;
+            font-family: "Hana2.0 CM";
+
         }
 
         .price {
             margin-left: auto;
             font-size: medium;
+            font-family: "Hana2.0 CM";
         }
 
         .left-align {
@@ -270,6 +304,60 @@
             border: 1px solid #007bff;
         }
 
+        /* 모달 창 스타일 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            width: 60%;
+            max-width: 400px;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 2rem;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-content p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal-content button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal-content button#modal-confirm {
+            background-color: #7ba299;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .modal-content button#modal-cancel {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* 링크 스타일 */
+        .item-title {
+            color: #007bff;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
     </style>
     <!-- 부트스트랩 연결 -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -291,9 +379,9 @@
 </div>
 <!---메인  ------------------------------------------------------------------------------------------------------- -->
 <main>
-    <div class="title">
+    <div class="RegisterMyWishListtitle">
         <img src="<c:url value='../../resources/img/ic_wishList.svg' />" alt="Main Wish List"
-             width="80" style="vertical-align: middle;"> 나의 위시리스트 등록
+             width="70" style="vertical-align: middle;"> 나의 위시리스트 등록
     </div>
 
     <div class="description-box">
@@ -314,6 +402,7 @@
 
     <div id="search-results">
         <h3>◆ 검색결과</h3>
+        <div class="howToRegister"> • 상품명을 클릭하시면 위시리스트에 등록하실 수 있습니다.</div>
 
         <table>
             <thead>
@@ -330,7 +419,8 @@
                     </td>
                     <td>
                         <div class="item-info">
-                            <span class="title">${item.title}</span>
+                            <a href="#" class="item-title"
+                               data-title="<c:out value="${item.title}" />">${item.title}</a>
                         </div>
                     </td>
                     <td class="price">
@@ -345,12 +435,48 @@
             </tbody>
         </table>
 
+        <!-- 모달 창 -->
+        <div id="custom-modal" class="modal">
+            <div class="modal-content">
+                <p id="modal-text"></p>
+                <button id="modal-confirm">등록하기</button>
+                <button id="modal-cancel">취소</button>
+            </div>
+        </div>
 
         <script>
-            const titleElements = document.querySelectorAll('.title');
-            titleElements.forEach(element => {
-                element.innerHTML = element.textContent; // <b> 태그 제거
+            document.addEventListener("DOMContentLoaded", function () {
+                const modal = document.getElementById("custom-modal");
+                const modalText = document.getElementById("modal-text");
+                const modalConfirm = document.getElementById("modal-confirm");
+                const modalCancel = document.getElementById("modal-cancel");
+                const itemTitleLinks = document.querySelectorAll(".item-title");
+
+                // 제목을 클릭하면 모달 창을 열고 문구를 설정합니다.
+                itemTitleLinks.forEach(link => {
+                    link.addEventListener("click", function (event) {
+                        event.preventDefault();
+                        const title = this.getAttribute("data-title");
+                        const cleanTitle = title.replace(/<b>/g, '').replace(/<\/b>/g, ''); // <b> 태그 제거
+                        console.log("Cleaned title:", cleanTitle);
+                        modalText.textContent = cleanTitle + "을(를) 정말 위시리스트에 등록하시겠어요?";
+                        modal.style.display = "block";
+                    });
+                });
+
+
+                // 등록하기 버튼을 누르면 처리를 수행합니다.
+                modalConfirm.addEventListener("click", function () {
+                    // TODO: 등록 처리를 수행합니다.
+                    modal.style.display = "none";
+                });
+
+                // 취소 버튼을 누르면 모달 창을 닫습니다.
+                modalCancel.addEventListener("click", function () {
+                    modal.style.display = "none";
+                });
             });
+
         </script>
 
         <!-- 페이지네이션 UI -->

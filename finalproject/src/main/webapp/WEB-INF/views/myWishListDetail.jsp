@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+         pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -20,7 +20,7 @@
             justify-content: space-between;
         }
 
-        .navbar>.container-fluid {
+        .navbar > .container-fluid {
             padding-top: 25px;
             padding-bottom: 25px;
         }
@@ -46,14 +46,18 @@
         .logo-img {
             max-width: 160px; /* 로고 이미지 크기 조절 */
             max-height: 160px; /* 로고 이미지 크기 조절 */
-        } /* 반응형 스타일 */
-        @media ( max-width : 768px) {
+        }
+
+        /* 반응형 스타일 */
+        @media ( max-width: 768px) {
             .navbar-nav {
                 margin-left: 0;
             }
+
             .navbar-brand {
                 margin-left: 1rem;
             }
+
             .navbar-nav .nav-item {
                 margin-left: 0.5rem;
             }
@@ -65,6 +69,7 @@
             margin-bottom: 0;
             width: 100%;
         }
+
         /* 사이드 바 ------------------------------------------------------------------------------------------------------- */
         .sidebar {
             margin-top: 3%;
@@ -124,6 +129,7 @@
             background-color: #009591;
             color: white;
         }
+
         /* 메인 ------------------------------------------------------------------------------------------------------- */
         main {
             margin-top: 3%;
@@ -165,6 +171,7 @@
             /* 	display: flex;
             justify-content: center; */
         }
+
         /* 위시리스트 조회------------------------------------------------------------------------------------------------------- */
         .wishListDetailTitle {
             margin-top: 48px;
@@ -382,14 +389,16 @@
     <!-- 부트스트랩 연결 -->
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
+<%@ include file="include/header.jsp" %>
 <body>
 <div class="header">
     <!-- 메뉴바 내용 -->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <c:url var="logoUrl" value="../../resources/img/logo.png" />
+            <c:url var="logoUrl" value="../../resources/img/logo.png"/>
             <a class="navbar-brand" href="index.jsp"> <img src="${logoUrl}"
                                                            alt="로고" class="logo-img">
             </a>
@@ -444,7 +453,8 @@
     <div class="description-box">
         <div class="description-text1">📚 가격 뒤에 숨은 가치를 발견하세요!</div>
         <div class="description-text2">➡️ 제품의 '진짜' 가치를 대체가격으로 파악하고,
-            스마트한 소비 습관을 만들어보세요!</div>
+            스마트한 소비 습관을 만들어보세요!
+        </div>
     </div>
     <hr class="divider">
     <!---위시리스트 조회   ------------------------------------------------------------------------------------------------------- -->
@@ -456,13 +466,12 @@
     </div>
 
 
-
     <div class="container text-center">
         <div class="row">
             <div class="col">
 
                 <div class="card" style="width: 18rem; margin-top: 2rem;">
-                    <c:url value="../../resources/img/ic_patternChart.svg" var="imageURL" />
+                    <c:url value="../../resources/img/ic_patternChart.svg" var="imageURL"/>
                     <div class="text-center">
                         <!-- 가운데 정렬을 위한 부모 컨테이너 -->
                         <img src="${imageURL}" class="card-img-top mx-auto" alt="..."
@@ -508,7 +517,7 @@
     <div class="ButtonContainer ">
         <div class="row">
             <div class="col">
-                <c:url var="deleteWishListButton" value="../../resources/img/btn_deleteWishList.svg" />
+                <c:url var="deleteWishListButton" value="../../resources/img/btn_deleteWishList.svg"/>
                 <a class="deleteWishListButton" href="checkMyWishList.jsp"> <img
                         src="${deleteWishListButton}" alt="버튼"
                         class="deleteWishListButton">
@@ -516,7 +525,7 @@
             </div>
             <div class="col">
                 <c:url var="goPurchasePlanListButton"
-                       value="../../resources/img/btn_goPurchasePlanList.svg" />
+                       value="../../resources/img/btn_goPurchasePlanList.svg"/>
                 <a class="goPurchasePlanListButton"
                    href="registerMyPurchasePlanList.jsp"> <img
                         src="${goPurchasePlanListButton}" alt="버튼"
@@ -528,12 +537,6 @@
 
 
 </main>
-
-
-
-
-
-
 
 
 <!-- 푸터 -->
