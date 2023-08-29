@@ -15,7 +15,7 @@ public class NaverResult {
     private int total;
     private int start;
     private int display;
-    private List<WishListItem> items;
+    private List<SearchListItem> items;
 
     @Override
     public String toString() {

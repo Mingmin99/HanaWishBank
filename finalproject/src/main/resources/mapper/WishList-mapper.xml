@@ -9,5 +9,8 @@
         SELECT *
         FROM WishListItem
     </select>
-
+    <insert id="insertWishListItem" parameterType="com.kopo.finalproject.WishList.model.dto.WishListItem">
+        INSERT INTO WishListItem (title, lprice, image)
+        VALUES (#{title}, #{image}, #{lprice})
+    </insert>
 </mapper>

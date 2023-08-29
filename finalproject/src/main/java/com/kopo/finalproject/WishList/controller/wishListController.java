@@ -4,15 +4,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kopo.finalproject.WishList.model.dto.NaverResult;
+import com.kopo.finalproject.WishList.model.dto.SearchListItem;
 import com.kopo.finalproject.WishList.model.dto.WishListItem;
 import com.kopo.finalproject.WishList.service.WishListService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -80,12 +81,25 @@ public class wishListController {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        List<WishListItem> items = result.getItems();
+        List<SearchListItem> items = result.getItems();
         model.addAttribute("items", items);
         System.out.println("Items in model: " + items);
         return "/registerMyWishList";
     }
 
+
+    @PostMapping("/addToWishList")
+    @ResponseBody
+    public ResponseEntity<String> addToWishList(@RequestBody WishListItem item) {
+        try {
+            wishListService.addToWishList(item);
+            return ResponseEntity.ok("success");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("failure");
+        }
+    }
 }
+
+
 
 

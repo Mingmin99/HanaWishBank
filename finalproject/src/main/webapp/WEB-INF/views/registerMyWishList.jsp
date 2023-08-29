@@ -443,7 +443,6 @@
                 <button id="modal-cancel">취소</button>
             </div>
         </div>
-
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 const modal = document.getElementById("custom-modal");
@@ -452,23 +451,53 @@
                 const modalCancel = document.getElementById("modal-cancel");
                 const itemTitleLinks = document.querySelectorAll(".item-title");
 
+                let selectedItem = null; // 선택한 아이템 정보를 담을 변수
+
                 // 제목을 클릭하면 모달 창을 열고 문구를 설정합니다.
                 itemTitleLinks.forEach(link => {
                     link.addEventListener("click", function (event) {
                         event.preventDefault();
+                        const image = this.getAttribute("data-image");
+                        const lprice = this.getAttribute("data-lprice");
                         const title = this.getAttribute("data-title");
                         const cleanTitle = title.replace(/<b>/g, '').replace(/<\/b>/g, ''); // <b> 태그 제거
                         console.log("Cleaned title:", cleanTitle);
                         modalText.textContent = cleanTitle + "을(를) 정말 위시리스트에 등록하시겠어요?";
                         modal.style.display = "block";
+
+                        selectedItem = {
+                            title: title,
+                            image: image,
+                            lprice: lprice
+                        };
                     });
                 });
 
-
                 // 등록하기 버튼을 누르면 처리를 수행합니다.
                 modalConfirm.addEventListener("click", function () {
-                    // TODO: 등록 처리를 수행합니다.
                     modal.style.display = "none";
+
+                    if (selectedItem) {
+                        fetch('/addToWishList', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(selectedItem),
+                        })
+                            .then(response => response.text())
+                            .then(data => {
+                                if (data === "success") {
+                                    alert('아이템이 위시리스트에 추가되었습니다!');
+                                } else {
+                                    alert('아이템 추가에 실패했습니다.');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('오류가 발생했습니다.');
+                            });
+                    }
                 });
 
                 // 취소 버튼을 누르면 모달 창을 닫습니다.
@@ -476,8 +505,8 @@
                     modal.style.display = "none";
                 });
             });
-
         </script>
+
 
         <!-- 페이지네이션 UI -->
         <%--        <div class="pagination">--%>

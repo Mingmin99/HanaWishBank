@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface WishListMapper {
     List<WishListItem> getAllWishListItems();
+
+    void insertWishListItem(WishListItem item);
 }
