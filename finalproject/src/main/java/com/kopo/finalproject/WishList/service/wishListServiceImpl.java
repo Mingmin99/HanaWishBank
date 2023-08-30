@@ -24,7 +24,7 @@ public class wishListServiceImpl implements WishListService {
         return wishListItems;
     }
 
-    public void addToWishList(WishListItem item) {
-        wishListMapper.insertWishListItem(item);
+    public void addWishlistItem(WishListItem item) {
+        wishListMapper.insertWishlistItem(item);
     }
 }

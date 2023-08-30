@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+         pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -11,60 +13,6 @@
             background-color: white;
         }
 
-        .navbar {
-            position: relative;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            background-color: white;
-            justify-content: space-between;
-        }
-
-        .navbar>.container-fluid {
-            padding-top: 25px;
-            padding-bottom: 25px;
-        }
-
-        .navbar-brand {
-            margin-left: 4rem;
-        }
-
-        .navbar-nav {
-            margin-left: 15%;
-        }
-
-        .navbar-nav .nav-item {
-            margin-left: 2rem;
-        }
-
-        .navbar-nav .nav-link {
-            color: #605757;
-            font-size: 15px;
-            font-weight: bold;
-        }
-
-        .logo-img {
-            max-width: 160px; /* 로고 이미지 크기 조절 */
-            max-height: 160px; /* 로고 이미지 크기 조절 */
-        } /* 반응형 스타일 */
-        @media ( max-width : 768px) {
-            .navbar-nav {
-                margin-left: 0;
-            }
-            .navbar-brand {
-                margin-left: 1rem;
-            }
-            .navbar-nav .nav-item {
-                margin-left: 0.5rem;
-            }
-        }
-
-        .navbar-divider {
-            border-top: 2px solid #009591;
-            margin-top: 0;
-            margin-bottom: 0;
-            width: 100%;
-        }
         /* 사이드 바 ------------------------------------------------------------------------------------------------------- */
         .sidebar {
             margin-top: 3%;
@@ -76,6 +24,7 @@
 
         .sidebar h3 {
             color: #009591;
+            font-family: "Hana2.0 CM";
             margin-bottom: 20px;
             position: relative;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -104,6 +53,7 @@
         .sidebar ul li a {
             color: #333;
             text-decoration: none;
+            font-family: "Hana2.0 CM";
             display: block;
             padding: 5px 10px; /* 글자 주변의 패딩 추가 */
         }
@@ -123,7 +73,9 @@
         .sidebar ul li a:hover {
             background-color: #009591;
             color: white;
+            font-family: "Hana2.0 CM";
         }
+
         /* 메인 ------------------------------------------------------------------------------------------------------- */
         main {
             margin-top: 3%;
@@ -134,7 +86,7 @@
         .title {
             font-size: 32px;
             font-weight: 600;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 CM";
             color: #4F4F4F;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -150,7 +102,7 @@
             padding: 10px;
             font-size: 16px;
             font-weight: 500;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 L";
             color: #5A5A5A;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -159,18 +111,19 @@
             padding: 10px;
             font-size: 16px;
             font-weight: 500;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 L";
             color: #5A5A5A;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             /* 	display: flex;
             justify-content: center; */
         }
+
         /* 차트  ------------------------------------------------------------------------------------------------------- */
         .chartTitle {
             margin-top: 48px;
             font-size: 28px;
             font-weight: 600;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 CM";
             color: #4F4F4F;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -284,131 +237,13 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* 푸터 ------------------------------------------------------------------------------------------------------- */
-        .BankFooter {
-            padding: 30px 0;
-            background-color: #ffffff;
-        }
-
-        .BankFooterContent {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .FooterRow {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .FooterLinks {
-            list-style: none;
-            padding: 0;
-            display: flex;
-        }
-
-        .FooterLinks li {
-            margin-right: 20px;
-        }
-
-        .FooterLinks li:last-child {
-            margin-right: 0;
-        }
-
-        .FooterLinks a {
-            color: #136c62;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.2s ease-in-out;
-        }
-
-        .FooterLinks a:hover {
-            color: #0f4c48;
-        }
-
-        /* 연락처 섹션 스타일 */
-        .ContactItem {
-            display: flex;
-            align-items: center;
-        }
-
-        .ContactTitle {
-            font-size: 16px;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-
-        .ContactNumbers {
-            display: flex;
-            align-items: center;
-        }
-
-        .ContactNumber {
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .Strong15881111, .Strong15991111 {
-            margin: 0 5px;
-        }
-
-        .ContactSeparator {
-            margin: 0 10px;
-        }
-
-        /* 푸터 설명 스타일 */
-        .FooterDescription {
-            font-size: 14px;
-            color: #888;
-            margin-top: 20px;
-            font-weight: bold;
-        }
     </style>
-
     <!-- 부트스트랩 연결 -->
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
+<%@ include file="include/header.jsp" %>
 <body>
-<div class="header">
-    <!-- 메뉴바 내용 -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <c:url var="logoUrl" value="../../resources/img/logo.png" />
-            <a class="navbar-brand" href="index.jsp"> <img src="${logoUrl}"
-                                                           alt="로고" class="logo-img">
-            </a>
 
-            <div class="collapse navbar-collapse ml-auto"
-                 id="navbarSupportedContent1">
-                <!-- 첫 번째 메뉴 내용 -->
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active"
-                                            aria-current="page" href="checkMyExpansePattern.jsp">나의 소비패턴</a></li>
-                    <li class="nav-item"><a class="nav-link"
-                                            href="checkMyWishList.jsp">나의 위시리스트</a></li>
-                    <li class="nav-item"><a class="nav-link" href="checkMyPurchasePlanList.jsp">나의
-                        구매계획리스트</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">나의 챌린지
-                        계좌</a></li>
-                </ul>
-            </div>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent2">
-                <!-- 두 번째 메뉴 내용 -->
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#">로그인</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">회원가입</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
-                </ul>
-            </div>
-
-        </div>
-    </nav>
-</div>
-<hr class="navbar-divider">
 
 <!-- 사이드바  ------------------------------------------------------------------------------------------------------- -->
 <div class="sidebar">
@@ -431,9 +266,11 @@
 
     <div class="description-box">
         <div class="description-text1">🔎 나는 어디에 가장 돈을 많이 쓸까? 나는 어디에 가장
-            돈을 자주 쓸까? 🧐</div>
+            돈을 자주 쓸까? 🧐
+        </div>
         <div class="description-text2">➡️ 좌측메뉴에서 카드등록 후 나의 일상 소비를
-            확인해보세요!</div>
+            확인해보세요!
+        </div>
     </div>
     <hr class="divider">
     <!-- 차트  ------------------------------------------------------------------------------------------------------- -->
@@ -477,7 +314,8 @@
 
     <div class="result-box">
         <div class="result-text1">🏁 결산 : 이번 달 민영 님은 총 20,000,000원을
-            소비하셨습니다.</div>
+            소비하셨습니다.
+        </div>
         <div class="result-text2">
             <br>➡️ 이번 달 최대 지출 카테고리는 "식비"로 총 600,000 원을 소비하셨고,<br> <br>
             ➡️ 이번 달 최다 지출 카테로는 "카페"로 총 25회 소비하셨습니다.
@@ -500,46 +338,26 @@
         </div>
 
 
-
     </div>
-
 
 
 </main>
 
 
-
-
-
-
-
-
 <!-- 푸터 -->
-<footer class="BankFooter">
-    <div class="BankFooterContent">
-        <div class="FooterRow">
-            <ul class="FooterLinks">
-                <li><a href="#">이용약관</a></li>
-                <li><a href="#">개인정보처리방침</a></li>
-                <li><a href="#">보안정책</a></li>
-                <li><a href="#">고객센터</a></li>
-            </ul>
-            <div class="ContactItem">
-                <div class="ContactTitle">고객센터</div>
-                <div class="ContactNumbers">
-                    <span class="ContactNumber Strong15881111">1588-1111</span> <span
-                        class="ContactSeparator">/</span> <span
-                        class="ContactNumber Strong15991111">1599-1111</span>
-                </div>
-            </div>
-        </div>
-        <p class="FooterDescription">© 2023 HANA WISH BANK. All rights
-            reserved.</p>
-    </div>
-</footer>
+<%@ include file="include/footer.jsp" %>
+<!-- 부트스트랩 JavaScript 연결 -->
+<!-- 부트스트랩 CSS 연결 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
 
 <!-- 부트스트랩 JavaScript 연결 -->
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+
+<!-- Unpkg AOS 연결 -->
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+
+<!-- jQuery 연결 -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </body>
 </html>

@@ -7,7 +7,7 @@ import java.util.List;
 public interface WishListService {
     public List<WishListItem> getAllWishListItems();
 
-    void addToWishList(WishListItem item);
+    void addWishlistItem(WishListItem item);
 }
 
 

@@ -9,5 +9,5 @@ import java.util.List;
 public interface WishListMapper {
     List<WishListItem> getAllWishListItems();
 
-    void insertWishListItem(WishListItem item);
+    void insertWishlistItem(WishListItem item);
 }

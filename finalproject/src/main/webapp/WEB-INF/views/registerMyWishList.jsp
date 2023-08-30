@@ -13,14 +13,6 @@
             background-color: white;
         }
 
-        .navbar {
-            position: relative;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            background-color: white;
-            justify-content: space-between;
-        }
 
         /* 사이드 바 ------------------------------------------------------------------------------------------------------- */
         .sidebar {
@@ -33,6 +25,7 @@
 
         .sidebar h3 {
             color: #009591;
+            font-family: "Hana2.0 CM";
             margin-bottom: 20px;
             position: relative;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -61,6 +54,7 @@
         .sidebar ul li a {
             color: #333;
             text-decoration: none;
+            font-family: "Hana2.0 CM";
             display: block;
             padding: 5px 10px; /* 글자 주변의 패딩 추가 */
         }
@@ -80,6 +74,7 @@
         .sidebar ul li a:hover {
             background-color: #009591;
             color: white;
+            font-family: "Hana2.0 CM";
         }
 
         /* 메인 ------------------------------------------------------------------------------------------------------- */
@@ -92,7 +87,7 @@
         .RegisterMyWishListtitle {
             font-size: 32px;
             font-weight: 600;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 CM";
             color: #4F4F4F;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -102,13 +97,14 @@
             padding: 4px; /* 텍스트 내용과 테두리 사이의 간격 */
             border-radius: 20px;
             max-width: 800px;
+
         }
 
         .description-text1 {
             padding: 10px;
             font-size: 16px;
             font-weight: 500;
-            font-family: 'Helvetica', sans-serif;
+            font-family:"Hana2.0 L";
             color: #5A5A5A;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -117,7 +113,7 @@
             padding: 10px;
             font-size: 16px;
             font-weight: 500;
-            font-family: 'Helvetica', sans-serif;
+            font-family:"Hana2.0 L";
             color: #5A5A5A;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             /* 	display: flex;
@@ -128,7 +124,7 @@
             margin-top: 48px;
             font-size: 24px;
             font-weight: 500;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 CM";
             color: #4F4F4F;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 
@@ -138,17 +134,17 @@
             margin-top: 48px;
             font-size: 24px;
             font-weight: 500;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 CM";
             color: #4F4F4F;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 
         }
 
         .howToRegister {
-            margin-top: 1%;
+            margin-top: 2%;
             font-size: 16px;
             font-weight: 500;
-            font-family: "Hana2.0 CM";
+            font-family: "Hana2.0 L";
             color: #4F4F4F;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 
@@ -201,7 +197,7 @@
 
 
         table {
-            margin-top: 1%;
+            margin-top: 4%;
             width: 90%;
             border-collapse: collapse;
             border: 1px solid #ddd;
@@ -420,7 +416,9 @@
                     <td>
                         <div class="item-info">
                             <a href="#" class="item-title"
-                               data-title="<c:out value="${item.title}" />">${item.title}</a>
+                               data-title="<c:out value="${item.title}" />"
+                               data-lprice="<c:out value="${item.lprice}" />"
+                               data-image="<c:out value="${item.image}" />">${item.title}</a>
                         </div>
                     </td>
                     <td class="price">
@@ -430,6 +428,7 @@
                             ${formattedLprice} 원
                     </td>
                 </tr>
+
                 <c:if test="${status.index % 3 == 2}"></c:if>
             </c:forEach>
             </tbody>
@@ -464,9 +463,8 @@
                         console.log("Cleaned title:", cleanTitle);
                         modalText.textContent = cleanTitle + "을(를) 정말 위시리스트에 등록하시겠어요?";
                         modal.style.display = "block";
-
                         selectedItem = {
-                            title: title,
+                            title: cleanTitle,
                             image: image,
                             lprice: lprice
                         };
@@ -478,6 +476,8 @@
                     modal.style.display = "none";
 
                     if (selectedItem) {
+                        console.log("선택된 아이템:", selectedItem);
+
                         fetch('/addToWishList', {
                             method: 'POST',
                             headers: {

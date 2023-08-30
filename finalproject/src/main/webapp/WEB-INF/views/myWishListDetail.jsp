@@ -10,69 +10,9 @@
         body {
             background-color: white;
         }
-
-        .navbar {
-            position: relative;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            background-color: white;
-            justify-content: space-between;
-        }
-
-        .navbar > .container-fluid {
-            padding-top: 25px;
-            padding-bottom: 25px;
-        }
-
-        .navbar-brand {
-            margin-left: 4rem;
-        }
-
-        .navbar-nav {
-            margin-left: 15%;
-        }
-
-        .navbar-nav .nav-item {
-            margin-left: 2rem;
-        }
-
-        .navbar-nav .nav-link {
-            color: #605757;
-            font-size: 15px;
-            font-weight: bold;
-        }
-
-        .logo-img {
-            max-width: 160px; /* 로고 이미지 크기 조절 */
-            max-height: 160px; /* 로고 이미지 크기 조절 */
-        }
-
-        /* 반응형 스타일 */
-        @media ( max-width: 768px) {
-            .navbar-nav {
-                margin-left: 0;
-            }
-
-            .navbar-brand {
-                margin-left: 1rem;
-            }
-
-            .navbar-nav .nav-item {
-                margin-left: 0.5rem;
-            }
-        }
-
-        .navbar-divider {
-            border-top: 2px solid #009591;
-            margin-top: 0;
-            margin-bottom: 0;
-            width: 100%;
-        }
-
         /* 사이드 바 ------------------------------------------------------------------------------------------------------- */
         .sidebar {
-            margin-top: 3%;
+
             margin-left: 5%;
             width: 200px;
             position: absolute;
@@ -81,6 +21,7 @@
 
         .sidebar h3 {
             color: #009591;
+            font-family: "Hana2.0 CM";
             margin-bottom: 20px;
             position: relative;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -109,6 +50,7 @@
         .sidebar ul li a {
             color: #333;
             text-decoration: none;
+            font-family: "Hana2.0 CM";
             display: block;
             padding: 5px 10px; /* 글자 주변의 패딩 추가 */
         }
@@ -128,6 +70,7 @@
         .sidebar ul li a:hover {
             background-color: #009591;
             color: white;
+            font-family: "Hana2.0 CM";
         }
 
         /* 메인 ------------------------------------------------------------------------------------------------------- */
@@ -304,272 +247,135 @@
             margin-left: 2rem;
         }
 
-        /* 푸터 ------------------------------------------------------------------------------------------------------- */
-        .BankFooter {
-            padding: 30px 0;
-            background-color: #ffffff;
-        }
 
-        .BankFooterContent {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .FooterRow {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .FooterLinks {
-            list-style: none;
-            padding: 0;
-            display: flex;
-        }
-
-        .FooterLinks li {
-            margin-right: 20px;
-        }
-
-        .FooterLinks li:last-child {
-            margin-right: 0;
-        }
-
-        .FooterLinks a {
-            color: #136c62;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.2s ease-in-out;
-        }
-
-        .FooterLinks a:hover {
-            color: #0f4c48;
-        }
-
-        /* 연락처 섹션 스타일 */
-        .ContactItem {
-            display: flex;
-            align-items: center;
-        }
-
-        .ContactTitle {
-            font-size: 16px;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-
-        .ContactNumbers {
-            display: flex;
-            align-items: center;
-        }
-
-        .ContactNumber {
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .Strong15881111, .Strong15991111 {
-            margin: 0 5px;
-        }
-
-        .ContactSeparator {
-            margin: 0 10px;
-        }
-
-        /* 푸터 설명 스타일 */
-        .FooterDescription {
-            font-size: 14px;
-            color: #888;
-            margin-top: 20px;
-            font-weight: bold;
-        }
     </style>
-
     <!-- 부트스트랩 연결 -->
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <%@ include file="include/header.jsp" %>
 <body>
+
 <div class="header">
-    <!-- 메뉴바 내용 -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <c:url var="logoUrl" value="../../resources/img/logo.png"/>
-            <a class="navbar-brand" href="index.jsp"> <img src="${logoUrl}"
-                                                           alt="로고" class="logo-img">
-            </a>
 
-            <div class="collapse navbar-collapse ml-auto"
-                 id="navbarSupportedContent1">
-                <!-- 첫 번째 메뉴 내용 -->
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active"
-                                            aria-current="page" href="checkMyExpansePattern.jsp">나의 소비패턴</a></li>
-                    <li class="nav-item"><a class="nav-link"
-                                            href="checkMyWishList.jsp">나의 위시리스트</a></li>
-                    <li class="nav-item"><a class="nav-link"
-                                            href="checkMyPurchasePlanList.jsp">나의 구매계획리스트</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">나의 챌린지
-                        계좌</a></li>
-                </ul>
-            </div>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent2">
-                <!-- 두 번째 메뉴 내용 -->
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#">로그인</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">회원가입</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
-                </ul>
-            </div>
-
+    <!-- 사이드바  ------------------------------------------------------------------------------------------------------- -->
+    <div class="sidebar">
+        <h3>나의 위시리스트</h3>
+        <ul>
+            <li><a href="checkMyWishList">나의 위시리스트 조회</a></li>
+            <li><a href="registerMyWishList">나의 위시리스트 등록</a></li>
+            <!-- <li><a href="#">대출신청</a></li>
+            <li><a href="#">카드신청</a></li>
+            <li><a href="#">고객센터</a></li> -->
+        </ul>
+    </div>
+    <!---메인  ------------------------------------------------------------------------------------------------------- -->
+    <main>
+        <div class="title">
+            <img src="<c:url value='../../resources/img/ic_wishList.svg' />" alt="Main Wish List"
+                 width="80" style="vertical-align: middle;"> 나의 위시리스트 상세조회
         </div>
-    </nav>
-</div>
-<hr class="navbar-divider">
 
-<!-- 사이드바  ------------------------------------------------------------------------------------------------------- -->
-<div class="sidebar">
-    <h3>나의 위시리스트</h3>
-    <ul>
-        <li><a href="checkMyWishList.jsp">나의 위시리스트 조회</a></li>
-        <li><a href="registerMyWishList.jsp">나의 위시리스트 등록</a></li>
-        <!-- <li><a href="#">대출신청</a></li>
-        <li><a href="#">카드신청</a></li>
-        <li><a href="#">고객센터</a></li> -->
-    </ul>
-</div>
-<!---메인  ------------------------------------------------------------------------------------------------------- -->
-<main>
-    <div class="title">
-        <img src="<c:url value='../../resources/img/ic_wishList.svg' />" alt="Main Wish List"
-             width="80" style="vertical-align: middle;"> 나의 위시리스트 상세조회
-    </div>
-
-    <div class="description-box">
-        <div class="description-text1">📚 가격 뒤에 숨은 가치를 발견하세요!</div>
-        <div class="description-text2">➡️ 제품의 '진짜' 가치를 대체가격으로 파악하고,
-            스마트한 소비 습관을 만들어보세요!
+        <div class="description-box">
+            <div class="description-text1">📚 가격 뒤에 숨은 가치를 발견하세요!</div>
+            <div class="description-text2">➡️ 제품의 '진짜' 가치를 대체가격으로 파악하고,
+                스마트한 소비 습관을 만들어보세요!
+            </div>
         </div>
-    </div>
-    <hr class="divider">
-    <!---위시리스트 조회   ------------------------------------------------------------------------------------------------------- -->
+        <hr class="divider">
+        <!---위시리스트 조회   ------------------------------------------------------------------------------------------------------- -->
 
-    <div class="wishListDetailTitle">
-        <img src="<c:url value='../../resources/img/ic_calculator.svg' />" alt="Main Wish List"
-             width="50" style="vertical-align: middle; transform: rotate(-8deg);">
-        이번 달 "커피중독자" 민영 님은
-    </div>
+        <div class="wishListDetailTitle">
+            <img src="<c:url value='../../resources/img/ic_calculator.svg' />" alt="Main Wish List"
+                 width="50" style="vertical-align: middle; transform: rotate(-8deg);">
+            이번 달 "커피중독자" 민영 님은
+        </div>
 
 
-    <div class="container text-center">
-        <div class="row">
-            <div class="col">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
 
-                <div class="card" style="width: 18rem; margin-top: 2rem;">
-                    <c:url value="../../resources/img/ic_patternChart.svg" var="imageURL"/>
-                    <div class="text-center">
-                        <!-- 가운데 정렬을 위한 부모 컨테이너 -->
-                        <img src="${imageURL}" class="card-img-top mx-auto" alt="..."
-                             style="width: 10rem; height: 8.125rem; display: block; margin-top: 1rem;">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Apple 2022 에어팟 프로 2세대 블루투스 이어폰</h5>
-                        <p class="card-text">317,720원</p>
+                    <div class="card" style="width: 18rem; margin-top: 2rem;">
+                        <c:url value="../../resources/img/ic_patternChart.svg" var="imageURL"/>
+                        <div class="text-center">
+                            <!-- 가운데 정렬을 위한 부모 컨테이너 -->
+                            <img src="${imageURL}" class="card-img-top mx-auto" alt="..."
+                                 style="width: 10rem; height: 8.125rem; display: block; margin-top: 1rem;">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Apple 2022 에어팟 프로 2세대 블루투스 이어폰</h5>
+                            <p class="card-text">317,720원</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
+                <div class="col">
 
-                <div class="wishListDetailEqual">=</div>
-            </div>
-            <div class="col">
-                <div class="icCoffeeCalculator">
-                    <img src="<c:url value='../../resources/img/ic_coffeeCalculator.svg' />"
-                         alt="Coffee Calculator" width="180"
-                         style="vertical-align: middle">
+                    <div class="wishListDetailEqual">=</div>
                 </div>
+                <div class="col">
+                    <div class="icCoffeeCalculator">
+                        <img src="<c:url value='../../resources/img/ic_coffeeCalculator.svg' />"
+                             alt="Coffee Calculator" width="180"
+                             style="vertical-align: middle">
+                    </div>
 
-            </div>
-            <div class="col">
-
-                <div class="wishListDetaMultiply">x</div>
-            </div>
-            <div class="col">
-                <div class="ellipse">
-                    <div class="calculate-text">80 &nbsp; DAYS</div>
                 </div>
+                <div class="col">
 
-            </div>
-        </div>
-    </div>
+                    <div class="wishListDetaMultiply">x</div>
+                </div>
+                <div class="col">
+                    <div class="ellipse">
+                        <div class="calculate-text">80 &nbsp; DAYS</div>
+                    </div>
 
-
-    <div class="summary">대략 커피를 80일간 절약한다면 위시 아이템을 구매하실 수 있습니다.</div>
-    <br>
-    <div class="random-comment">“목표를 이루기 위해 소비를 신중하게 선택하세요”</div>
-
-
-    <div class="ButtonContainer ">
-        <div class="row">
-            <div class="col">
-                <c:url var="deleteWishListButton" value="../../resources/img/btn_deleteWishList.svg"/>
-                <a class="deleteWishListButton" href="checkMyWishList.jsp"> <img
-                        src="${deleteWishListButton}" alt="버튼"
-                        class="deleteWishListButton">
-                </a>
-            </div>
-            <div class="col">
-                <c:url var="goPurchasePlanListButton"
-                       value="../../resources/img/btn_goPurchasePlanList.svg"/>
-                <a class="goPurchasePlanListButton"
-                   href="registerMyPurchasePlanList.jsp"> <img
-                        src="${goPurchasePlanListButton}" alt="버튼"
-                        class="goPurchasePlanListButton">
-                </a>
-            </div>
-        </div>
-    </div>
-
-
-</main>
-
-
-<!-- 푸터 -->
-<footer class="BankFooter">
-    <div class="BankFooterContent">
-        <div class="FooterRow">
-            <ul class="FooterLinks">
-                <li><a href="#">이용약관</a></li>
-                <li><a href="#">개인정보처리방침</a></li>
-                <li><a href="#">보안정책</a></li>
-                <li><a href="#">고객센터</a></li>
-            </ul>
-            <div class="ContactItem">
-                <div class="ContactTitle">고객센터</div>
-                <div class="ContactNumbers">
-                    <span class="ContactNumber Strong15881111">1588-1111</span> <span
-                        class="ContactSeparator">/</span> <span
-                        class="ContactNumber Strong15991111">1599-1111</span>
                 </div>
             </div>
         </div>
-        <p class="FooterDescription">© 2023 HANA WISH BANK. All rights
-            reserved.</p>
-    </div>
-</footer>
 
-<!-- 부트스트랩 JavaScript 연결 -->
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script
-        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script
-        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <div class="summary">대략 커피를 80일간 절약한다면 위시 아이템을 구매하실 수 있습니다.</div>
+        <br>
+        <div class="random-comment">“목표를 이루기 위해 소비를 신중하게 선택하세요”</div>
+
+
+        <div class="ButtonContainer ">
+            <div class="row">
+                <div class="col">
+                    <c:url var="deleteWishListButton" value="../../resources/img/btn_deleteWishList.svg"/>
+                    <a class="deleteWishListButton" href="checkMyWishList.jsp"> <img
+                            src="${deleteWishListButton}" alt="버튼"
+                            class="deleteWishListButton">
+                    </a>
+                </div>
+                <div class="col">
+                    <c:url var="goPurchasePlanListButton"
+                           value="../../resources/img/btn_goPurchasePlanList.svg"/>
+                    <a class="goPurchasePlanListButton"
+                       href="registerMyPurchasePlanList.jsp"> <img
+                            src="${goPurchasePlanListButton}" alt="버튼"
+                            class="goPurchasePlanListButton">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+    <!-- 푸터 -->
+    <%@ include file="include/footer.jsp" %>
+    <!-- 부트스트랩 JavaScript 연결 -->
+    <!-- 부트스트랩 CSS 연결 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+
+    <!-- 부트스트랩 JavaScript 연결 -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+
+    <!-- Unpkg AOS 연결 -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+
+    <!-- jQuery 연결 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </body>
 </html>

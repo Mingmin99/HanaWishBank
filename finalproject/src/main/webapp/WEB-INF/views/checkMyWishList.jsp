@@ -11,6 +11,7 @@
             background-color: white;
         }
 
+
         /* 사이드 바 ------------------------------------------------------------------------------------------------------- */
         .sidebar {
             margin-top: 3%;
@@ -22,6 +23,7 @@
 
         .sidebar h3 {
             color: #009591;
+            font-family: "Hana2.0 CM";
             margin-bottom: 20px;
             position: relative;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -50,6 +52,7 @@
         .sidebar ul li a {
             color: #333;
             text-decoration: none;
+            font-family: "Hana2.0 CM";
             display: block;
             padding: 5px 10px; /* 글자 주변의 패딩 추가 */
         }
@@ -69,6 +72,7 @@
         .sidebar ul li a:hover {
             background-color: #009591;
             color: white;
+            font-family: "Hana2.0 CM";
         }
 
         /* 메인 ------------------------------------------------------------------------------------------------------- */
@@ -81,7 +85,7 @@
         .title {
             font-size: 32px;
             font-weight: 600;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 CM";
             color: #4F4F4F;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -97,7 +101,7 @@
             padding: 10px;
             font-size: 16px;
             font-weight: 500;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 L";
             color: #5A5A5A;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -106,7 +110,7 @@
             padding: 10px;
             font-size: 16px;
             font-weight: 500;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 L";
             color: #5A5A5A;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             /* 	display: flex;
@@ -118,7 +122,7 @@
             margin-top: 48px;
             font-size: 24px;
             font-weight: 500;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 CM";
             color: #4F4F4F;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -128,6 +132,10 @@
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s;
             margin: 1rem;
+        }
+
+        .card-body {
+            font-family: "Hana2.0 CM";
         }
 
         /* 카드에 마우스 호버 시 약간 확대 효과 */
@@ -143,7 +151,7 @@
             margin: 1rem auto;
         }
 
-        .item-Title {
+        .itemTitle {
             font-size: 1.1rem;
             font-weight: bolder;
             margin-bottom: 1rem;
@@ -151,6 +159,7 @@
             word-wrap: break-word; /* 긴 단어의 줄바꿈을 위한 속성 */
             text-align: center;
             color: #555;
+            font-family: "Hana2.0 L";
         }
 
 
@@ -161,6 +170,7 @@
             text-align: center;
             justify-content: center;
             align-items: center;
+            font-family: "Hana2.0 L";
         }
 
         .btn {
@@ -227,9 +237,12 @@
     <!---위시리스트 조회   ------------------------------------------------------------------------------------------------------- -->
 
     <div class="wishListTitle">◆ 나의 위시리스트 목록</div>
-    <div class="row" id="item-container">
-
+    <div class="container">
+        <div class="row" id="item-container">
+            <!-- 아이템 카드들이 여기에 동적으로 추가될 것입니다. -->
+        </div>
     </div>
+
     <script>
         $(document).ready(function () {
             // 페이지 로드 시 Ajax로 데이터 가져오기
@@ -238,55 +251,56 @@
                 url: "/wish-list",
                 contentType: "application/json",
                 success: function (data) {
+                    const itemContainer = $("#item-container")
+                        .css({
+                            marginRight: "2rem",
+                            marginLeft: "-2rem", // 왼쪽 여백 조절
+
+                        });
+
                     // 각 아이템을 순회하며 화면에 추가
                     $.each(data, function (index, item) {
-                        const itemContainer = document.getElementById("item-container");
-                        const card = document.createElement("div");
-                        card.classList.add("col");
-                        card.classList.add("card");
-                        card.style.maxWidth = "18rem";
-                        card.style.marginTop = "2rem";
+                        const card = $("<div>").addClass("col-lg-4 col-md-6 col-sm-12 mb-6")
+                            .css({
+                                marginTop: "2rem",
+                                borderRadius: "30px",
+                            });
 
-                        const textCenter = document.createElement("div");
-                        textCenter.classList.add("text-center");
+                        const cardInner = $("<div>").addClass("card");
 
-                        const img = document.createElement("img");
-                        img.src = item.image;
-                        img.classList.add("card-img-top");
-                        img.classList.add("mx-auto");
-                        img.alt = "...";
-                        img.style.width = "18rem";
-                        img.style.height = "10.125rem";
-                        img.style.display = "block";
-                        img.style.marginTop = "1rem";
+                        const img = $("<img>").attr("src", item.image)
+                            .addClass("card-img-top mx-auto")
+                            .addClass("img-fluid")
+                            .attr("alt", "...")
+                            .css({
+                                maxWidth: "60%", // 이미지 최대 너비 설정
+                                maxHeight: "160px", // 이미지 최대 높이 설정
+                            });
 
-                        textCenter.appendChild(img);
+                        const cardBody = $("<div>").addClass("card-body");
+                        const itemTitle = $("<h5>").addClass("item-title")
+                            .addClass("card-title")
+                            .text(item.title)
+                            .css({
+                                whiteSpace: "nowrap", // 줄바꿈 방지
+                                overflow: "hidden", // 넘치는 부분 숨김 처리
+                                textOverflow: "ellipsis", // 넘치는 부분 생략 표시
+                                fontFamily: "Hana2.0 CM", // 원하는 폰트 설정
 
-                        const cardBody = document.createElement("div");
-                        cardBody.classList.add("card-body");
+                            });
 
-                        const itemTitle = document.createElement("h5");
-                        itemTitle.classList.add("item-title");
-                        itemTitle.textContent = item.itemTitle;
+                        const itemPrice = $("<p>").addClass("item-price")
+                            .addClass("card-text")
+                            .text(item.price + "원");
 
-                        const itemPrice = document.createElement("p");
-                        itemPrice.classList.add("item-price");
-                        itemPrice.textContent = item.price + "원";
+                        const detailLink = $("<a>").attr("href", "/myWishListDetail")
+                            .addClass("btn btn-primary")
+                            .text("상세보기");
 
-                        const detailLink = document.createElement("a");
-                        detailLink.href = "myWishListDetail.jsp";
-                        detailLink.classList.add("btn");
-                        detailLink.classList.add("btn-primary");
-                        detailLink.textContent = "상세보기";
-
-                        cardBody.appendChild(itemTitle);
-                        cardBody.appendChild(itemPrice);
-                        cardBody.appendChild(detailLink);
-
-                        card.appendChild(textCenter);
-                        card.appendChild(cardBody);
-
-                        itemContainer.appendChild(card);
+                        cardBody.append(itemTitle, itemPrice, detailLink);
+                        cardInner.append(img, cardBody);
+                        card.append(cardInner);
+                        itemContainer.append(card);
                     });
                 },
                 error: function (xhr, status, error) {
@@ -294,7 +308,6 @@
                 }
             });
         });
-
     </script>
 
 

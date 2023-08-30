@@ -8,7 +8,6 @@ import com.kopo.finalproject.WishList.model.dto.SearchListItem;
 import com.kopo.finalproject.WishList.model.dto.WishListItem;
 import com.kopo.finalproject.WishList.service.WishListService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,6 +17,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.net.URI;
 import java.util.List;
 
@@ -38,13 +39,19 @@ public class wishListController {
         return mav;
     }
 
+    @RequestMapping("/myWishListDetail")
+    public ModelAndView myWishListDetail() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("myWishListDetail");
+        return mav;
+    }
+
     @RequestMapping("/registerMyWishList")
     public ModelAndView registerMyWishList() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("registerMyWishList");
         return mav;
     }
-
 
     @GetMapping("/wish-list")
     public ResponseEntity<List<WishListItem>> getAllWishListItems() {
@@ -90,16 +97,17 @@ public class wishListController {
 
     @PostMapping("/addToWishList")
     @ResponseBody
-    public ResponseEntity<String> addToWishList(@RequestBody WishListItem item) {
-        try {
-            wishListService.addToWishList(item);
-            return ResponseEntity.ok("success");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("failure");
+    public String addToWishList(@RequestBody WishListItem item, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String memberID = (String) session.getAttribute("memberID");
+
+        if (memberID != null) {
+            item.setMemberID(memberID);
+            wishListService.addWishlistItem(item);
+            return "success";
+        } else {
+            return "로그인 정보를 찾을 수 없습니다."; // 로그인이 필요한 상태임을 알려줌
         }
     }
+
 }
-
-
-
-
