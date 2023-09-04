@@ -35,7 +35,7 @@
             font-size: 48px;
             margin-left: 1%;
             font-weight: 600;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 CM";
             color: #4F4F4F;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -43,7 +43,7 @@
         #carouselExampleIndicators .subtitle {
             margin-top: 30px;
             margin-left: 10%;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 L";
             font-weight: 600;
             font-size: 26px;
             color: #477580;

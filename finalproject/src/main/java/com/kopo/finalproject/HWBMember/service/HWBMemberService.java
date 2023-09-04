@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface HWBMemberService {
 
-    public List<HWBMember> getAllMember();
+    List<HWBMember> getAllMember();
 
     HWBMember selectNameOfMember(String memberID);
 

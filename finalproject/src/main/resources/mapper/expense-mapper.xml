@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kopo.finalproject.Expense.model.dao.ExpenseMapper">
+
+    <select id="getTotalExpenseAmount" resultType="com.kopo.finalproject.Expense.model.dto.TotalExpenseAmount">
+        <![CDATA[
+        SELECT SUM(ExpenseAmount) AS TotalExpenseAmount
+        FROM Expense
+        WHERE ExpenseDate >= TRUNC(SYSDATE) - 30
+          AND ExpenseDate < TRUNC(SYSDATE)
+          AND CardID = #{cardID}
+        ]]>
+    </select>
+
+
+    <select id="getTopCategory" resultType="com.kopo.finalproject.Expense.model.dto.ExpenseMaxCountCategory">
+        <![CDATA[
+        SELECT ec.description AS ExpenseCategoryDescription, COUNT(*) AS CategoryCount
+        FROM Expense e
+                 INNER JOIN ExpenseCategory ec ON e.ExpenseCategoryCode = ec.code
+        WHERE e.ExpenseDate >= TRUNC(SYSDATE) - 30
+          AND e.ExpenseDate < TRUNC(SYSDATE)
+          AND e.CardID = #{cardID}
+        GROUP BY ec.description
+        ORDER BY CategoryCount DESC
+            FETCH FIRST 1 ROWS ONLY
+        ]]>
+    </select>
+
+    <select id="getTopAmount" resultType="com.kopo.finalproject.Expense.model.dto.ExpenseMaxSumCategory">
+      <![CDATA[
+        SELECT ec.description AS ExpenseCategoryDescription, SUM(e.ExpenseAmount) AS TotalAmount
+        FROM Expense e
+                 INNER JOIN ExpenseCategory ec ON e.ExpenseCategoryCode = ec.code
+        WHERE e.ExpenseDate >= TRUNC(SYSDATE) - 30
+          AND e.ExpenseDate < TRUNC(SYSDATE)
+          AND e.CardID = #{cardID}
+        GROUP BY ec.description
+        ORDER BY TotalAmount DESC
+            FETCH FIRST 1 ROWS ONLY
+        ]]>
+    </select>
+
+
+</mapper>

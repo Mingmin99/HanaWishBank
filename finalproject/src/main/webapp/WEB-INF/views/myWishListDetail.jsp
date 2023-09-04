@@ -10,6 +10,7 @@
         body {
             background-color: white;
         }
+
         /* 사이드 바 ------------------------------------------------------------------------------------------------------- */
         .sidebar {
 
@@ -290,24 +291,38 @@
             이번 달 "커피중독자" 민영 님은
         </div>
 
-
         <div class="container text-center">
             <div class="row">
                 <div class="col">
-
                     <div class="card" style="width: 18rem; margin-top: 2rem;">
-                        <c:url value="../../resources/img/ic_patternChart.svg" var="imageURL"/>
                         <div class="text-center">
-                            <!-- 가운데 정렬을 위한 부모 컨테이너 -->
-                            <img src="${imageURL}" class="card-img-top mx-auto" alt="..."
+                            <img id="itemImage" class="card-img-top mx-auto" alt="..."
                                  style="width: 10rem; height: 8.125rem; display: block; margin-top: 1rem;">
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Apple 2022 에어팟 프로 2세대 블루투스 이어폰</h5>
-                            <p class="card-text">317,720원</p>
+                            <h5 class="card-title" id="itemTitle"></h5>
+                            <p class="card-text" id="itemPrice"></p>
                         </div>
                     </div>
                 </div>
+
+                <script>
+                    // 세션 스토리지에서 데이터 가져오기
+                    const selectedItem = JSON.parse(sessionStorage.getItem("선택된 아이템"));
+
+                    // 가져온 데이터를 화면에 표시
+                    if (selectedItem) {
+                        const itemTitleElement = document.getElementById("itemTitle");
+                        const itemPriceElement = document.getElementById("itemPrice");
+                        const itemImageElement = document.getElementById("itemImage");
+
+                        itemTitleElement.textContent = selectedItem.title;
+                        itemPriceElement.textContent = selectedItem.price + "원";
+                        itemImageElement.src = selectedItem.image;
+                        itemImageElement.alt = selectedItem.title; // 이미지 대체 텍스트 설정
+                    }
+                </script>
+
                 <div class="col">
 
                     <div class="wishListDetailEqual">=</div>

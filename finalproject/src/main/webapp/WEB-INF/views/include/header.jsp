@@ -21,7 +21,7 @@
                 <!-- 첫 번째 메뉴 내용 -->
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link active"
-                                            aria-current="page" href="/checkMyExpansePattern">나의 소비패턴</a></li>
+                                            aria-current="page" href="/checkMyCard">나의 소비패턴</a></li>
                     <li class="nav-item"><a class="nav-link"
                                             href="/checkMyWishList">나의 위시리스트</a></li>
                     <li class="nav-item"><a class="nav-link" href="/checkMyPurchasePlanList">나의

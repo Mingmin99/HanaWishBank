@@ -386,7 +386,7 @@
                 <!-- 첫 번째 메뉴 내용 -->
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link active"
-                                            aria-current="page" href="checkMyExpansePattern.jsp">나의 소비패턴</a></li>
+                                            aria-current="page" href="checkMyExpensePattern.jsp">나의 소비패턴</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">나의
                         위시리스트</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">나의
@@ -415,7 +415,7 @@
     <h3>나의 소비패턴</h3>
     <ul>
         <li><a href="cardRegistration.jsp">카드등록</a></li>
-        <li><a href="checkMyExpansePattern.jsp">소비내역 조회</a></li>
+        <li><a href="checkMyExpensePattern.jsp">소비내역 조회</a></li>
         <!-- <li><a href="#">대출신청</a></li>
         <li><a href="#">카드신청</a></li>
         <li><a href="#">고객센터</a></li> -->

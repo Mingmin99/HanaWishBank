@@ -466,7 +466,7 @@
                         selectedItem = {
                             title: cleanTitle,
                             image: image,
-                            lprice: lprice
+                            price: lprice
                         };
                     });
                 });

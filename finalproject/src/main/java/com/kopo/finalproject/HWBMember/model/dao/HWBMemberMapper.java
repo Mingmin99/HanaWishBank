@@ -14,4 +14,9 @@ public interface HWBMemberMapper {
     HWBMember selectNameOfMember(String memberID);
 
     HWBMember loginMember(HashMap<String, String> loginData);
+
+
 }
+
+
+

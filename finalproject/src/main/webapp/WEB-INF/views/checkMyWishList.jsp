@@ -255,7 +255,6 @@
                         .css({
                             marginRight: "2rem",
                             marginLeft: "-2rem", // 왼쪽 여백 조절
-
                         });
 
                     // 각 아이템을 순회하며 화면에 추가
@@ -286,16 +285,32 @@
                                 overflow: "hidden", // 넘치는 부분 숨김 처리
                                 textOverflow: "ellipsis", // 넘치는 부분 생략 표시
                                 fontFamily: "Hana2.0 CM", // 원하는 폰트 설정
-
                             });
 
                         const itemPrice = $("<p>").addClass("item-price")
                             .addClass("card-text")
                             .text(item.price + "원");
 
-                        const detailLink = $("<a>").attr("href", "/myWishListDetail")
-                            .addClass("btn btn-primary")
-                            .text("상세보기");
+
+                        // 받아온 정보를 selectInfo에 담기
+                        var selectInfo = {
+                            title: item.title,
+                            price: item.price,
+                            image: item.image
+                        };
+                        console.log("Selected Item:", selectInfo); // 콘솔에 데이터 출력
+
+                        const detailLink = $("<a>").addClass("btn btn-primary")
+                            .text("상세보기")
+                            .on("click", function () {
+                                // 세션 스토리지에 정보 저장
+                                sessionStorage.setItem("선택된 아이템", JSON.stringify(selectInfo));
+                                console.log(sessionStorage.getItem("선택된 아이템"));
+
+
+                                // 다른 페이지로 이동
+                                window.location.href = "/myWishListDetail";
+                            });
 
                         cardBody.append(itemTitle, itemPrice, detailLink);
                         cardInner.append(img, cardBody);
