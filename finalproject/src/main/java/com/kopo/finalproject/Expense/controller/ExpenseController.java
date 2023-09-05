@@ -2,6 +2,7 @@ package com.kopo.finalproject.Expense.controller;
 
 import com.kopo.finalproject.Expense.model.dto.ExpenseMaxCountCategory;
 import com.kopo.finalproject.Expense.model.dto.ExpenseMaxSumCategory;
+import com.kopo.finalproject.Expense.model.dto.SubCategory;
 import com.kopo.finalproject.Expense.model.dto.TotalExpenseAmount;
 import com.kopo.finalproject.Expense.service.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,19 +46,27 @@ public class ExpenseController {
         ExpenseMaxCountCategory topCategory = expenseService.getTopCategory(cardID);
         ExpenseMaxSumCategory topAmount = expenseService.getTopAmount(cardID);
         TotalExpenseAmount totalExpenseAmount = expenseService.getTotalExpenseAmount(cardID);
-//        SubCategory deatailTopCategory = expenseService.getTopCategoryDetailedExpenseCategory(cardID);
-//        SubCategory deatailTopAmount = expenseService.getTopAmountDetailedExpenseCategory(cardID);
+        SubCategory deatailTopCategory = expenseService.getTopCategoryDetailedExpenseCategory(cardID);
+        SubCategory deatailTopAmount = expenseService.getTopAmountDetailedExpenseCategory(cardID);
 
         // 결과를 Map으로 묶어 JSON 형태로 반환
         Map<String, Object> response = new HashMap<>();
         response.put("topCategory", topCategory);
         response.put("topAmount", topAmount);
         response.put("totalExpenseAmount", totalExpenseAmount);
-//        response.put("deatailTopCategory", deatailTopCategory);
-//        response.put("deatailTopAmount", deatailTopAmount);
+        response.put("deatailTopCategory", deatailTopCategory);
+        response.put("deatailTopAmount", deatailTopAmount);
+
+        // 데이터 확인을 위한 출력
+        System.out.println("topCategory: " + topCategory.toString());
+        System.out.println("topAmount: " + topAmount.toString());
+        System.out.println("totalExpenseAmount: " + totalExpenseAmount.toString());
+        System.out.println("deatailTopCategory: " + deatailTopCategory.toString());
+        System.out.println("deatailTopAmount: " + deatailTopAmount.toString());
 
         return ResponseEntity.ok(response);
     }
+
 
 //    @RequestMapping("/checkMyExpensePattern")
 //    public ModelAndView checkMyExpensePattern(

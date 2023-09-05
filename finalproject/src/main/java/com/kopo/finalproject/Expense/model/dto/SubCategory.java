@@ -11,7 +11,11 @@ import lombok.Setter;
 @AllArgsConstructor
 public class SubCategory {
     private String SubCategoryDescription;
-    private int SubCategoryCount;
     private int RepresentativePrice;
+    private String ParentCategoryCode;
     private String TagImage;
+    private int SubCategoryCount;
+
+
+
 }
