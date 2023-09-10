@@ -84,7 +84,7 @@
         .title {
             font-size: 32px;
             font-weight: 600;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 CM";
             color: #4F4F4F;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -100,7 +100,7 @@
             padding: 10px;
             font-size: 16px;
             font-weight: 500;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 L";
             color: #5A5A5A;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -109,7 +109,7 @@
             padding: 10px;
             font-size: 16px;
             font-weight: 500;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 L";
             color: #5A5A5A;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             /* 	display: flex;
@@ -117,11 +117,60 @@
         }
 
         /* 위시리스트 조회------------------------------------------------------------------------------------------------------- */
+        .calculation-container {
+            border: dashed 3px;
+            border-color: #787676;
+            border-radius: 10px;
+            margin-right: 5%;
+            margin-top: 3%;
+        }
+
+        /* 모달 스타일 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            max-width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-content {
+            margin: 20% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            font-family: "Hana2.0 CM";
+            font-size: 24px;
+            max-width: 60%;
+            background-color: #ffb700 !important;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
         .wishListDetailTitle {
             margin-top: 48px;
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 600;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 CM";
             color: #4F4F4F;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -132,11 +181,13 @@
 
         /* 카드 전체에 그림자 효과 추가 */
         .card {
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4); /* 그림자 효과 추가 */
             transition: transform 0.2s;
             width: 14rem !important;
+            background-color: #fff !important;
             height: 240px; /* 원하는 크기로 조절 */
             margin-top: 3rem !important;
+            margin-left: 4rem;
         }
 
         /* 카드에 마우스 호버 시 약간 확대 효과 */
@@ -161,11 +212,28 @@
         }
 
         /* 표현식 ------------------------------------------------------------------------------------------------------- */
-        .icCoffeeCalculator {
-            transition: transform 0.2s;
-            width: 12rem !important;
-            height: 200px; /* 원하는 크기로 조절 */
-            margin-top: 4rem !important;
+        #amountImage {
+            max-width: 200px;
+            margin-top: 40%;
+            margin-left: -7rem;
+        }
+
+        #amountPrice {
+            margin-top: 10%;
+            margin-left: -7rem;
+            font-family: "Hana2.0 CM";
+        }
+
+        #categoryImage {
+            max-width: 200px;
+            margin-left: -7rem;
+            margin-top: 24%;
+        }
+
+        #categoryPrice {
+            margin-top: 40%;
+            margin-left: -7rem;
+            font-family: "Hana2.0 CM";
         }
 
         .wishListDetailEqual {
@@ -174,6 +242,7 @@
             font-weight: 600;
             font-family: 'Helvetica', sans-serif;
             color: #526DB0;
+            margin-left: -7rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
@@ -183,69 +252,78 @@
             font-weight: 600;
             font-family: 'Helvetica', sans-serif;
             color: #526DB0;
+            margin-left: -10rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .ellipse {
-            margin-top: 7rem !important;
-            margin-right: 8rem !important;
-            width: 200px;
-            height: 100px;
-            background-color: #ABCBCD;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
         }
 
         .calculate-text {
+            margin-top: 7rem !important;
+            margin-left: -7rem;
+            width: 200px;
+            height: 100px;
+            border: dotted 3px;
+            border-radius: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: absolute;
-            text-align: center;
-            font-size: 20px;
-            font-weight: 500;
-            font-family: 'Helvetica', sans-serif;
-            color: #5A5A5A;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .summary {
-            margin-right: 8rem !important;
-            margin-top: 5rem;
-            word-wrap: break-word; /* 긴 단어의 줄바꿈을 위한 속성 */
-            text-align: center;
-            font-size: 22px;
-            font-weight: 100;
-            color: #5A5A5A;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .random-comment {
-            margin-right: 8rem !important;
-            margin-top: 1rem;
-            word-wrap: break-word; /* 긴 단어의 줄바꿈을 위한 속성 */
             text-align: center;
             font-size: 24px;
             font-weight: 500;
+            font-family: "Hana2.0 CM";
             color: #5A5A5A;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+        }
+
+        .summary {
+            margin-top: 2rem;
+            margin-left: 4rem;
+            word-wrap: break-word; /* 긴 단어의 줄바꿈을 위한 속성 */
+            text-align: center;
+            font-size: 20px;
+            font-family: "Hana2.0 L";
+            font-weight: 100;
+            color: #5A5A5A;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            padding-bottom: 1rem;
+        }
+
+        .random-comment {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            word-wrap: break-word; /* 긴 단어의 줄바꿈을 위한 속성 */
+            font-size: 36px;
+            font-weight: 500;
+            font-family: "Hana2.0 CM";
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             word-wrap: break-word;
+            color: #7ba299;
+        }
+
+        .notice {
+            margin-top: 2%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-family: "Hana2.0 L";
         }
 
         .ButtonContainer {
-            margin-right: 10rem !important;
-            margin-top: 5rem;
+            margin-top: 4%;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
         .deleteWishListButton {
-            margin-left: 2rem;
+            margin-right: 1rem;
         }
 
         .goPurchasePlanListButton {
-            margin-left: 2rem;
+            margin-left: 1rem;
         }
 
 
@@ -278,103 +356,267 @@
 
         <div class="description-box">
             <div class="description-text1">📚 가격 뒤에 숨은 가치를 발견하세요!</div>
-            <div class="description-text2">➡️ 제품의 '진짜' 가치를 대체가격으로 파악하고,
-                스마트한 소비 습관을 만들어보세요!
+            <div class="description-text2">➡️ 나의 지출 소비태그를 활용하여 아이템의 가격을 실질적으로 체감해보고 구매를 고려해보아요!
             </div>
         </div>
         <hr class="divider">
         <!---위시리스트 조회   ------------------------------------------------------------------------------------------------------- -->
 
+        <%
+            // 세션에서 memberID 가져오기
+            String memberID = (String) session.getAttribute("memberID");
+            // 세션에서 name 가져오기
+            name = (String) session.getAttribute("name");
+        %>
         <div class="wishListDetailTitle">
             <img src="<c:url value='../../resources/img/ic_calculator.svg' />" alt="Main Wish List"
                  width="50" style="vertical-align: middle; transform: rotate(-8deg);">
-            이번 달 "커피중독자" 민영 님은
+            이번 달 <%=name %>님은
         </div>
-
-        <div class="container text-center">
-            <div class="row">
-                <div class="col">
-                    <div class="card" style="width: 18rem; margin-top: 2rem;">
-                        <div class="text-center">
-                            <img id="itemImage" class="card-img-top mx-auto" alt="..."
-                                 style="width: 10rem; height: 8.125rem; display: block; margin-top: 1rem;">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title" id="itemTitle"></h5>
-                            <p class="card-text" id="itemPrice"></p>
+        <div class="calculation-container">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                        <div class="card" style="width: 18rem; margin-top: 2rem;">
+                            <div class="text-center">
+                                <img id="itemImage" class="card-img-top mx-auto" alt="..."
+                                     style="width: 10rem; height: 8.125rem; display: block; margin-top: 1rem;">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title" id="itemTitle"></h5>
+                                <p class="card-text" id="itemPrice"></p>
+                            </div>
                         </div>
                     </div>
+                    <div class="col">
+                        <div class="wishListDetailEqual">=</div>
+                    </div>
+                    <div class="col">
+                        <div class="expenseTagImg"></div>
+                    </div>
+                    <div class="col">
+                        <div class="wishListDetaMultiply">x</div>
+                    </div>
+                    <div class="col">
+                        <div class="calculate-text"></div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                // 세션 스토리지에서 데이터 가져오기
+                const selectedItem = JSON.parse(sessionStorage.getItem("선택된 아이템"));
+
+                // 가져온 데이터를 화면에 표시
+                if (selectedItem) {
+                    const itemTitleElement = document.getElementById("itemTitle");
+                    const itemPriceElement = document.getElementById("itemPrice");
+                    const itemImageElement = document.getElementById("itemImage");
+
+                    itemTitleElement.textContent = selectedItem.title;
+                    itemPriceElement.textContent = selectedItem.price.toLocaleString() + "원";
+                    itemImageElement.src = selectedItem.image;
+                    itemImageElement.alt = selectedItem.title; // 이미지 대체 텍스트 설정
+                }
+            </script>
+
+            <script>
+                var selectedMonthlyKing = localStorage.getItem("selectedMonthlyKing");
+                var categoryRepresentativePriceTmp = localStorage.getItem("categoryRepresentativePriceTmp");
+                var categoryImgTmp = localStorage.getItem("categoryImgTmp");
+                var amountRepresentativePriceTmp = localStorage.getItem("amountRepresentativePriceTmp");
+                var amountImgTmp = localStorage.getItem("amountImgTmp");
+
+                // 데이터를 활용하여 원하는 작업 수행
+                console.log('Selected Monthly King:', selectedMonthlyKing);
+
+                if (selectedMonthlyKing === "#monthlyKing1") {
+                    console.log('Category Representative Price:', categoryRepresentativePriceTmp);
+                    console.log('Category Image Source:', categoryImgTmp);
+
+                    // 카테고리 관련 이미지를 동적으로 생성하여 화면에 추가
+                    var categoryImageElement = document.createElement("img");
+                    categoryImageElement.id = "categoryImage";
+                    categoryImageElement.src = "../../resources/img/" + categoryImgTmp;
+                    categoryImageElement.alt = "Category Image";
+
+                    document.querySelector(".expenseTagImg").appendChild(categoryImageElement);
+
+                    // 카테고리 가격을 동적으로 생성하여 화면에 추가하고 "원"을 추가
+                    var categoryPriceElement = document.createElement("p");
+                    categoryPriceElement.id = "categoryPrice";
+                    categoryPriceElement.textContent = categoryRepresentativePriceTmp + " 원";
+                    document.querySelector(".expenseTagImg").appendChild(categoryPriceElement);
+                } else if (selectedMonthlyKing === "#monthlyKing2") {
+                    console.log('Amount Representative Price:', amountRepresentativePriceTmp);
+                    console.log('Amount Image Source:', amountImgTmp);
+                    // 양 관련 이미지를 동적으로 생성하여 화면에 추가
+                    var amountImageElement = document.createElement("img");
+                    amountImageElement.id = "amountImage";
+                    amountImageElement.src = "../../resources/img/" + amountImgTmp;
+                    amountImageElement.alt = "Amount Image";
+                    document.querySelector(".expenseTagImg").appendChild(amountImageElement);
+
+                    // 양 가격을 동적으로 생성하여 화면에 추가
+                    var amountPriceElement = document.createElement("p");
+                    amountPriceElement.id = "amountPrice";
+                    amountPriceElement.textContent = amountRepresentativePriceTmp + " 원";
+                    document.querySelector(".expenseTagImg").appendChild(amountPriceElement);
+                }
+            </script>
+            <!-- 모달 창 -->
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p></p>
+                </div>
+            </div>
+
+            <script>
+                const itemPrice = parseInt(selectedItem.price); // 문자열을 정수로 변환하여 가격값 저장
+                console.log("상품 가격: " + itemPrice);
+
+                var selectedPrice; // 선택된 가격을 저장할 변수를 선언합니다.
+
+                if (selectedMonthlyKing === "#monthlyKing1") {
+                    selectedPrice = parseInt(categoryRepresentativePriceTmp.replace(/,/g, '')); // 쉼표를 제거하고 정수로 변환
+                } else if (selectedMonthlyKing === "#monthlyKing2") {
+                    selectedPrice = parseInt(amountRepresentativePriceTmp.replace(/,/g, '')); // 쉼표를 제거하고 정수로 변환
+                }
+                console.log("소비태그 대표가격: " + selectedPrice);
+
+                var dayResult;
+
+                if (itemPrice >= selectedPrice) {
+                    dayResult = Math.round(itemPrice / selectedPrice); // 나눈 몫을 반올림
+                    console.log("dayResult 값: " + dayResult);
+                } else {
+                    // itemPrice가 selectedPrice보다 작은 경우
+                    dayResult = 1;
+                    console.log("dayResult 값: " + dayResult);
+
+                    // 모달 열기
+                    const modal = document.getElementById("myModal");
+                    const modalContent = document.querySelector(".modal-content");
+
+                    modalContent.innerHTML = "위시리스트 아이템 가격이 나의 소비에 비해 저렴하므로<br><br>챌린지 적금 상품에 적합할지 다시 한 번 고려해보세요!";
+
+                    modal.style.display = "block";
+
+                    // 3초 후에 모달 창을 숨김
+                    setTimeout(function () {
+                        modal.style.display = "none";
+                    }, 4000); // 3000 밀리초 (3초)
+                }
+                // .calculate-text 요소를 선택하고 결과 값을 설정
+                const calculateTextElement = document.querySelector(".calculate-text");
+                calculateTextElement.textContent = dayResult + " times";
+
+            </script>
+
+            <script>
+                console.log("dayResult 값: " + dayResult);
+                document.addEventListener('DOMContentLoaded', function () {
+                    var cardID = localStorage.getItem('cardID');
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('GET', '/checkMyExpenseData?cardID=' + cardID, true);
+
+                    xhr.onload = function () {
+                        if (xhr.status === 200) {
+                            var responseData = JSON.parse(xhr.responseText);
+
+                            var selectedMonthlyKing = localStorage.getItem("selectedMonthlyKing");
+                            var topCategorySubCategoryDescription = responseData.topCategorySubCategoryDescription.subCategoryDescription;
+                            var topAmountSubCategoryDescription = responseData.topAmountSubCategoryDescription.subCategoryDescription;
+
+                            if (selectedMonthlyKing === "#monthlyKing1") {
+                                var topCategorySubCategoryDescriptionElement = document.createElement("p");
+                                topCategorySubCategoryDescriptionElement.id = "topCategorySubCategoryDescriptionElement";
+                                topCategorySubCategoryDescriptionElement.textContent = "'" + topCategorySubCategoryDescription + "'"
+                                    + "에 해당하는 지출을 대략 " + dayResult + " 정도 절약하면 해당 아이템을 구매하실 수 있습니다."; // 데이터 추가
+                                document.querySelector(".summary").appendChild(topCategorySubCategoryDescriptionElement);
+                            } else if (selectedMonthlyKing === "#monthlyKing2") {
+                                var topAmountSubCategoryDescriptionElement = document.createElement("p");
+                                topAmountSubCategoryDescriptionElement.id = "topAmountSubCategoryDescriptionElement";
+                                topAmountSubCategoryDescriptionElement.textContent = "'" + topAmountSubCategoryDescription + "'" + "에 해당하는 지출을 대략 " + dayResult + "번 정도 절약하면 해당 아이템을 구매하실 수 있습니다."; // 데이터 추가
+                                document.querySelector(".summary").appendChild(topAmountSubCategoryDescriptionElement);
+                            }
+                        } else {
+                            console.error('Request failed. Status: ' + xhr.status);
+                        }
+                    };
+
+                    xhr.send();
+                });
+            </script>
+
+            <div class="summary"></div>
+        </div>
+        <br>
+
+        <div>
+            <div class="random-comment"></div>
+        </div>
+
+
+        <script>
+            // 랜덤한 멘트 배열
+            const comments = [
+                "목표를 이루기 위해 소비를 신중하게 선택하세요!",
+                "소비의 진정한 가치는 만족감보다는 목표 달성에 기여하는 것입니다!",
+                "물건의 크기보다는 목표의 크기를 고려해 소비를 선택하세요!",
+                "적은 소비가 큰 목표 달성을 위한 첫 걸음입니다!",
+                "목표를 이루기 위해 소비를 신중하게 선택하세요!",
+                "목표에 맞지 않는 소비는 진정한 가치가 없습니다!",
+                "소비는 목표 달성의 도구이며, 목적없는 소비는 비효율적입니다!",
+                "소비에 앞서 목표를 생각하고, 더 나은 선택을 하세요!",
+                "저번 달의 지출을 토대로 합리적인 소비 습관을 형성하세요!"
+            ];
+
+            // 랜덤한 인덱스 생성
+            const randomIndex = Math.floor(Math.random() * comments.length);
+            // 선택된 멘트를 HTML 요소에 추가
+            const randomCommentElement = document.querySelector(".random-comment");
+            randomCommentElement.textContent = comments[randomIndex];
+        </script>
+        <div class="notice"> ➢ 위시리스트를 삭제하고 싶다면 위시리스트 삭제 버튼을 눌러주시고, 구매를 원하신다면 구매계획 리스트를 클릭하여 구매계획을 등록해보세요.</div>
+
+        <div class="ButtonContainer">
+            <div class="row">
+                <div class="col">
+                    <img
+                            src="../../resources/img/btn_deleteWishList.svg"
+                            alt="버튼"
+                            class="deleteWishListButton"
+                            id="deleteWishListButton">
                 </div>
 
                 <script>
-                    // 세션 스토리지에서 데이터 가져오기
-                    const selectedItem = JSON.parse(sessionStorage.getItem("선택된 아이템"));
+                    // 이미지를 클릭했을 때 실행할 함수
+                    document.getElementById("deleteWishListButton").addEventListener("click", function () {
+                        // 선택된 아이템의 title 값을 가져옵니다.
+                        const selectedItemTitle = selectedItem.title;
+                        console.log(selectedItemTitle);
+                        // URL에 파라미터를 추가한 후 /deleteWishList URL로 이동
+                        window.location.href = "/deleteWishList?title=" + encodeURIComponent(selectedItemTitle);
+                    });
 
-                    // 가져온 데이터를 화면에 표시
-                    if (selectedItem) {
-                        const itemTitleElement = document.getElementById("itemTitle");
-                        const itemPriceElement = document.getElementById("itemPrice");
-                        const itemImageElement = document.getElementById("itemImage");
-
-                        itemTitleElement.textContent = selectedItem.title;
-                        itemPriceElement.textContent = selectedItem.price + "원";
-                        itemImageElement.src = selectedItem.image;
-                        itemImageElement.alt = selectedItem.title; // 이미지 대체 텍스트 설정
-                    }
                 </script>
 
-                <div class="col">
-
-                    <div class="wishListDetailEqual">=</div>
-                </div>
-                <div class="col">
-                    <div class="icCoffeeCalculator">
-                        <img src="<c:url value='../../resources/img/ic_coffeeCalculator.svg' />"
-                             alt="Coffee Calculator" width="180"
-                             style="vertical-align: middle">
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="wishListDetaMultiply">x</div>
-                </div>
-                <div class="col">
-                    <div class="ellipse">
-                        <div class="calculate-text">80 &nbsp; DAYS</div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
 
 
-        <div class="summary">대략 커피를 80일간 절약한다면 위시 아이템을 구매하실 수 있습니다.</div>
-        <br>
-        <div class="random-comment">“목표를 이루기 위해 소비를 신중하게 선택하세요”</div>
-
-
-        <div class="ButtonContainer ">
-            <div class="row">
-                <div class="col">
-                    <c:url var="deleteWishListButton" value="../../resources/img/btn_deleteWishList.svg"/>
-                    <a class="deleteWishListButton" href="checkMyWishList.jsp"> <img
-                            src="${deleteWishListButton}" alt="버튼"
-                            class="deleteWishListButton">
-                    </a>
-                </div>
                 <div class="col">
                     <c:url var="goPurchasePlanListButton"
                            value="../../resources/img/btn_goPurchasePlanList.svg"/>
                     <a class="goPurchasePlanListButton"
-                       href="registerMyPurchasePlanList.jsp"> <img
+                       href="/registerMyPurchasePlanList"> <img
                             src="${goPurchasePlanListButton}" alt="버튼"
                             class="goPurchasePlanListButton">
                     </a>
                 </div>
             </div>
         </div>
-
 
     </main>
     <!-- 푸터 -->

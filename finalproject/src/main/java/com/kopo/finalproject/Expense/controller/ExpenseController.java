@@ -8,9 +8,7 @@ import com.kopo.finalproject.Expense.service.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
@@ -48,6 +46,9 @@ public class ExpenseController {
         TotalExpenseAmount totalExpenseAmount = expenseService.getTotalExpenseAmount(cardID);
         SubCategory deatailTopCategory = expenseService.getTopCategoryDetailedExpenseCategory(cardID);
         SubCategory deatailTopAmount = expenseService.getTopAmountDetailedExpenseCategory(cardID);
+        SubCategory topCategorySubCategoryDescription = expenseService.getTopCategoryDetailedExpenseCategory(cardID);
+        SubCategory topAmountSubCategoryDescription = expenseService.getTopAmountDetailedExpenseCategory(cardID);
+
 
         // 결과를 Map으로 묶어 JSON 형태로 반환
         Map<String, Object> response = new HashMap<>();
@@ -56,6 +57,9 @@ public class ExpenseController {
         response.put("totalExpenseAmount", totalExpenseAmount);
         response.put("deatailTopCategory", deatailTopCategory);
         response.put("deatailTopAmount", deatailTopAmount);
+        response.put("topCategorySubCategoryDescription", topCategorySubCategoryDescription);
+        response.put("topAmountSubCategoryDescription", topAmountSubCategoryDescription);
+
 
         // 데이터 확인을 위한 출력
         System.out.println("topCategory: " + topCategory.toString());
@@ -63,6 +67,8 @@ public class ExpenseController {
         System.out.println("totalExpenseAmount: " + totalExpenseAmount.toString());
         System.out.println("deatailTopCategory: " + deatailTopCategory.toString());
         System.out.println("deatailTopAmount: " + deatailTopAmount.toString());
+        System.out.println("topCategorySubCategoryDescription: " + topCategorySubCategoryDescription.toString());
+        System.out.println("topAmountSubCategoryDescription: " + topAmountSubCategoryDescription.toString());
 
         return ResponseEntity.ok(response);
     }
@@ -87,5 +93,21 @@ public class ExpenseController {
 //        return modelAndView;
 //    }
 
+    @PostMapping("/getExpenseCategoryTagInfo")
+    @ResponseBody
+    public String getExpenseCategoryTagInfo(@RequestParam String categoryRepresentativePriceTmp, @RequestParam String categoryImgTmp) {
+        // categoryRepresentativePriceTmp와 categoryImgTmp를 사용하여 원하는 처리를 수행합니다.
 
+        // 예를 들어, 처리 결과를 문자열로 반환합니다.
+        return "Category Tag Info for: " + categoryRepresentativePriceTmp + ", " + categoryImgTmp;
+    }
+
+    @PostMapping("/getExpenseAmountTagInfo")
+    @ResponseBody
+    public String getExpenseAmountTagInfo(@RequestParam String amountRepresentativePriceTmp, @RequestParam String amountImgTmp) {
+        // amountRepresentativePriceTmp와 amountImgTmp를 사용하여 원하는 처리를 수행합니다.
+
+        // 예를 들어, 처리 결과를 문자열로 반환합니다.
+        return "Amount Tag Info for: " + amountRepresentativePriceTmp + ", " + amountImgTmp;
+    }
 }

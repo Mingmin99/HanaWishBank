@@ -17,4 +17,5 @@ public interface ExpenseService {
    TotalExpenseAmount getTotalExpenseAmount(String cardID);
     SubCategory getTopCategoryDetailedExpenseCategory(String cardID);
     SubCategory getTopAmountDetailedExpenseCategory(String cardID);
+
 }

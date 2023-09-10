@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
@@ -109,5 +110,22 @@ public class wishListController {
             return "로그인 정보를 찾을 수 없습니다."; // 로그인이 필요한 상태임을 알려줌
         }
     }
+    @RequestMapping("/deleteWishList")
+    public String deleteWishList(
+            @RequestParam("title") String title,
+            RedirectAttributes redirectAttributes) {
+
+        // 삭제가 성공하면 "success" 속성을 설정
+        boolean deletionSuccessful = wishListService.deleteWishListItem(title);
+        if (deletionSuccessful) {
+            redirectAttributes.addFlashAttribute("successMessage", "삭제가 완료되었습니다.");
+        } else {
+            redirectAttributes.addFlashAttribute("errorMessage", "삭제에 실패했습니다.");
+        }
+
+        // 삭제 후 리다이렉트
+        return "redirect:/checkMyWishList";
+    }
 
 }
+

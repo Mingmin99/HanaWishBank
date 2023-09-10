@@ -27,4 +27,11 @@ public class wishListServiceImpl implements WishListService {
     public void addWishlistItem(WishListItem item) {
         wishListMapper.insertWishlistItem(item);
     }
+
+    @Override
+    public boolean deleteWishListItem(String title) {
+        int rowsAffected = wishListMapper.deleteWishListItem(title);
+        return rowsAffected > 0; // rowsAffected가 1 이상이면 true를 반환, 그렇지 않으면 false 반환
+    }
+
 }

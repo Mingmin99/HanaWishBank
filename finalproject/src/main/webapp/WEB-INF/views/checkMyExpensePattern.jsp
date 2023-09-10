@@ -507,7 +507,6 @@
                         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     }
 
-// 이제 formatNumber 함수를 사용할 수 있습니다.
 
                     // 데이터를 화면에 표시
                     document.getElementById('topCategoryValue').textContent = responseData.topCategory.expenseCategoryCode;
@@ -515,16 +514,6 @@
                     document.getElementById('topAmountValue').textContent = responseData.topAmount.expenseCategoryCode;
                     document.getElementById('totalAmountValue').textContent = formatNumber(responseData.topAmount.totalAmount);
                     document.getElementById('totalExpenseAmountValue').textContent = formatNumber(responseData.totalExpenseAmount.totalExpenseAmount);
-
-                    // document.getElementById('CategoryRepresentativePrice').textContent = responseData.deatailTopCategory.RepresentativePrice;
-                    // document.getElementById('CategoryParentCategoryCode').textContent = responseData.deatailTopCategory.ParentCategoryCode
-                    // document.getElementById('CategoryTagImage').textContent = responseData.deatailTopCategory.TagImage;
-                    // document.getElementById('CategoryexpenseCategoryCode').textContent = responseData.deatailTopCategory.expenseCategoryCode;
-                    //
-                    // document.getElementById('AmountRepresentativePrice').textContent = responseData.deatailTopCategory.RepresentativePrice;
-                    // document.getElementById('AmountParentCategoryCode').textContent = responseData.deatailTopAmount.ParentCategoryCode
-                    // document.getElementById('AmountTagImage').textContent = responseData.deatailTopAmount.TagImage;
-                    // document.getElementById('AmountexpenseCategoryCode').textContent = responseData.deatailTopAmount.expenseCategoryCode;
 
                 } else {
                     // 요청이 실패한 경우 에러 처리
@@ -572,7 +561,7 @@
             <div class="tagTitle">< 이번 달 나의 소비태그 ></div>
             <!-- 이미지의 src를 동적으로 설정 -->
             <div class="imageAndPriceContainer">
-                <img id="CategoryTagImage" alt="Monthly King" width="240"/>
+                <img id="CategoryTagImage" width="240" title="tagImg"/>
                 <div class="CategoryTag">
                     대표가격: <span id="CategoryRepresentativePrice" class="top-category"></span>원
                 </div>
@@ -588,7 +577,7 @@
             <div class="tagTitle">< 이번 달 나의 소비태그 ></div>
             <!-- 이미지의 src를 동적으로 설정 -->
             <div class="imageAndPriceContainer">
-                <img id="AmountTagImage" alt="Monthly King" width="240"/>
+                <img class="tagImg" id="AmountTagImage" alt="Monthly King" width="240" title="tagImg"/>
                 <div class="CategoryTag">
                     대표가격: <span id="AmountRepresentativePrice" class="top-category"></span>원
                 </div>
@@ -598,48 +587,19 @@
                 <img id="icQR2" src="../../resources/img/ic_QR.svg" width="60">
             </div>
         </div>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // 1 또는 2 중에서 랜덤한 값을 얻음
-                var randomValue = Math.floor(Math.random() * 2) + 1;
 
-                // 선택한 요소를 표시하고 다른 요소를 숨김
-                if (randomValue === 1) {
-                    document.getElementById('monthlyKing1').style.display = 'block';
-                    document.getElementById('monthlyKing2').style.display = 'none';
-                } else {
-                    document.getElementById('monthlyKing1').style.display = 'none';
-                    document.getElementById('monthlyKing2').style.display = 'block';
-                }
 
-                // 선택된 monthlyKing에서 이미지와 가격 데이터 가져오기
-                var selectedImageSrc = document.getElementById('selectedImage').src;
-                var selectedPrice = document.getElementById('selectedPrice').textContent;
+        <div class="monthlyKing1Tmp">
+            <div id="categoryImgTmp"></div>
+            <div id="categoryRepresentativePriceTmp"></div>
+        </div>
+        <div class="monthlyKing2Tmp">
 
-                // 데이터를 JSON 형식으로 구성
-                var data = {
-                    imageSrc: selectedImageSrc,
-                    price: selectedPrice
-                };
+            <div id="amountImgTmp"></div>
+            <div id="amountRepresentativePriceTmp"></div>
+        </div>
 
-                // AJAX 요청을 보내어 데이터를 myWishListDetail.jsp로 전송
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'myWishListDetail.jsp', true);
-                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
 
-                xhr.onload = function () {
-                    if (xhr.status === 200) {
-                        // 서버로부터의 응답 처리
-                        console.log('Data sent successfully!');
-                    } else {
-                        console.error('Request failed. Status: ' + xhr.status);
-                    }
-                };
-
-                xhr.send(JSON.stringify(data));
-            });
-
-        </script>
     </div>
     <script>
         // 페이지 로딩이 완료되면 실행
@@ -662,18 +622,30 @@
                     }
 
                     // deatailTopCategory와 deatailTopAmount에서 필요한 데이터 추출
+                    var topCategorySubCategoryDescription = responseData.topCategorySubCategoryDescription.subCategoryDescription;
+                    var topAmountSubCategoryDescription = responseData.topAmountSubCategoryDescription.subCategoryDescription;
+                    console.log("이거 카테고리 이름: " + topCategorySubCategoryDescription);
+                    console.log("이거 어마운트카테고리 이름: " + topAmountSubCategoryDescription);
                     var categoryRepresentativePrice = responseData.deatailTopCategory.representativePrice;
                     var amountRepresentativePrice = responseData.deatailTopAmount.representativePrice;
-
+                    // 가격 데이터를 포맷팅해서 HTML 요소에 데이터 삽입
+                    document.getElementById('CategoryRepresentativePrice').textContent = formatNumber(categoryRepresentativePrice);
+                    document.getElementById('AmountRepresentativePrice').textContent = formatNumber(amountRepresentativePrice);
                     // 이미지의 src 속성을 동적으로 설정
                     var categoryImage = "../../resources/img/" + responseData.deatailTopCategory.tagImage;
                     var amountImage = "../../resources/img/" + responseData.deatailTopAmount.tagImage;
                     document.getElementById('CategoryTagImage').src = categoryImage;
                     document.getElementById('AmountTagImage').src = amountImage;
 
-                    // 가격 데이터를 포맷팅해서 HTML 요소에 데이터 삽입
-                    document.getElementById('CategoryRepresentativePrice').textContent = formatNumber(categoryRepresentativePrice);
-                    document.getElementById('AmountRepresentativePrice').textContent = formatNumber(amountRepresentativePrice);
+                    //tmt
+                    var categoryImg = responseData.deatailTopCategory.tagImage;
+                    var amountImg = responseData.deatailTopAmount.tagImage;
+
+                    document.getElementById('categoryRepresentativePriceTmp').textContent = formatNumber(categoryRepresentativePrice);
+                    document.getElementById('amountRepresentativePriceTmp').textContent = formatNumber(amountRepresentativePrice);
+                    document.getElementById('categoryImgTmp').textContent = categoryImg;
+                    document.getElementById('amountImgTmp').textContent = amountImg;
+                    randomInsertFunc();
 
                 } else {
                     // 요청이 실패한 경우 에러 처리
@@ -686,7 +658,49 @@
         });
     </script>
 
+    <script>
+        function randomInsertFunc() {
+            // 1 또는 2 중에서 랜덤한 값을 얻음
+            var randomValue = Math.floor(Math.random() * 2) + 1;
 
+            // 선택한 요소를 표시하고 다른 요소를 숨김
+            if (randomValue === 1) {
+                $('#monthlyKing1').show();
+                $('#monthlyKing2').hide();
+            } else {
+                $('#monthlyKing1').hide();
+                $('#monthlyKing2').show();
+            }
+
+            var selectedMonthlyKing = randomValue === 1 ? '#monthlyKing1' : '#monthlyKing2';
+            console.log(selectedMonthlyKing);
+            // monthlyKing1Tmp의 대표 가격 데이터 가져오기
+            var categoryRepresentativePriceTmp = document.getElementById('categoryRepresentativePriceTmp').textContent;
+
+            // monthlyKing1Tmp의 이미지 소스 데이터 가져오기
+            var categoryImgTmp = document.getElementById('categoryImgTmp').textContent;
+
+            // monthlyKing2Tmp의 대표 가격 데이터 가져오기
+            var amountRepresentativePriceTmp = document.getElementById('amountRepresentativePriceTmp').textContent;
+
+            // monthlyKing2Tmp의 이미지 소스 데이터 가져오기
+            var amountImgTmp = document.getElementById('amountImgTmp').textContent;
+
+            // 데이터를 로컬 스토리지에 저장
+            localStorage.setItem("selectedMonthlyKing", selectedMonthlyKing);
+            localStorage.setItem("categoryRepresentativePriceTmp", categoryRepresentativePriceTmp);
+            localStorage.setItem("categoryImgTmp", categoryImgTmp);
+            localStorage.setItem("amountRepresentativePriceTmp", amountRepresentativePriceTmp);
+            localStorage.setItem("amountImgTmp", amountImgTmp);
+
+            // 결과를 콘솔에 출력
+            console.log('Selected Monthly King:', selectedMonthlyKing);
+            console.log('Category Representative Price:', categoryRepresentativePriceTmp);
+            console.log('Category Image Source:', categoryImgTmp);
+            console.log('Amount Representative Price:', amountRepresentativePriceTmp);
+            console.log('Amount Image Source:', amountImgTmp);
+        }
+    </script>
 </main>
 
 <!-- 푸터 -->

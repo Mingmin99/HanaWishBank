@@ -8,10 +8,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class purchasePlanListController {
 
 
-    @RequestMapping("/checkMyPurchasePlanList")
+    @RequestMapping("/registerMyPurchasePlanList")
     public ModelAndView checkMyPurchasePlanList() {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("checkMyPurchasePlanList");
+        mav.setViewName("/registerMyPurchasePlanList");
         return mav;
     }
 

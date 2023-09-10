@@ -411,7 +411,7 @@
             <tbody>
             <c:forEach var="item" items="${items}" varStatus="status">
                 <tr>
-                    <td><img src="<c:out value="${item.image}" />" alt="<c:out value="${item.image}" />" width="100">
+                    <td><img src="<c:out value="${item.image}" />" alt="<c:out value="${item.image}" />" width="100" height="100">
                     </td>
                     <td>
                         <div class="item-info">

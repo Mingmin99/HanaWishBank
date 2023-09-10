@@ -13,6 +13,4 @@ public class WishListItem {
     private int price;
     private String memberID; // 대문자 M을 소문자 m으로 변경
 
-
-
 }

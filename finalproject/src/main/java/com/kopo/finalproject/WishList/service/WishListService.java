@@ -8,6 +8,8 @@ public interface WishListService {
     List<WishListItem> getAllWishListItems();
 
     void addWishlistItem(WishListItem item);
+
+    boolean deleteWishListItem(String title);
 }
 
 

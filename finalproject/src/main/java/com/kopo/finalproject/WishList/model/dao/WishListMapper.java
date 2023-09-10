@@ -10,4 +10,6 @@ public interface WishListMapper {
     List<WishListItem> getAllWishListItems();
 
     void insertWishlistItem(WishListItem item);
+
+    int deleteWishListItem(String title);
 }

@@ -286,17 +286,16 @@
                                 textOverflow: "ellipsis", // 넘치는 부분 생략 표시
                                 fontFamily: "Hana2.0 CM", // 원하는 폰트 설정
                             });
-
+                        const formattedPrice = item.price.toLocaleString(); // 가격을 형식에 맞게 변환
                         const itemPrice = $("<p>").addClass("item-price")
                             .addClass("card-text")
-                            .text(item.price + "원");
-
+                            .text(formattedPrice + "원");
 
                         // 받아온 정보를 selectInfo에 담기
                         var selectInfo = {
                             title: item.title,
                             price: item.price,
-                            image: item.image
+                            image: item.image,
                         };
                         console.log("Selected Item:", selectInfo); // 콘솔에 데이터 출력
 
@@ -324,7 +323,19 @@
             });
         });
     </script>
+    <%-- 성공 메시지가 있으면 alert 창 표시 --%>
+    <c:if test="${not empty successMessage}">
+        <script>
+            alert("${successMessage}");
+        </script>
+    </c:if>
 
+    <%-- 실패 메시지가 있으면 alert 창 표시 --%>
+    <c:if test="${not empty errorMessage}">
+        <script>
+            alert("${errorMessage}");
+        </script>
+    </c:if>
 
 </main>
 

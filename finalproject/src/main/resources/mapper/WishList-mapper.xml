@@ -15,4 +15,8 @@
         VALUES (#{memberID}, #{title}, #{image}, #{price})
     </insert>
 
+    <delete id="deleteWishListItem" parameterType="String">
+        DELETE FROM WishListItem
+        WHERE Title = #{title}
+    </delete>
 </mapper>

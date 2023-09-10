@@ -46,4 +46,5 @@ public class ExpenseServiceImpl implements ExpenseService {
     public SubCategory getTopAmountDetailedExpenseCategory(String cardID) {
         return expenseMapper.getTopAmountDetailedExpenseCategory(cardID);
     }
+
 }
