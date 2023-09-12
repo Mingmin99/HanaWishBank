@@ -12,4 +12,8 @@ public interface WishListMapper {
     void insertWishlistItem(WishListItem item);
 
     int deleteWishListItem(String title);
+
+    List<WishListItem> getWishListItemsByMemberID(String memberID);
+
+    void updateWishListItemPurchaseStatus(WishListItem item);
 }

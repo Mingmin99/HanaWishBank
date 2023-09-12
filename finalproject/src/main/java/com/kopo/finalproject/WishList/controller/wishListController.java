@@ -61,6 +61,16 @@ public class wishListController {
         return ResponseEntity.ok(itemList);
     }
 
+    @GetMapping("/getWishListItemsByMemberID")
+    public ResponseEntity<List<WishListItem>> getAllWishListItems(HttpSession session) {
+        // HttpSession을 사용하여 세션에서 memberID 가져오기
+        String memberID = (String) session.getAttribute("memberID");
+
+        // memberID를 사용하여 위시리스트 아이템을 가져옵니다.
+        List<WishListItem> itemList = wishListService.getWishListItemsByMemberID(memberID);
+        return ResponseEntity.ok(itemList);
+    }
+
     @GetMapping("/search")
     public String list(String text, Model model) {
 
@@ -110,6 +120,7 @@ public class wishListController {
             return "로그인 정보를 찾을 수 없습니다."; // 로그인이 필요한 상태임을 알려줌
         }
     }
+
     @RequestMapping("/deleteWishList")
     public String deleteWishList(
             @RequestParam("title") String title,

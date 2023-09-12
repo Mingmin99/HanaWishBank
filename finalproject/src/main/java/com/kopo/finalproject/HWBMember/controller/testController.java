@@ -43,7 +43,6 @@ public class testController {
     public ResponseEntity<String> loginMember(@RequestBody HashMap<String, String> loginData, HttpServletRequest request) {
         HWBMember loginMember = hwbMemberService.loginMember(loginData);
         HttpSession session = request.getSession();
-
         if (loginMember != null) {
             session.setAttribute("name", loginMember.getName());
             session.setAttribute("memberID", loginMember.getMemberID());

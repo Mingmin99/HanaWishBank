@@ -10,6 +10,9 @@ public interface WishListService {
     void addWishlistItem(WishListItem item);
 
     boolean deleteWishListItem(String title);
+
+    List<WishListItem> getWishListItemsByMemberID(String memberID);
+    void updateWishListItemPurchaseStatus(WishListItem item);
 }
 
 

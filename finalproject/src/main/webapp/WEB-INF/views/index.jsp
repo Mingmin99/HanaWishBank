@@ -12,15 +12,15 @@
         }
 
         .carouselExampleIndicators {
-            background-image: linear-gradient(to bottom, #FFEEED, #E0F8FF);
+            background-image: linear-gradient(to bottom, #9dcabf, #4e72a0);
         }
 
         .carouselExampleIndicators2 {
-            background-image: linear-gradient(to bottom, #FFEEED, #E0F8FF);
+            background-image: linear-gradient(to bottom, #9dcabf, #4e72a0);
         }
 
         #carouselExampleIndicators .section1 {
-            background-image: linear-gradient(to bottom, #FFEEED, #E0F8FF);
+            background-image: linear-gradient(to bottom, #9dcabf, #4e72a0);
         }
 
         #carouselExampleIndicators .hello-word {
@@ -46,7 +46,7 @@
             font-family: "Hana2.0 L";
             font-weight: 600;
             font-size: 26px;
-            color: #477580;
+            color: #f4f9fa;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
@@ -56,14 +56,15 @@
         }
 
         /* 애니메이션 키프레임 정의 */
-        /* @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        } */
+        /*@keyframes fadeIn {*/
+        /*    from {*/
+        /*        opacity: 0;*/
+        /*    }*/
+        /*    to {*/
+        /*        opacity: 1;*/
+        /*    }*/
+        /*}*/
+
         .content {
             display: flex;
             align-items: center;
@@ -76,24 +77,125 @@
             display: flex;
         }
 
-        .section2 {
-            background-color: #fffefe
+        /*--------------------*/
+        .timeRegisterWishListItemsTitle {
+            padding: 10px;
+            font-size: 32px;
+            font-weight: 500;
+            font-family: "Hana2.0 CM";
+            margin-left: 8rem;
+            margin-top: 5rem;
+            color: #4a4949;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        /* Common styles for both sections */
-        .section-notice {
-            padding: 20px;
-            border-radius: 8px;
+        .timeRegisterWishListItemsSubTitle {
+            padding: 10px;
+            font-size: 24px;
+            font-weight: 500;
+            margin-left: 8rem;
+            margin-top: 5rem;
+            color: #4a4949;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-family: "Hana2.0 CM";
+        }
+
+        .mainWishListRecommendMent img {
+            margin-left: 5rem;
+            margin-top: 2rem;
+        }
+
+        .btn_mainRegisterMyWishListItem img {
+            margin-left: 220px; /* 원하는 픽셀 단위의 값으로 조정 */
+            margin-top: -500px; /* 원하는 픽셀 단위의 값으로 조정 */
+        }
+
+        .mainCardContainer {
+            margin-right: 50px;
+            margin-top: 4%;
+        }
+
+        #item-container {
+            max-width: 600px; /* 원하는 최대 너비 설정 */
+            margin: 0 auto; /* 가운데 정렬을 위해 좌우 여백을 자동으로 설정 */
+            padding: 10px; /* 내부 여백 설정 (원하는 값으로 조정) */
+        }
+
+        .card {
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            margin: 1rem;
+
+        }
+
+        .card-body {
+            font-family: "Hana2.0 CM";
+        }
+
+        /* 카드에 마우스 호버 시 약간 확대 효과 */
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        .card-img-top {
+            border-radius: 3rem 3rem 0 0;
+            display: block;
+            margin: 1rem auto;
+        }
+
+        .itemTitle {
+            font-weight: bolder;
+            margin-bottom: 1rem;
+            white-space: normal; /* 줄바꿈을 위한 속성 */
+            word-wrap: break-word; /* 긴 단어의 줄바꿈을 위한 속성 */
+            text-align: center;
+            color: #555;
+            font-family: "Hana2.0 L";
+        }
+
+
+        .item-price {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            font-family: "Hana2.0 L";
+        }
+
+        .separator {
+            width: 90%;
+            height: 1px;
+            margin: 0 auto; /* 가운데 정렬을 위해 margin을 auto로 설정 */
+            margin-top: 30px;
+            background-color: rgb(123, 162, 153);
+            filter: blur(2px);
+        }
+
+        .section3 {
+            background-color: #ffffff
         }
 
         .section-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 32px;
+            font-weight: 500;
+            font-family: "Hana2.0 CM";
+            margin-left: 4%;
+            color: #6a978d;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-notice {
+            padding: 20px;
+            border-radius: 8px;
+            margin-left: 40px;
+            margin-right: 40px;
         }
 
         /* Styles for news items in the "은행소식" section */
+
         .section-news .news-item {
             margin-bottom: 15px;
         }
@@ -117,6 +219,7 @@
         }
 
         /* Styles for the "공지사항" table */
+
         .notice-table {
             width: 100%;
             border-collapse: collapse;
@@ -138,86 +241,36 @@
             color: #333;
         }
 
-        /* 기본 스타일 */
-        .BankFooter {
-            padding: 30px 0;
-            background-color: #ffffff;
-        }
-
-        .BankFooterContent {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .FooterRow {
+        .notice-cards {
             display: flex;
+            flex-direction: row;
             justify-content: space-between;
-            align-items: center;
         }
 
-        .FooterLinks {
-            list-style: none;
-            padding: 0;
-            display: flex;
+        .notice-card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            width: 30%; /* 카드 너비 조정 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            border-radius: 5px;
         }
 
-        .FooterLinks li {
-            margin-right: 20px;
+        .card-title {
+            font-weight: bold;
         }
 
-        .FooterLinks li:last-child {
-            margin-right: 0;
-        }
-
-        .FooterLinks a {
-            color: #136c62;
-            text-decoration: none;
+        .card-date {
+            color: #666;
             font-size: 14px;
-            transition: color 0.2s ease-in-out;
+            margin-top: 5px;
         }
 
-        .FooterLinks a:hover {
-            color: #0f4c48;
+        .card-content {
+            margin-top: 10px;
         }
 
-        /* 연락처 섹션 스타일 */
-        .ContactItem {
-            display: flex;
-            align-items: center;
-        }
-
-        .ContactTitle {
-            font-size: 16px;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-
-        .ContactNumbers {
-            display: flex;
-            align-items: center;
-        }
-
-        .ContactNumber {
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .Strong15881111, .Strong15991111 {
-            margin: 0 5px;
-        }
-
-        .ContactSeparator {
-            margin: 0 10px;
-        }
-
-        /* 푸터 설명 스타일 */
-        .FooterDescription {
-            font-size: 14px;
-            color: #888;
-            margin-top: 20px;
-            font-weight: bold;
-        }
     </style>
 
     <!-- 부트스트랩 연결 -->
@@ -228,6 +281,7 @@
 </head>
 <%@ include file="include/header.jsp" %>
 <body>
+
 <div id="carouselExampleIndicators" class="carousel slide"
      data-bs-ride="true">
     <div class="carousel-indicators">
@@ -326,41 +380,134 @@
         </button>
     </div>
 </div>
+<%----section2--%>
 
-<div class="section2">
+<div class="container-border">
+    <div class="row">
+        <div class="col">
+            <div class="timeRegisterWishListItemsTitle">실시간 고객 등록 위시 리스트 아이템</div>
+            <c:url var="mainWishListRecommendMent" value="../../resources/img/mainWishListRecommendMent.png"/>
+            <a class="mainWishListRecommendMent" href=#> <img src="${mainWishListRecommendMent}">
+            </a>
+            <c:url var="btn_mainRegisterMyWishListItem" value="../../resources/img/btn_mainRegisterMyWishListItem.svg"/>
+            <a class="btn_mainRegisterMyWishListItem" href=/registerMyWishList> <img
+                    src="${btn_mainRegisterMyWishListItem}">
+            </a>
+
+
+        </div>
+        <div class="col">
+            <div class="mainCardContainer">
+                <div class="row" id="item-container">
+                    <!-- 아이템 카드들이 여기에 동적으로 추가될 것입니다. -->
+                </div>
+                <script>
+                    $(document).ready(function () {
+                        // 랜덤 숫자 생성 함수
+                        function getRandomInt(min, max) {
+                            return Math.floor(Math.random() * (max - min + 1)) + min;
+                        }
+
+                        // 페이지 로드 시 Ajax로 데이터 가져오기
+                        $.ajax({
+                            type: "GET",
+                            url: "/wish-list",
+                            contentType: "application/json",
+                            success: function (data) {
+                                const items = data; // 데이터 배열을 items 변수에 저장
+
+                                // 랜덤으로 4개의 아이템을 선택
+                                const selectedItems = [];
+                                while (selectedItems.length < 4 && items.length > 0) {
+                                    const randomIndex = getRandomInt(0, items.length - 1);
+                                    const selectedItem = items.splice(randomIndex, 1)[0];
+                                    selectedItems.push(selectedItem);
+                                }
+
+                                const itemContainer = $("#item-container");
+
+                                // 선택된 아이템을 화면에 추가
+                                $.each(selectedItems, function (index, item) {
+                                    const card = $("<div>").addClass("col-lg-6 col-md-6 col-sm-12 mb-6") // 수정된 부분
+                                        .css({
+                                            borderRadius: "50px",
+                                        });
+
+                                    const cardInner = $("<div>").addClass("card");
+
+                                    const img = $("<img>").attr("src", item.image)
+                                        .addClass("card-img-top mx-auto")
+                                        .attr("alt", "...");
+
+
+// 이미지 크기를 일정한 크기로 설정
+                                    img.on("load", function () {
+                                        $(this).css({
+                                            width: "100px", // 이미지 최대 너비 설정
+                                            height: "150px", // 이미지 최대 높이 설정
+                                        });
+                                    });
+                                    const cardBody = $("<div>").addClass("card-body");
+                                    const itemTitle = $("<h5>").addClass("item-title")
+                                        .addClass("card-title")
+                                        .text(item.title)
+                                        .css({
+                                            whiteSpace: "nowrap", // 줄바꿈 방지
+                                            overflow: "hidden", // 넘치는 부분 숨김 처리
+                                            textOverflow: "ellipsis", // 넘치는 부분 생략 표시
+                                            fontFamily: "Hana2.0 CM", // 원하는 폰트 설정
+                                        });
+                                    const formattedPrice = item.price.toLocaleString(); // 가격을 형식에 맞게 변환
+                                    const itemPrice = $("<p>").addClass("item-price")
+                                        .addClass("card-text")
+                                        .text(formattedPrice + "원");
+
+                                    cardBody.append(itemTitle, itemPrice);
+                                    cardInner.append(img, cardBody);
+                                    card.append(cardInner);
+                                    itemContainer.append(card);
+                                });
+                            },
+                            error: function (xhr, status, error) {
+                                console.error(error);
+                            }
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="separator"></div>
+
+<%---------------------------------------------------------------------------------------------------%>
+<div class="section3">
     <br> <br>
+
+
     <div class="section-notice">
         <h2 class="section-title">은행소식</h2>
-        <table class="notice-table">
-            <tr>
-                <th>제목</th>
-                <th>날짜</th>
-                <th>내용</th>
-            </tr>
-            <tr>
-                <td class="news-title">신규 서비스 오픈!</td>
-                <td class="news-date">2023년 8월 6일</td>
-                <td class="news-content">HANA BANK에서 새로운 디지털 뱅킹 서비스를 오픈했습니다.
-                    지금 바로 로그인하여 확인해보세요!
-                </td>
-            </tr>
-            <tr>
-                <td class="news-title">여름 특별 대출 이벤트</td>
-                <td class="news-date">2023년 8월 10일</td>
-                <td class="news-content">여름을 맞이하여 특별 대출 이벤트를 진행합니다. 우대 금리와 다양한
-                    혜택을 놓치지 마세요!
-                </td>
-            </tr>
-            <!-- 새로운 뉴스 항목 추가 -->
-            <tr>
-                <td class="news-title">온라인 뱅킹 서비스 개편</td>
-                <td class="news-date">2023년 8월 15일</td>
-                <td class="news-content">HANA BANK 온라인 뱅킹 서비스가 새롭게 개편되었습니다. 더욱
-                    편리한 기능을 만나보세요!
-                </td>
-            </tr>
-        </table>
+        <div class="notice-cards">
+            <div class="notice-card">
+                <div class="card-title">신규 서비스 오픈!</div>
+                <div class="card-date">2023년 8월 6일</div>
+                <div class="card-content">HANA BANK에서 새로운 디지털 뱅킹 서비스를 오픈했습니다. 지금 바로 로그인하여 확인해보세요!</div>
+            </div>
+            <div class="notice-card">
+                <div class="card-title">여름 특별 대출 이벤트</div>
+                <div class="card-date">2023년 8월 10일</div>
+                <div class="card-content">여름을 맞이하여 특별 대출 이벤트를 진행합니다. 우대 금리와 다양한 혜택을 놓치지 마세요!</div>
+            </div>
+            <!-- 추가 카드 항목 -->
+            <div class="notice-card">
+                <div class="card-title">온라인 뱅킹 서비스 개편</div>
+                <div class="card-date">2023년 8월 15일</div>
+                <div class="card-content">HANA BANK 온라인 뱅킹 서비스가 새롭게 개편되었습니다. 더욱 편리한 기능을 만나보세요!</div>
+            </div>
+        </div>
     </div>
+
+
     <br> <br>
     <div class="section-notice">
         <h2 class="section-title">공지사항</h2>

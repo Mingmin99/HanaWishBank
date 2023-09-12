@@ -13,7 +13,6 @@
 
         /* 사이드 바 ------------------------------------------------------------------------------------------------------- */
         .sidebar {
-
             margin-left: 5%;
             width: 200px;
             position: absolute;
@@ -402,7 +401,6 @@
                     </div>
                 </div>
             </div>
-
             <script>
                 // 세션 스토리지에서 데이터 가져오기
                 const selectedItem = JSON.parse(sessionStorage.getItem("선택된 아이템"));
@@ -412,11 +410,14 @@
                     const itemTitleElement = document.getElementById("itemTitle");
                     const itemPriceElement = document.getElementById("itemPrice");
                     const itemImageElement = document.getElementById("itemImage");
+                    const wishListID = selectedItem.wishListID;
+                    console.log("이 상품의 WishListID = :", wishListID);
 
                     itemTitleElement.textContent = selectedItem.title;
                     itemPriceElement.textContent = selectedItem.price.toLocaleString() + "원";
                     itemImageElement.src = selectedItem.image;
                     itemImageElement.alt = selectedItem.title; // 이미지 대체 텍스트 설정
+
                 }
             </script>
 
@@ -473,7 +474,7 @@
             </div>
 
             <script>
-                const itemPrice = parseInt(selectedItem.price); // 문자열을 정수로 변환하여 가격값 저장
+                let itemPrice = parseInt(selectedItem.price); // 문자열을 정수로 변환하여 가격값 저장
                 console.log("상품 가격: " + itemPrice);
 
                 var selectedPrice; // 선택된 가격을 저장할 변수를 선언합니다.
@@ -603,8 +604,6 @@
                     });
 
                 </script>
-
-
 
                 <div class="col">
                     <c:url var="goPurchasePlanListButton"

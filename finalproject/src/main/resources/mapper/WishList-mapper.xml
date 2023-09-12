@@ -10,6 +10,16 @@
         FROM WishListItem
     </select>
 
+    <!-- WishListItemMapper.xml -->
+
+    <select id="getWishListItemsByMemberID" resultType="com.kopo.finalproject.WishList.model.dto.WishListItem">
+        SELECT *
+        FROM WishListItem
+        WHERE MemberID = #{memberID}
+        AND PurchaseStatus = 'F'
+    </select>
+
+
     <insert id="insertWishlistItem" parameterType="com.kopo.finalproject.WishList.model.dto.WishListItem">
         INSERT INTO WishListItem (MemberID, Title, Image, Price)
         VALUES (#{memberID}, #{title}, #{image}, #{price})
@@ -19,4 +29,11 @@
         DELETE FROM WishListItem
         WHERE Title = #{title}
     </delete>
+
+    <update id="updateWishListItemPurchaseStatus">
+        UPDATE WishListItem
+        SET PurchaseStatus = 'T'
+        WHERE WishListID = #{wishListID}
+          AND MemberID = #{memberID}
+    </update>
 </mapper>

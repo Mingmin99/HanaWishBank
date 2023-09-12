@@ -10,8 +10,6 @@
         body {
             background-color: white;
         }
-
-
         /* 사이드 바 ------------------------------------------------------------------------------------------------------- */
         .sidebar {
             margin-top: 3%;
@@ -79,7 +77,7 @@
         main {
             margin-top: 3%;
             margin-left: 25%;
-            height: 1800px;
+            margin-bottom: 10%;
         }
 
         .title {
@@ -248,7 +246,7 @@
             // 페이지 로드 시 Ajax로 데이터 가져오기
             $.ajax({
                 type: "GET",
-                url: "/wish-list",
+                url: "/getWishListItemsByMemberID",
                 contentType: "application/json",
                 success: function (data) {
                     const itemContainer = $("#item-container")
@@ -256,7 +254,6 @@
                             marginRight: "2rem",
                             marginLeft: "-2rem", // 왼쪽 여백 조절
                         });
-
                     // 각 아이템을 순회하며 화면에 추가
                     $.each(data, function (index, item) {
                         const card = $("<div>").addClass("col-lg-4 col-md-6 col-sm-12 mb-6")
@@ -275,7 +272,6 @@
                                 maxWidth: "60%", // 이미지 최대 너비 설정
                                 maxHeight: "160px", // 이미지 최대 높이 설정
                             });
-
                         const cardBody = $("<div>").addClass("card-body");
                         const itemTitle = $("<h5>").addClass("item-title")
                             .addClass("card-title")
@@ -296,6 +292,7 @@
                             title: item.title,
                             price: item.price,
                             image: item.image,
+                            wishListID: item.wishListID,
                         };
                         console.log("Selected Item:", selectInfo); // 콘솔에 데이터 출력
 

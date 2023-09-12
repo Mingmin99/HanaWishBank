@@ -1,5 +1,6 @@
 package com.kopo.finalproject.WishList.service;
 
+import com.kopo.finalproject.PurchasePlanList.model.dto.PurchasePlanListItem;
 import com.kopo.finalproject.WishList.model.dao.WishListMapper;
 import com.kopo.finalproject.WishList.model.dto.WishListItem;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,17 @@ public class wishListServiceImpl implements WishListService {
     public boolean deleteWishListItem(String title) {
         int rowsAffected = wishListMapper.deleteWishListItem(title);
         return rowsAffected > 0; // rowsAffected가 1 이상이면 true를 반환, 그렇지 않으면 false 반환
+    }
+
+    @Override
+    public List<WishListItem> getWishListItemsByMemberID(String memberID) {
+        List<WishListItem> wishListItems = wishListMapper.getWishListItemsByMemberID(memberID);
+        return wishListItems;
+    }
+
+    @Override
+    public void updateWishListItemPurchaseStatus(WishListItem item) {
+        wishListMapper.updateWishListItemPurchaseStatus(item);
     }
 
 }

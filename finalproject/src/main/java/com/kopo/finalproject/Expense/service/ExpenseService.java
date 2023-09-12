@@ -12,10 +12,12 @@ public interface ExpenseService {
 
     ExpenseMaxCountCategory getTopCategory(String cardID);
 
-   ExpenseMaxSumCategory getTopAmount(String cardID);
+    ExpenseMaxSumCategory getTopAmount(String cardID);
 
-   TotalExpenseAmount getTotalExpenseAmount(String cardID);
+    TotalExpenseAmount getTotalExpenseAmount(String cardID);
+
     SubCategory getTopCategoryDetailedExpenseCategory(String cardID);
+
     SubCategory getTopAmountDetailedExpenseCategory(String cardID);
 
 }

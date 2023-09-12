@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kopo.finalproject.PurchasePlanList.model.dao.PurchasePlanListMapper">
+
+
+    <insert id="addPurchasePlanListItem"
+            parameterType="com.kopo.finalproject.PurchasePlanList.model.dto.PurchasePlanListItem">
+        INSERT INTO PurchasePlanListItem (WishListID, MemberID, PlanName, PlanAmount, PlanPeriod)
+        VALUES (#{wishListID}, #{memberID}, #{planName}, #{planAmount}, #{planPeriod})
+
+    </insert>
+
+
+    <select id="getAllPurchasePlanList"
+            parameterType="com.kopo.finalproject.PurchasePlanList.model.dto.PurchasePlanJoinResult">
+        select p.memberID        as memberID,
+               p.wishListID      as wishListID,
+               p.purchasePlanID  as purchasePlanID,
+               p.planName        as planName,
+               p.planAmount      as planAmount,
+               p.planPeriod      as planPeriod,
+               p.allocationRatio as allocationRatio,
+               w.title           as title,
+               w.image           as image,
+               w.price           as price
+        from PurchasePlanListItem p
+                 join WishListItem w on w.WishListID = p.WishListID
+        where w.memberID = #{memberID}</select>
+
+
+</mapper>
