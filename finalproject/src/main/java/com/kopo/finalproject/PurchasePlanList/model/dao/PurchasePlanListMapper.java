@@ -12,4 +12,7 @@ public interface PurchasePlanListMapper {
 
     List<PurchasePlanJoinResult> getAllPurchasePlanList(String memberID);
 
+    void updatePurchasePlanListInfo(PurchasePlanListItem updatedPlan);
+
+    void deletePurchasePlanList(String purchasePlanID);
 }

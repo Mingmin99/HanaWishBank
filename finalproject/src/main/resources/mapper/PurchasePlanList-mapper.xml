@@ -30,4 +30,19 @@
         where w.memberID = #{memberID}</select>
 
 
+    <update id="updatePurchasePlanListInfo"
+            parameterType="com.kopo.finalproject.PurchasePlanList.model.dto.PurchasePlanListItem">
+        UPDATE PurchasePlanListItem
+        SET PlanName   = #{planName},
+            PlanAmount = #{planAmount},
+            PlanPeriod = #{planPeriod}
+        WHERE PurchasePlanID = #{purchasePlanID}
+    </update>
+
+
+    <delete id="deletePurchasePlanList" parameterType="String">
+        DELETE FROM PurchasePlanListItem
+        WHERE purchasePlanID = #{purchasePlanID}
+    </delete>
+
 </mapper>

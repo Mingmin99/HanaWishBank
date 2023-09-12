@@ -125,6 +125,37 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
+        /* 공통 스타일 */
+        .btn-container {
+            display: flex; /* 요소를 가로로 배치 */
+            justify-content: flex-end; /* 오른쪽으로 정렬 */
+            margin-right: 6%; /* 우측 여백 추가 */
+        }
+
+        .btn {
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px; /* 버튼 사이 간격 조절 */
+        }
+
+        /* 녹색 버튼 스타일 */
+        .btnSuccess {
+            background-color: #64827a !important;
+            color: white !important;
+            font-family: "Hana2.0 CM";
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+        }
+
+        /* 파란 버튼 스타일 */
+        .btnDanger {
+            background-color: #64827a !important;
+            color: white !important;
+            font-family: "Hana2.0 CM";
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
         /* 위시리스트 조회------------------------------------------------------------------------------------------------------- */
         .card {
             margin-bottom: 1rem;
@@ -239,16 +270,26 @@
     <!---위시리스트 조회   ------------------------------------------------------------------------------------------------------- -->
 
     <div class="purchasePlanListTitle">◆ 나의 구매계획리스트 목록</div>
+
+    <div class="btn-container"> <!-- 전체 선택 버튼 -->
+        <button type="button" class="btn btnSuccess" onclick="selectAll()">전체 선택</button>
+        <!-- 전체 삭제 버튼 -->
+        <button type="button" class="btn btnDanger" onclick="deleteSelected()">삭제</button>
+    </div>
+
+    <!-- 이미지 클릭 시 모달 창 띄우기 -->
     <div class="row">
         <c:forEach var="plan" items="${purchasePlanList}">
             <div class="col-md-4">
                 <div class="card mb-4" style="width: 18rem;">
                     <div class="card-header">
-                        <input type="checkbox" id="checkboxHeader4"> <label
-                            for="checkboxHeader4"> ${plan.planName}</label>
+                        <input type="checkbox" id="checkboxHeader${plan.purchasePlanID}">
+                        <label for="checkboxHeader${plan.purchasePlanID}">${plan.planName}</label>
                     </div>
+                    <!-- 이미지 클릭 시 모달 창 열기 -->
                     <img src="${plan.image}"
-                         style="display: block; margin: 0 auto;width: 100px; height: 100px;">
+                         onclick="openModal('${plan.purchasePlanID}', '${plan.planName}', '${plan.planAmount}', '${plan.planPeriod}')"
+                         style="display: block; margin: 0 auto; width: 100px; height: 100px;"/>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item" style="display: none">구매계획아이디: ${plan.purchasePlanID}</li>
                         <li class="list-group-item" style="display: none">위시리스트아이디: ${plan.wishListID}</li>
@@ -260,122 +301,145 @@
                 </div>
             </div>
         </c:forEach>
+        <script>
+            // 모든 체크박스의 ID를 배열로 저장
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+            // 전체 선택 함수
+            function selectAll() {
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = true;
+                });
+            }
+
+            // 전체 삭제 함수
+            function deleteSelected(checkbox) {
+                const purchasePlanID = checkbox.id.replace("checkboxHeader", "");
+
+                // 선택된 체크박스에 대한 purchasePlanID를 서버로 전송하여 삭제
+                fetch("/deletePurchasePlanList", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify([purchasePlanID]) // 선택된 ID를 배열로 만들어 JSON으로 변환하여 전송
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // 삭제가 성공적으로 완료된 경우 화면 갱신 등의 작업 수행
+                            window.location.reload(); // 페이지 리로드 또는 다른 업데이트 작업
+                        } else {
+                            alert("삭제에 실패했습니다.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("오류 발생:", error);
+                    });
+            }
+
+        </script>
     </div>
-    <!-- 모달 팝업 -->
-    <div id="updateModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal" id="editModal">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="updateModalLabel">계획 수정</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="닫기">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h5 class="modal-title">상품 정보 수정</h5>
+                    <button type="button" class="close" onclick="closeModal()">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form id="updateForm">
+                    <form id="editForm">
+                        <input type="hidden" id="editPlanID" name="purchasePlanID">
                         <div class="form-group">
-                            <label for="planName">상품명:</label>
-                            <input type="text" class="form-control" id="planName" name="planName" required>
+                            <label for="editPlanName">상품명:</label>
+                            <input type="text" class="form-control" id="editPlanName" name="planName" required>
                         </div>
                         <div class="form-group">
-                            <label for="planAmount">목표금액:</label>
-                            <input type="number" class="form-control" id="planAmount" name="planAmount" required>
+                            <label for="editPlanAmount">목표금액:</label>
+                            <input type="number" class="form-control" id="editPlanAmount" name="planAmount" required>
                         </div>
                         <div class="form-group">
-                            <label for="planPeriod">목표기간:</label>
-                            <input type="number" class="form-control" id="planPeriod" name="planPeriod" required>
+                            <label for="editPlanPeriod">목표기간:</label>
+                            <input type="number" class="form-control" id="editPlanPeriod" name="planPeriod" required>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn-primary" id="updatePlanBtn">저장</button>
+                    <button type="button" class="btn btn-primary" onclick="updatePlan()">저장</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">취소</button>
                 </div>
             </div>
         </div>
     </div>
+
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var priceElements = document.querySelectorAll(".price");
-            var titleElements = document.querySelectorAll(".title-text");
+        // 모달 열기
+        function openModal(purchasePlanID, planName, planAmount, planPeriod) {
+            console.log(purchasePlanID);
+            // 선택한 상품 정보를 모달에 표시
+            const plan = document.getElementById("editPlanID").value = purchasePlanID;
+            document.getElementById("editPlanName").value = planName;
+            document.getElementById("editPlanAmount").value = planAmount;
+            document.getElementById("editPlanPeriod").value = planPeriod;
 
-            priceElements.forEach(function (element) {
-                var price = element.textContent.trim().replace(/\D/g, ""); // 숫자 이외의 문자 제거
-                var formattedPrice = price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                element.textContent = "상품금액: " + formattedPrice + " 원";
-            });
+            // 모달 열기
+            $("#editModal").modal("show");
+        }
 
-            titleElements.forEach(function (element) {
-                if (element.offsetWidth < element.scrollWidth) {
-                    element.title = element.textContent.trim(); // 원래 내용을 title 속성에 저장
-                    element.textContent = element.textContent.trim().substring(0, 35) + " ..."; // 생략 부호 추가
+        function closeModal() {
+            $('#editModal').modal('hide');
+        }
+
+
+        // 계획 업데이트 함수
+        function updatePlan() {
+            // 선택한 상품 정보 가져오기
+            const purchasePlanID = document.getElementById("editPlanID").value;
+            const planName = document.getElementById("editPlanName").value;
+            const planAmount = document.getElementById("editPlanAmount").value;
+            const planPeriod = document.getElementById("editPlanPeriod").value;
+
+            // JSON 데이터 생성
+            const jsonData = {
+                purchasePlanID,
+                planName,
+                planAmount,
+                planPeriod
+            };
+
+            // AJAX를 사용하여 JSON 데이터를 서버로 전송
+            fetch("/updatePurchasePlanListInfo", {
+                method: "POST",
+                body: JSON.stringify(jsonData),
+                headers: {
+                    'Content-Type': 'application/json'
                 }
-            });
-
-            // 수정 버튼 클릭 시 모달 열기
-            var updateBtns = document.querySelectorAll(".btn-update");
-
-            updateBtns.forEach(function (btn) {
-                btn.addEventListener("click", function () {
-                    var card = btn.closest(".card");
-                    var planName = card.querySelector(".title-text").textContent.split(": ")[1];
-                    var planAmount = card.querySelector(".price:nth-child(4)").textContent.split(": ")[1].replace(/\D/g, "");
-                    var planPeriod = card.querySelector(".list-group-item:nth-child(7)").textContent.split(": ")[1].replace(/\D/g, "");
-
-                    document.getElementById("planName").value = planName;
-                    document.getElementById("planAmount").value = planAmount;
-                    document.getElementById("planPeriod").value = planPeriod;
-
-                    $("#updateModal").modal("show");
-                });
-            });
-
-            // 업데이트 버튼 클릭 시 AJAX 요청
-            var updatePlanBtn = document.getElementById("updatePlanBtn");
-
-            updatePlanBtn.addEventListener("click", function () {
-                var planName = document.getElementById("planName").value;
-                var planAmount = document.getElementById("planAmount").value;
-                var planPeriod = document.getElementById("planPeriod").value;
-
-                var formData = new FormData();
-                formData.append("planName", planName);
-                formData.append("planAmount", planAmount);
-                formData.append("planPeriod", planPeriod);
-
-                fetch("/updatePurchasePlanListInfo", {
-                    method: "POST",
-                    body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message === "업데이트가 성공했습니다.") {
+                        // 성공한 경우 알림 창 띄우기
+                        alert("업데이트가 성공했습니다.");
+                        // 모달 닫기
+                        $("#editModal").modal("hide");
+                        // 페이지 리로드 또는 업데이트된 데이터를 화면에 반영
+                        window.location.reload(); // 페이지 리로드
+                    } else {
+                        alert("업데이트에 실패했습니다.");
+                    }
                 })
-                    .then(function (response) {
-                        if (response.ok) {
-                            return response.json();
-                        }
-                        throw new Error("Network response was not ok.");
-                    })
-                    .then(function (data) {
-                        if (data.success) {
-                            $("#updateModal").modal("hide");
-                            // 여기에서 필요한 업데이트 작업을 수행하십시오.
-                        } else {
-                            alert("업데이트에 실패했습니다.");
-                        }
-                    })
-                    .catch(function (error) {
-                        console.error("Error:", error);
-                    });
-            });
-        });
+                .catch(error => {
+                    console.error("오류 발생:", error);
+                });
+        }
     </script>
 
     <div class="ButtonContainer ">
         <div class="row">
             <div class="col">
                 <c:url var="goMakeAccountButton" value="../../resources/img/btn_goMakeAccount.svg"/>
-                <a class="goMakeAccountButton" href="${pageContext.request.contextPath}/createAccount"> <img
-                        src="${goMakeAccountButton}" alt="버튼" class="goMakeAccountButton"
-                >
+                <a class="goMakeAccountButton" href="${pageContext.request.contextPath}/registerMyPaymentPlan"> <img
+                        src="${goMakeAccountButton}" alt="버튼" class="goMakeAccountButton">
                 </a>
             </div>
         </div>

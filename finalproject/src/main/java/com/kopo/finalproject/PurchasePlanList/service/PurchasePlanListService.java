@@ -11,4 +11,7 @@ public interface PurchasePlanListService {
      void addPurchasePlanListItem(PurchasePlanListItem item);
      List<PurchasePlanJoinResult> getAllPurchasePlanList(String memberID);
 
+     void updatePurchasePlanListInfo(PurchasePlanListItem updatedPlan);
+
+     void deletePurchasePlanList(String purchasePlanID);
 }

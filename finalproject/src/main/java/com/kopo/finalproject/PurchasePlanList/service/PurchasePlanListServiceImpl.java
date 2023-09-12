@@ -21,18 +21,29 @@ public class PurchasePlanListServiceImpl implements PurchasePlanListService {
 
     @Override
     public void addPurchasePlanListItem(PurchasePlanListItem item) {
-            purchasePlanListMapper.addPurchasePlanListItem(item);
-            WishListItem wishListItem = new WishListItem();
-            wishListItem.setMemberID(item.getMemberID());
-            wishListItem.setWishListID(item.getWishListID());
-            System.out.println("확인" + wishListItem);
-            wishListMapper.updateWishListItemPurchaseStatus(wishListItem);
+        purchasePlanListMapper.addPurchasePlanListItem(item);
+        WishListItem wishListItem = new WishListItem();
+        wishListItem.setMemberID(item.getMemberID());
+        wishListItem.setWishListID(item.getWishListID());
+        System.out.println("확인" + wishListItem);
+        wishListMapper.updateWishListItemPurchaseStatus(wishListItem);
     }
 
     @Override
     public List<PurchasePlanJoinResult> getAllPurchasePlanList(String memberID) {
         List<PurchasePlanJoinResult> purchasePlanJoinResult = purchasePlanListMapper.getAllPurchasePlanList(memberID);
         return purchasePlanJoinResult;
+    }
+
+    @Override
+    public void updatePurchasePlanListInfo(PurchasePlanListItem updatedPlan) {
+        purchasePlanListMapper.updatePurchasePlanListInfo(updatedPlan);
+
+    }
+
+    @Override
+    public void deletePurchasePlanList(String purchasePlanID) {
+        purchasePlanListMapper.deletePurchasePlanList(purchasePlanID);
     }
 
 }

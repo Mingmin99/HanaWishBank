@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+         pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -20,7 +20,7 @@
             justify-content: space-between;
         }
 
-        .navbar>.container-fluid {
+        .navbar > .container-fluid {
             padding-top: 25px;
             padding-bottom: 25px;
         }
@@ -46,14 +46,18 @@
         .logo-img {
             max-width: 160px; /* 로고 이미지 크기 조절 */
             max-height: 160px; /* 로고 이미지 크기 조절 */
-        } /* 반응형 스타일 */
-        @media ( max-width : 768px) {
+        }
+
+        /* 반응형 스타일 */
+        @media ( max-width: 768px) {
             .navbar-nav {
                 margin-left: 0;
             }
+
             .navbar-brand {
                 margin-left: 1rem;
             }
+
             .navbar-nav .nav-item {
                 margin-left: 0.5rem;
             }
@@ -65,9 +69,10 @@
             margin-bottom: 0;
             width: 100%;
         }
+
         /* 사이드 바 ------------------------------------------------------------------------------------------------------- */
         .sidebar {
-            margin-top: 3%;
+            margin-top: 4%;
             margin-left: 5%;
             width: 200px;
             position: absolute;
@@ -76,6 +81,7 @@
 
         .sidebar h4 {
             color: #009591;
+            font-family: "Hana2.0 CM";
             margin-bottom: 20px;
             position: relative;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -104,6 +110,7 @@
         .sidebar ul li a {
             color: #333;
             text-decoration: none;
+            font-family: "Hana2.0 CM";
             display: block;
             padding: 5px 10px; /* 글자 주변의 패딩 추가 */
         }
@@ -123,7 +130,9 @@
         .sidebar ul li a:hover {
             background-color: #009591;
             color: white;
+            font-family: "Hana2.0 CM";
         }
+
         /* 메인 ------------------------------------------------------------------------------------------------------- */
         main {
             margin-top: 3%;
@@ -165,6 +174,7 @@
             /* 	display: flex;
             justify-content: center; */
         }
+
         /* 이자율 테이블 ------------------------------------------------------------------------------------------------------- */
         .interestRateTableTitle {
             margin-top: 30px;
@@ -193,6 +203,7 @@
             background-color: #9CC5C0;
             font-weight: bold;
         }
+
         /* 납입계획 입력 양식------------------------------------------------------------------------------------------------------- */
         .paymntPlanTitle {
             margin-top: 5rem;
@@ -335,141 +346,23 @@
             margin-left: 2rem;
         }
 
-        /* 푸터 ------------------------------------------------------------------------------------------------------- */
-        .BankFooter {
-            padding: 30px 0;
-            background-color: #ffffff;
-        }
-
-        .BankFooterContent {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .FooterRow {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .FooterLinks {
-            list-style: none;
-            padding: 0;
-            display: flex;
-        }
-
-        .FooterLinks li {
-            margin-right: 20px;
-        }
-
-        .FooterLinks li:last-child {
-            margin-right: 0;
-        }
-
-        .FooterLinks a {
-            color: #136c62;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.2s ease-in-out;
-        }
-
-        .FooterLinks a:hover {
-            color: #0f4c48;
-        }
-
-        /* 연락처 섹션 스타일 */
-        .ContactItem {
-            display: flex;
-            align-items: center;
-        }
-
-        .ContactTitle {
-            font-size: 16px;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-
-        .ContactNumbers {
-            display: flex;
-            align-items: center;
-        }
-
-        .ContactNumber {
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .Strong15881111, .Strong15991111 {
-            margin: 0 5px;
-        }
-
-        .ContactSeparator {
-            margin: 0 10px;
-        }
-
-        /* 푸터 설명 스타일 */
-        .FooterDescription {
-            font-size: 14px;
-            color: #888;
-            margin-top: 20px;
-            font-weight: bold;
-        }
     </style>
 
     <!-- 부트스트랩 연결 -->
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
+<%@ include file="include/header.jsp" %>
 <body>
-<div class="header">
-    <!-- 메뉴바 내용 -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <c:url var="logoUrl" value="../../resources/img/logo.png" />
-            <a class="navbar-brand" href="index.jsp"> <img src="${logoUrl}"
-                                                           alt="로고" class="logo-img">
-            </a>
-
-            <div class="collapse navbar-collapse ml-auto"
-                 id="navbarSupportedContent1">
-                <!-- 첫 번째 메뉴 내용 -->
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active"
-                                            aria-current="page" href="checkMyExpensePattern.jsp">나의 소비패턴</a></li>
-                    <li class="nav-item"><a class="nav-link"
-                                            href="checkMyWishList.jsp">나의 위시리스트</a></li>
-                    <li class="nav-item"><a class="nav-link"
-                                            href="checkMyPurchasePlanList.jsp">나의 구매계획리스트</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">나의 챌린지
-                        계좌</a></li>
-                </ul>
-            </div>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent2">
-                <!-- 두 번째 메뉴 내용 -->
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#">로그인</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">회원가입</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
-                </ul>
-            </div>
-
-        </div>
-    </nav>
-</div>
-<hr class="navbar-divider">
-
 <!-- 사이드바  ------------------------------------------------------------------------------------------------------- -->
 <div class="sidebar">
     <h4>나의 챌린지 계좌</h4>
     <ul>
         <li><a href="registerMyWishList.jsp">나의 납입계획 등록</a></li>
         <li><a href="registerMyPurchasePlanList.jsp">나의 챌린지 계좌 조회</a></li>
-        <!-- <li><a href="#">대출신청</a></li>
-        <li><a href="#">카드신청</a></li>
-        <li><a href="#">고객센터</a></li> -->
+
     </ul>
 </div>
 <!---메인  ------------------------------------------------------------------------------------------------------- -->
@@ -481,9 +374,11 @@
 
     <div class="description-box">
         <div class="description-text1">🎲 챌린지 적금 계좌 개설을 위해 납입계획을
-            등록해주세요!</div>
+            등록해주세요!
+        </div>
         <div class="description-text2">➡️ 확실한 납입계획 설정은 목표에 효율적으로 도달할 수
-            있도록 도와줍니다.</div>
+            있도록 도와줍니다.
+        </div>
     </div>
     <hr class="divider">
     <!---위시리스트 조회   ------------------------------------------------------------------------------------------------------- -->
@@ -525,7 +420,8 @@
             </div>
             <div class="input-container">
                 <label for="goalDuration">목표기간</label> <input type="number"
-                                                              id="goalDuration" name="goalDuration" placeholder="개월" required>
+                                                              id="goalDuration" name="goalDuration" placeholder="개월"
+                                                              required>
             </div>
             <div class="input-container">
                 <label for="goalAmount">목표금액</label> <input type="number"
@@ -562,7 +458,8 @@
             </div>
             <div class="input-container">
                 <label for="paymentAmount">납입금액</label> <input type="number"
-                                                               id="paymentAmount" name="paymentAmount" placeholder="원" required>
+                                                               id="paymentAmount" name="paymentAmount" placeholder="원"
+                                                               required>
             </div>
             <div class="input-container">
                 <label for="transferMethod">이체방식</label> <select
@@ -573,7 +470,8 @@
             </div>
             <div class="input-container">
                 <label for="autoTransferAccount">자동이체 계좌</label> <input type="text"
-                                                                        id="autoTransferAccount" name="autoTransferAccount"
+                                                                        id="autoTransferAccount"
+                                                                        name="autoTransferAccount"
                                                                         placeholder="계좌번호를 입력하세요">
             </div>
         </div>
@@ -612,7 +510,8 @@
             </div>
             <div class="input-container">
                 <label for="expectedInterest">만기 예상 이자</label> <input type="number"
-                                                                      id="expectedInterest" name="expectedInterest" placeholder="원">
+                                                                      id="expectedInterest" name="expectedInterest"
+                                                                      placeholder="원">
             </div>
             <div class="input-container">
                 <label for="terminationMethod">해지방식</label> <select
@@ -632,7 +531,7 @@
     <script>
         document.getElementById("paymentFrequency").addEventListener(
             "change",
-            function() {
+            function () {
                 var selectedValue = this.value;
                 var paymentDateInput = document
                     .querySelector(".payment-date");
@@ -653,17 +552,16 @@
     </script>
 
 
-
     <div class="ButtonContainer ">
         <div class="row">
             <div class="col">
-                <c:url var="backButton" value="../../resources/img/btnBack.svg" />
+                <c:url var="backButton" value="../../resources/img/btnBack.svg"/>
                 <a class="backButton" href="checkMyWishList.jsp"> <img
                         src="${backButton}" alt="버튼" class="backButton">
                 </a>
             </div>
             <div class="col">
-                <c:url var="makeAccountButton" value="../../resources/img/btn_makeAccount.svg" />
+                <c:url var="makeAccountButton" value="../../resources/img/btn_makeAccount.svg"/>
                 <a class="makeAccountButton" href="index.jsp"> <img
                         src="${makeAccountButton}" alt="버튼" class="makeAccountButton"
                         width="190">
@@ -671,44 +569,16 @@
             </div>
         </div>
     </div>
-
 </main>
 
 
-
-
-
-<!-- 푸터 -->
-<footer class="BankFooter">
-    <div class="BankFooterContent">
-        <div class="FooterRow">
-            <ul class="FooterLinks">
-                <li><a href="#">이용약관</a></li>
-                <li><a href="#">개인정보처리방침</a></li>
-                <li><a href="#">보안정책</a></li>
-                <li><a href="#">고객센터</a></li>
-            </ul>
-            <div class="ContactItem">
-                <div class="ContactTitle">고객센터</div>
-                <div class="ContactNumbers">
-                    <span class="ContactNumber Strong15881111">1588-1111</span> <span
-                        class="ContactSeparator">/</span> <span
-                        class="ContactNumber Strong15991111">1599-1111</span>
-                </div>
-            </div>
-        </div>
-        <p class="FooterDescription">© 2023 HANA WISH BANK. All rights
-            reserved.</p>
-    </div>
-</footer>
+<!-- 푸터 추가 -->
+<!-- <footer class="bg-dark text-light text-center py-3"> © 2023
+    Your Website. All rights reserved. </footer> -->
+<%@ include file="include/footer.jsp" %>
 
 <!-- 부트스트랩 JavaScript 연결 -->
 <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script
-        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script
-        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
