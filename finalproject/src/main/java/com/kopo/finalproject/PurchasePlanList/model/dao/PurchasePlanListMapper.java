@@ -14,5 +14,7 @@ public interface PurchasePlanListMapper {
 
     void updatePurchasePlanListInfo(PurchasePlanListItem updatedPlan);
 
-    void deletePurchasePlanList(String purchasePlanID);
+    void deletePurchasePlanList(List<String> selectedIds);
+
+    public  List<PurchasePlanListItem> getPurchasePlansByIds( List<String> selectedIds);
 }

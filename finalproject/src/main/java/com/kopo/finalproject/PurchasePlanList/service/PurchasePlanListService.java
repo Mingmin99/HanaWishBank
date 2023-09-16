@@ -13,5 +13,7 @@ public interface PurchasePlanListService {
 
      void updatePurchasePlanListInfo(PurchasePlanListItem updatedPlan);
 
-     void deletePurchasePlanList(String purchasePlanID);
+     void deletePurchasePlanList(List<String> selectedIds);
+
+     List<PurchasePlanListItem>  getPurchasePlansByIds( List<String> selectedIds);
 }

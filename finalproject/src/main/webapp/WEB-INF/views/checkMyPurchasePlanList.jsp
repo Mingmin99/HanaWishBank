@@ -2,7 +2,9 @@
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <!DOCTYPE html>
+
 <html>
 <head>
     <title>웹 페이지</title>
@@ -312,24 +314,34 @@
                 });
             }
 
-            // 전체 삭제 함수
-            function deleteSelected(checkbox) {
-                const purchasePlanID = checkbox.id.replace("checkboxHeader", "");
+            console.log(checkboxes);
 
-                // 선택된 체크박스에 대한 purchasePlanID를 서버로 전송하여 삭제
+            function deleteSelected() {
+                const selectedIds = [];
+
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        const purchasePlanID = checkbox.id.replace("checkboxHeader", "");
+                        selectedIds.push(purchasePlanID);
+                    }
+                });
+
+                // 선택된 ID를 배열로 만들어 JSON으로 변환하여 서버로 전송
                 fetch("/deletePurchasePlanList", {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify([purchasePlanID]) // 선택된 ID를 배열로 만들어 JSON으로 변환하여 전송
+                    body: JSON.stringify(selectedIds) // 선택된 ID를 배열로 만들어 JSON으로 변환하여 전송
                 })
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            // 삭제가 성공적으로 완료된 경우 화면 갱신 등의 작업 수행
+                            // 삭제가 성공적으로 완료된 경우
+                            alert("삭제를 성공했습니다.");
                             window.location.reload(); // 페이지 리로드 또는 다른 업데이트 작업
                         } else {
+                            // 삭제에 실패한 경우
                             alert("삭제에 실패했습니다.");
                         }
                     })
@@ -438,12 +450,31 @@
         <div class="row">
             <div class="col">
                 <c:url var="goMakeAccountButton" value="../../resources/img/btn_goMakeAccount.svg"/>
-                <a class="goMakeAccountButton" href="${pageContext.request.contextPath}/registerMyPaymentPlan"> <img
+                <!-- 이미지 클릭 시 페이지 이동 및 선택된 purchasePlanID 전달 -->
+                <a class="goMakeAccountButton" href="javascript:void(0);" onclick="redirectToMakeAccount()"> <img
                         src="${goMakeAccountButton}" alt="버튼" class="goMakeAccountButton">
                 </a>
             </div>
         </div>
     </div>
+    <script>function redirectToMakeAccount() {
+        const selectedIds = [];
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                const purchasePlanID = checkbox.id.replace("checkboxHeader", "");
+                selectedIds.push(purchasePlanID);
+            }
+        });
+
+        if (selectedIds.length > 0) {
+            const selectedIdsStr = selectedIds.join(','); // 선택된 ID들을 쉼표로 구분하여 문자열로 변환
+            const redirectUrl = "${pageContext.request.contextPath}/goMakeAccount?selectedIds=" + selectedIdsStr;
+            window.location.href = redirectUrl;
+        } else {
+            alert("선택된 항목이 없습니다.");
+        }
+    }
+    </script>
 </main>
 
 

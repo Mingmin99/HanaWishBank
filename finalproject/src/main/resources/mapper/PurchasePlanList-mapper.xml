@@ -40,9 +40,27 @@
     </update>
 
 
-    <delete id="deletePurchasePlanList" parameterType="String">
+    <delete id="deletePurchasePlanList" parameterType="java.util.List">
         DELETE FROM PurchasePlanListItem
-        WHERE purchasePlanID = #{purchasePlanID}
+        WHERE purchasePlanID IN
+        <foreach collection="list" item="purchasePlanID" open="(" separator="," close=")">
+            #{purchasePlanID}
+        </foreach>
     </delete>
+
+
+
+    <!-- PurchasePlanListItemMapper.xml -->
+
+    <select id="getPurchasePlansByIds" parameterType="java.util.List" resultType="com.kopo.finalproject.PurchasePlanList.model.dto.PurchasePlanListItem">
+    <![CDATA[
+        BEGIN
+        FOR i IN 1..#{selectedIds.size()} LOOP
+        SELECT * FROM PurchasePlanListItem WHERE purchasePlanID = #{selectedIds[i-1]};
+        END LOOP;
+        END;
+        ]]>
+</select>
+
 
 </mapper>

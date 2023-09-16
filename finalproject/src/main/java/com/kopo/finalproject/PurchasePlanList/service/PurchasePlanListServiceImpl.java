@@ -42,8 +42,13 @@ public class PurchasePlanListServiceImpl implements PurchasePlanListService {
     }
 
     @Override
-    public void deletePurchasePlanList(String purchasePlanID) {
-        purchasePlanListMapper.deletePurchasePlanList(purchasePlanID);
+    public void deletePurchasePlanList(List<String> selectedIds) {
+        purchasePlanListMapper.deletePurchasePlanList(selectedIds);
+    }
+
+    @Override
+    public  List<PurchasePlanListItem> getPurchasePlansByIds( List<String> selectedIds) {
+        return purchasePlanListMapper.getPurchasePlansByIds(selectedIds);
     }
 
 }

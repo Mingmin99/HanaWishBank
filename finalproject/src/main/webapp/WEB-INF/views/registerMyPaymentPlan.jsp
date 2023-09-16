@@ -247,6 +247,7 @@
             margin-right: 1rem;
         }
 
+
         input[type="text"], input[type="number"], select {
             flex: 1;
             padding: 0.5rem;
@@ -255,40 +256,67 @@
             font-size: 1rem;
         }
 
+        .section {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        /*----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
         .ratio-container {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
         }
 
         .ratio-input {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: space-between;
         }
 
-        .ratio-input label {
-            width: 50%;
+        .PlanName {
             font-weight: bold;
+            margin-right: 10px;
         }
 
-        .ratio-input label[for="ratio"] {
-            margin-left: 20%;
+        .selectPlanName {
+            flex-grow: 1;
         }
 
-        .ratio-input input[type="text"], .ratio-input input[type="number"] {
-            flex: 1;
-            padding: 0.5rem;
+        .ratio-label {
+            width: 10% !important;
+            font-weight: bold;
+            margin-right: 5px;
+            display: block;
+        }
+
+        .percent-label {
+            width: 0% !important;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        input[type="number"] {
+            width: 50px;
+            padding: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 1rem;
         }
 
         .ratio-info {
-            font-size: 0.8rem;
-            color: #777;
-            margin-top: 2rem;
+            font-size: 14px;
+            color: #888;
+            margin-top: 5px;
         }
+
+        /*----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
         .section:not(:last-child) {
             border-bottom: 1px solid #ddd;
@@ -356,7 +384,7 @@
 </head>
 <%@ include file="include/header.jsp" %>
 <body>
-<!-- 사이드바  ------------------------------------------------------------------------------------------------------- -->
+<!-- 사이드바 ------------------------------------------------------------------------------------------------------- -->
 <div class="sidebar">
     <h4>나의 챌린지 계좌</h4>
     <ul>
@@ -365,7 +393,7 @@
 
     </ul>
 </div>
-<!---메인  ------------------------------------------------------------------------------------------------------- -->
+<!---메인 ------------------------------------------------------------------------------------------------------- -->
 <main>
     <div class="title">
         <img src="<c:url value='../../resources/img/ic_paymentPlan.svg' />" alt="paymentPlan"
@@ -381,7 +409,7 @@
         </div>
     </div>
     <hr class="divider">
-    <!---위시리스트 조회   ------------------------------------------------------------------------------------------------------- -->
+    <!---위시리스트 조회 ------------------------------------------------------------------------------------------------------- -->
 
     <div class="interestRateContainer">
         <div class="interestRateTableTitle">◉ 챌린지 적금 기간별 이자율</div>
@@ -477,29 +505,23 @@
         </div>
 
         <div class="section">
-            <h3>분배 비율</h3>
-            <div class="ratio-container">
-                <div class="ratio-input">
-                    <label for="plan1">계획명</label> <input type="text" id="plan1"
-                                                          name="plan1" placeholder="계획명"> <label for="ratio1">분배비율
-                </label><input type="number" id="ratio1" name="ratio1" placeholder="0"><label
-                        for="ratio1">%</label>
+            <c:forEach var="plan" items="${selectedPlans}">
+                <h3>분배 비율</h3>
+                <div class="ratio-container">
+                    <div class="ratio-input">
+                        <div class="PlanName">계획명</div>
+                        <div class="selectPlanName">${plan.planName}</div>
+
+                        <!-- 특정 라벨에 클래스 추가 -->
+                        <label class="ratio-label">분배비율</label>
+                        <input type="number" id="ratio1" name="ratio1" value="${plan.allocationRatio}">
+                        <label class="percent-label">%</label>
+                    </div>
                 </div>
-                <div class="ratio-input">
-                    <label for="plan1">계획명</label> <input type="text" id="plan2"
-                                                          name="plan1" placeholder="계획명"> <label for="ratio2">분배비율
-                </label><input type="number" id="ratio2" name="ratio1" placeholder="0"><label
-                        for="ratio1">%</label>
-                </div>
-                <div class="ratio-input">
-                    <label for="plan1">계획명</label> <input type="text" id="plan3"
-                                                          name="plan1" placeholder="계획명"> <label for="ratio3">분배비율
-                </label><input type="number" id="ratio3" name="ratio1" placeholder="0"><label
-                        for="ratio1">%</label>
-                </div>
-            </div>
-            <p class="ratio-info">* 연결된 구매계획리스트 분배 비율 합이 100이 되어야 합니다.</p>
+                <p class="ratio-info">* 연결된 구매계획리스트 분배 비율 합이 100이 되어야 합니다.</p>
+            </c:forEach>
         </div>
+
 
         <div class="section">
             <h3>만기 예상</h3>
@@ -574,7 +596,7 @@
 
 <!-- 푸터 추가 -->
 <!-- <footer class="bg-dark text-light text-center py-3"> © 2023
-    Your Website. All rights reserved. </footer> -->
+Your Website. All rights reserved. </footer> -->
 <%@ include file="include/footer.jsp" %>
 
 <!-- 부트스트랩 JavaScript 연결 -->
