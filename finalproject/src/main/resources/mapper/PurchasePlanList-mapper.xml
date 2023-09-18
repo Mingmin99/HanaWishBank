@@ -52,14 +52,9 @@
 
     <!-- PurchasePlanListItemMapper.xml -->
 
-    <select id="getPurchasePlansByIds" parameterType="java.util.List" resultType="com.kopo.finalproject.PurchasePlanList.model.dto.PurchasePlanListItem">
-    <![CDATA[
-        BEGIN
-        FOR i IN 1..#{selectedIds.size()} LOOP
-        SELECT * FROM PurchasePlanListItem WHERE purchasePlanID = #{selectedIds[i-1]};
-        END LOOP;
-        END;
-        ]]>
+    <select id="getPurchasePlansById" resultType="com.kopo.finalproject.PurchasePlanList.model.dto.PurchasePlanListItem">
+        SELECT * FROM PurchasePlanListItem
+        WHERE purchasePlanID = #{selectedId}
 </select>
 
 

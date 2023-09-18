@@ -15,5 +15,5 @@ public interface PurchasePlanListService {
 
      void deletePurchasePlanList(List<String> selectedIds);
 
-     List<PurchasePlanListItem>  getPurchasePlansByIds( List<String> selectedIds);
+     List<PurchasePlanListItem> getPurchasePlansByIds(List<String> selectedIds);
 }

@@ -457,24 +457,29 @@
             </div>
         </div>
     </div>
-    <script>function redirectToMakeAccount() {
-        const selectedIds = [];
-        checkboxes.forEach(checkbox => {
-            if (checkbox.checked) {
-                const purchasePlanID = checkbox.id.replace("checkboxHeader", "");
+    <script>
+        function redirectToMakeAccount() {
+            const selectedIds = [];
+            $('input[type="checkbox"]:checked').each(function() {
+                // 체크된 체크박스에서 ID를 추출하여 배열에 추가
+                const purchasePlanID = $(this).attr('id').replace("checkboxHeader", "");
                 selectedIds.push(purchasePlanID);
-            }
-        });
+            });
 
-        if (selectedIds.length > 0) {
-            const selectedIdsStr = selectedIds.join(','); // 선택된 ID들을 쉼표로 구분하여 문자열로 변환
-            const redirectUrl = "${pageContext.request.contextPath}/goMakeAccount?selectedIds=" + selectedIdsStr;
-            window.location.href = redirectUrl;
-        } else {
-            alert("선택된 항목이 없습니다.");
+            if (selectedIds.length > 0) {
+                // URL을 생성하고 파라미터를 추가
+                const baseUrl = "${pageContext.request.contextPath}/goMakeAccount";
+                const queryString = "selectedIds=" + selectedIds.join("&selectedIds=");
+                const urlWithParams = baseUrl + "?" + queryString;
+
+                // 새로운 페이지로 이동
+                window.location.href = urlWithParams;
+            } else {
+                alert("선택된 항목이 없습니다.");
+            }
         }
-    }
     </script>
+
 </main>
 
 

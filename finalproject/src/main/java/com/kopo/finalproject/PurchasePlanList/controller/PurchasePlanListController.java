@@ -6,16 +6,12 @@ import com.kopo.finalproject.PurchasePlanList.service.PurchasePlanListService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class purchasePlanListController {
@@ -49,7 +45,6 @@ public class purchasePlanListController {
     }
 
     @PostMapping("/addPurchasePlanListItem")
-    @Transactional
     public ResponseEntity<String> addPurchasePlanListItem(@RequestBody PurchasePlanListItem request) {
         try {
             // 서비스를 호출하여 데이터를 DB에 저장
@@ -87,6 +82,7 @@ public class purchasePlanListController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
+
     @PostMapping("/deletePurchasePlanList")
     @ResponseBody
     public ResponseEntity<Map<String, Object>> deletePurchasePlanList(@RequestBody List<String> selectedIds) {
@@ -103,21 +99,51 @@ public class purchasePlanListController {
         return ResponseEntity.ok(response);
     }
 
+    //    @GetMapping("/goMakeAccount")
+//    public ModelAndView registerMyPaymentPlan(HttpServletRequest request) {
+//        ModelAndView mav = new ModelAndView("registerMyPaymentPlan");
+//
+//        try {
+//            String selectedIdsParam = request.getParameter("selectedIds");
+//            String[] selectedIdsArray = selectedIdsParam.split(",");
+//            List<String> selectedIds = Arrays.asList(selectedIdsArray);
+//
+//            for (String id : selectedIds) {
+//                System.out.println("controller : " + id);
+//            }
+//
+//            System.out.println("이거는 선택된 아이템 아이디 값들 selectedIds " + selectedIds);
+//
+//            // 선택된 purchasePlanID 값을 이용하여 데이터를 조회
+//            List<PurchasePlanListItem> selectedPlans = purchasePlanListService.getPurchasePlansByIds(selectedIds);
+//            System.out.println("이거는 선택된 아이템들 selectedPlans " + selectedPlans);
+//            mav.addObject("selectedPlans", selectedPlans);
+//
+//            return mav;
+//        } catch (Exception e) {
+//            // 오류 처리 로직 추가
+//            mav.addObject("error", "데이터 조회 중 오류가 발생했습니다.");
+//            return mav;
+//        }
+//    }
     @GetMapping("/goMakeAccount")
     public ModelAndView registerMyPaymentPlan(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("registerMyPaymentPlan");
 
         try {
-            // 선택된 purchasePlanID 값을 직접 추출
             String[] selectedIdsArray = request.getParameterValues("selectedIds");
-            List<String> selectedIds = Arrays.asList(selectedIdsArray);
-            System.out.println("이거는 선택된 아이템 아이디 값들 selectedIds " + selectedIds);
 
-            // 선택된 purchasePlanID 값을 이용하여 데이터를 조회
-            List<PurchasePlanListItem> selectedPlans = purchasePlanListService.getPurchasePlansByIds(selectedIds);
-            System.out.println("이거는 선택된 아이템들 selectedPlans " + selectedPlans);
-            mav.addObject("selectedPlans", selectedPlans);
-
+            if (selectedIdsArray != null) {
+                List<String> selectedIds = Arrays.asList(selectedIdsArray);
+                System.out.println(selectedIds);
+                List<PurchasePlanListItem> resultList = purchasePlanListService.getPurchasePlansByIds(selectedIds);
+                mav.addObject("PaymentPlanList", resultList);
+                // 이후 로직 수행
+            } else {
+                // 선택된 항목이 없는 경우
+                // "/getAllPurchasePlanList"로 리다이렉트
+                return new ModelAndView("redirect:/getAllPurchasePlanList");
+            }
             return mav;
         } catch (Exception e) {
             // 오류 처리 로직 추가

@@ -7,7 +7,9 @@ import com.kopo.finalproject.WishList.model.dao.WishListMapper;
 import com.kopo.finalproject.WishList.model.dto.WishListItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,6 +22,7 @@ public class PurchasePlanListServiceImpl implements PurchasePlanListService {
     private WishListMapper wishListMapper;
 
     @Override
+    @Transactional
     public void addPurchasePlanListItem(PurchasePlanListItem item) {
         purchasePlanListMapper.addPurchasePlanListItem(item);
         WishListItem wishListItem = new WishListItem();
@@ -47,8 +50,22 @@ public class PurchasePlanListServiceImpl implements PurchasePlanListService {
     }
 
     @Override
-    public  List<PurchasePlanListItem> getPurchasePlansByIds( List<String> selectedIds) {
-        return purchasePlanListMapper.getPurchasePlansByIds(selectedIds);
+    public List<PurchasePlanListItem> getPurchasePlansByIds(List<String> selectedIds) {
+        List<PurchasePlanListItem> resultList = new ArrayList<>(); // 리스트를 초기화
+
+        for(String selectedId : selectedIds){
+            System.out.println(selectedId+ ": 서비스의 selectedIds");
+
+            resultList.add(purchasePlanListMapper.getPurchasePlansById(selectedId));
+        }
+
+
+        for (PurchasePlanListItem i : resultList) {
+            System.out.println("1 " + i);
+        }
+
+        return resultList;
     }
+
 
 }

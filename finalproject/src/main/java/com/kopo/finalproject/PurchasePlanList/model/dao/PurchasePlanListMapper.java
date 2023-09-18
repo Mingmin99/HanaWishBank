@@ -3,6 +3,7 @@ package com.kopo.finalproject.PurchasePlanList.model.dao;
 import com.kopo.finalproject.PurchasePlanList.model.dto.PurchasePlanJoinResult;
 import com.kopo.finalproject.PurchasePlanList.model.dto.PurchasePlanListItem;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,5 +17,6 @@ public interface PurchasePlanListMapper {
 
     void deletePurchasePlanList(List<String> selectedIds);
 
-    public  List<PurchasePlanListItem> getPurchasePlansByIds( List<String> selectedIds);
+    PurchasePlanListItem getPurchasePlansById(@Param("selectedId") String selectedId);
+
 }

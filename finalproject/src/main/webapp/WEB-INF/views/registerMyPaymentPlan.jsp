@@ -279,7 +279,9 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            flex-wrap: wrap; /* 추가 */
         }
+
 
         .PlanName {
             font-weight: bold;
@@ -294,7 +296,6 @@
             width: 10% !important;
             font-weight: bold;
             margin-right: 5px;
-            display: block;
         }
 
         .percent-label {
@@ -505,21 +506,20 @@
         </div>
 
         <div class="section">
-            <c:forEach var="plan" items="${selectedPlans}">
-                <h3>분배 비율</h3>
+            <h3>분배 비율</h3>
+            <c:forEach var="plan" items="${PaymentPlanList}">
                 <div class="ratio-container">
                     <div class="ratio-input">
                         <div class="PlanName">계획명</div>
                         <div class="selectPlanName">${plan.planName}</div>
-
                         <!-- 특정 라벨에 클래스 추가 -->
                         <label class="ratio-label">분배비율</label>
                         <input type="number" id="ratio1" name="ratio1" value="${plan.allocationRatio}">
                         <label class="percent-label">%</label>
                     </div>
                 </div>
-                <p class="ratio-info">* 연결된 구매계획리스트 분배 비율 합이 100이 되어야 합니다.</p>
             </c:forEach>
+            <p class="ratio-info">* 연결된 구매계획리스트 분배 비율 합이 100이 되어야 합니다.</p>
         </div>
 
 
