@@ -125,7 +125,7 @@ public class wishListController {
     public String deleteWishList(
             @RequestParam("title") String title,
             RedirectAttributes redirectAttributes) {
-
+        System.out.println("붐업");
         // 삭제가 성공하면 "success" 속성을 설정
         boolean deletionSuccessful = wishListService.deleteWishListItem(title);
         if (deletionSuccessful) {

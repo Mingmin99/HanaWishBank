@@ -136,6 +136,7 @@ public class purchasePlanListController {
             if (selectedIdsArray != null) {
                 List<String> selectedIds = Arrays.asList(selectedIdsArray);
                 System.out.println(selectedIds);
+                System.out.println("레스게릿팡팡타임");
                 List<PurchasePlanListItem> resultList = purchasePlanListService.getPurchasePlansByIds(selectedIds);
                 mav.addObject("PaymentPlanList", resultList);
                 // 이후 로직 수행

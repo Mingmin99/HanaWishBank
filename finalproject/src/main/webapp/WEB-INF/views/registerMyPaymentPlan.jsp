@@ -448,14 +448,32 @@
                                                          name="planName" placeholder="계획명을 입력하세요" required>
             </div>
             <div class="input-container">
-                <label for="goalDuration">목표기간</label> <input type="number"
-                                                              id="goalDuration" name="goalDuration" placeholder="개월"
-                                                              required>
+                <label for="goalDuration">목표기간</label>
+                <input type="number" id="goalDuration" name="goalDuration" placeholder="개월" required
+                       value="${PaymentPlanList[0].planPeriod}">
             </div>
+
             <div class="input-container">
                 <label for="goalAmount">목표금액</label> <input type="number"
                                                             id="goalAmount" name="goalAmount" placeholder="원" required>
             </div>
+
+            <script>
+                // PaymentPlanList 배열에서 planAmount 합계 계산
+                var planAmountSum = 0;
+                <c:forEach var="item" items="${PaymentPlanList}">
+                planAmountSum += ${item.planAmount};
+                </c:forEach>
+                // 목표금액 input 요소에 합계를 할당
+                document.getElementById("goalAmount").value = planAmountSum;
+                // goalAmount 입력 필드 값 변경 이벤트 리스너 추가
+                document.getElementById("goalAmount").addEventListener("input", function () {
+                    var enteredAmount = parseFloat(this.value.replace(" 원", "").replace(",", "")); // 입력값에서 " 원" 제거 및 숫자로 변환
+                    if (enteredAmount < planAmountSum) {
+                        alert("최소 목표 금액보다 낮은 가격입니다.");
+                    }
+                });
+            </script>
         </div>
 
         <div class="section">
@@ -469,8 +487,40 @@
             </select>
             </div>
             <div class="input-container payment-date">
-                <label for="paymentDate">납입일</label> <input type="date"
-                                                            id="paymentDate" name="paymentDate">
+                <label for="paymentDate">납입일</label>
+                <select id="paymentDate" name="paymentDate">
+                    <!-- 1일부터 30일까지의 모든 일자를 드롭다운으로 표시 -->
+                    <option value="1">1일</option>
+                    <option value="2">2일</option>
+                    <option value="3">3일</option>
+                    <option value="4">4일</option>
+                    <option value="5">5일</option>
+                    <option value="6">6일</option>
+                    <option value="7">7일</option>
+                    <option value="8">8일</option>
+                    <option value="9">9일</option>
+                    <option value="10">10일</option>
+                    <option value="11">11일</option>
+                    <option value="12">12일</option>
+                    <option value="13">13일</option>
+                    <option value="14">14일</option>
+                    <option value="15">15일</option>
+                    <option value="16">16일</option>
+                    <option value="17">17일</option>
+                    <option value="18">18일</option>
+                    <option value="19">19일</option>
+                    <option value="20">20일</option>
+                    <option value="21">21일</option>
+                    <option value="22">22일</option>
+                    <option value="23">23일</option>
+                    <option value="24">24일</option>
+                    <option value="25">25일</option>
+                    <option value="26">26일</option>
+                    <option value="27">27일</option>
+                    <option value="28">28일</option>
+                    <option value="29">29일</option>
+                    <option value="30">30일</option>
+                </select>
             </div>
             <div class="input-container payment-day-of-week"
                  style="display: none;">
@@ -490,6 +540,59 @@
                                                                id="paymentAmount" name="paymentAmount" placeholder="원"
                                                                required>
             </div>
+            <script>// 사용자 입력값 가져오기
+            var goalAmount = parseFloat(document.getElementById("goalAmount").value.replace(" 원", "").replace(",", ""));
+            var goalDuration = parseInt(document.getElementById("goalDuration").value);
+            var paymentFrequency = document.getElementById("paymentFrequency").value;
+
+            // 납입주기에 따라 납입금액 계산
+            var paymentAmount = 0;
+
+            function calculatePaymentAmount() {
+                if (paymentFrequency === "매월") {
+                    paymentAmount = Math.ceil(goalAmount / goalDuration);
+                } else if (paymentFrequency === "매주") {
+                    // 현재 날짜에서 목표 기간 후의 날짜 계산
+                    var currentDate = new Date();
+                    var endDate = new Date(currentDate);
+                    endDate.setMonth(endDate.getMonth() + goalDuration);
+
+                    // 날짜 차이 계산
+                    var daysDifference = Math.ceil((endDate - currentDate) / (1000 * 60 * 60 * 24));
+
+                    // 주 단위로 나눈 뒤 올림
+                    paymentAmount = Math.ceil(goalAmount / daysDifference * 7);
+                } else if (paymentFrequency === "매일") {
+                    // 현재 날짜에서 목표 기간 후의 날짜 계산
+                    var currentDate = new Date();
+                    var endDate = new Date(currentDate);
+                    endDate.setMonth(endDate.getMonth() + goalDuration);
+                    // 날짜 차이 계산
+                    var daysDifference = Math.ceil((endDate - currentDate) / (1000 * 60 * 60 * 24));
+
+                    // 일 단위로 나눈 뒤 올림
+                    paymentAmount = Math.ceil(goalAmount / daysDifference);
+                }
+            }
+
+            // 납입주기 변경 감지
+            document.getElementById("paymentFrequency").addEventListener("change", function () {
+                paymentFrequency = this.value;
+                calculatePaymentAmount();
+                updatePaymentAmount();
+            });
+
+            // 결과 표시
+            function updatePaymentAmount() {
+                alert("납입금액은 " + paymentAmount + " 원입니다.");
+                document.getElementById("paymentAmount").value = paymentAmount;
+            }
+
+            // 초기 계산
+            calculatePaymentAmount();
+            updatePaymentAmount();
+            </script>
+
             <div class="input-container">
                 <label for="transferMethod">이체방식</label> <select
                     id="transferMethod" name="transferMethod">
@@ -497,6 +600,7 @@
                 <option value="직접이체">직접이체</option>
             </select>
             </div>
+
             <div class="input-container">
                 <label for="autoTransferAccount">자동이체 계좌</label> <input type="text"
                                                                         id="autoTransferAccount"
@@ -542,12 +646,31 @@
                 <option value="직접해지">직접해지</option>
             </select>
             </div>
+
             <div class="input-container">
                 <label for="expectedTerminationDate">예상 만기 일자</label>
-                <textarea id="expectedTerminationDate"
-                          name="expectedTerminationDate" rows="1" readonly>20203년 월 일</textarea>
+                <textarea id="expectedTerminationDate" rows="1" readonly></textarea>
             </div>
+            <script>
+                // goalDuration 입력 필드의 값을 가져옴
+                var goalDurationMonths = parseInt(document.getElementById("goalDuration").value);
 
+                // 현재 날짜를 가져옴
+                var currentDate = new Date();
+
+                // goalDuration 값을 월에 더한 날짜를 계산
+                var endDate = new Date(currentDate);
+                endDate.setMonth(endDate.getMonth() + goalDurationMonths);
+
+                // endDate를 원하는 형식으로 포맷팅
+                function formatDate(date) {
+                    const options = {year: 'numeric', month: '2-digit', day: '2-digit'};
+                    return date.toLocaleDateString('ko-KR', options);
+                }
+
+                // 포맷팅된 날짜를 expectedTerminationDate 텍스트 영역에 표시
+                document.getElementById("expectedTerminationDate").textContent = formatDate(endDate);
+            </script>
         </div>
     </div>
     <script>
@@ -555,10 +678,8 @@
             "change",
             function () {
                 var selectedValue = this.value;
-                var paymentDateInput = document
-                    .querySelector(".payment-date");
-                var paymentDayOfWeekInput = document
-                    .querySelector(".payment-day-of-week");
+                var paymentDateInput = document.querySelector(".payment-date");
+                var paymentDayOfWeekInput = document.querySelector(".payment-day-of-week");
 
                 if (selectedValue === "매월") {
                     paymentDateInput.style.display = "block";
@@ -570,10 +691,9 @@
                     paymentDateInput.style.display = "none";
                     paymentDayOfWeekInput.style.display = "none";
                 }
-            });
+            }
+        );
     </script>
-
-
     <div class="ButtonContainer ">
         <div class="row">
             <div class="col">
@@ -592,7 +712,6 @@
         </div>
     </div>
 </main>
-
 
 <!-- 푸터 추가 -->
 <!-- <footer class="bg-dark text-light text-center py-3"> © 2023

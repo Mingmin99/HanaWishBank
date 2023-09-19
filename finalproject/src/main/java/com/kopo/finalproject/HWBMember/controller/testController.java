@@ -46,7 +46,7 @@ public class testController {
         if (loginMember != null) {
             session.setAttribute("name", loginMember.getName());
             session.setAttribute("memberID", loginMember.getMemberID());
-            return ResponseEntity.ok("로그인 성공");
+            return ResponseEntity.ok("로그인 성공 레스레릿 로그ㅜ이ㅏㄴ타임");
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("로그인 실패");
         }
@@ -66,6 +66,7 @@ public class testController {
 
     @RequestMapping("/register")
     public ModelAndView register() {
+        System.out.println("레스게릿붐붐타임");
         ModelAndView mav = new ModelAndView();
         mav.setViewName("register");
         return mav;
