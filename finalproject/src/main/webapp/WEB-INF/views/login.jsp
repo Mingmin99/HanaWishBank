@@ -127,8 +127,7 @@
                     alert("로그인 성공");
                     console.error("로그인 성공");
                     var link = document.createElement("a");
-                    link.href = "/";
-                    link.click();
+                    window.location.href = "/";
                 } else {
                     // 로그인 실패 시 처리
                     console.error("로그인 실패");

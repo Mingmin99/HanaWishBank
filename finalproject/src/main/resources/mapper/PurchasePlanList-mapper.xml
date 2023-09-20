@@ -54,7 +54,7 @@
 
     <select id="getPurchasePlansById" resultType="com.kopo.finalproject.PurchasePlanList.model.dto.PurchasePlanListItem">
         SELECT * FROM PurchasePlanListItem
-        WHERE purchasePlanID = #{selectedId}
+        WHERE PurchasePlanID = #{selectedId}
 </select>
 
 

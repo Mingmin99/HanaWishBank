@@ -12,9 +12,10 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 public class Account {
-    private String AccountNumber;
+    private String MemberID;
+    private long AccountNumber;
     private String AccountName;
-    private String AccountPW;
+    private int AccountPW;
     private int AccountStatus;
     private Date AccountCreateDate;
     private int Balance;

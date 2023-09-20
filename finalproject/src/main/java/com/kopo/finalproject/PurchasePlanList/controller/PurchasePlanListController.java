@@ -24,16 +24,24 @@ public class purchasePlanListController {
 
 
     @RequestMapping("/registerMyPurchasePlanList")
-    public ModelAndView registerMyPurchasePlanList() {
+    public ModelAndView checkMyPurchasePlanList() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("/registerMyPurchasePlanList");
         return mav;
     }
 
+
     @RequestMapping("/checkMyPurchasePlanList")
-    public ModelAndView checkMyPurchasePlanList() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("/checkMyPurchasePlanList");
+
+    public ModelAndView checkMyPurchasePlanList(HttpServletRequest request) {
+        HttpSession session = request.getSession(false); // 세션이 없을 경우 null 반환
+
+        if (session == null || session.getAttribute("memberID") == null) {
+            // 세션이 없거나 memberID가 없을 경우 /login으로 리다이렉트
+            return new ModelAndView("redirect:/login");
+        }
+
+        ModelAndView mav = getAllPurchasePlanList(session);
         return mav;
     }
 
@@ -139,6 +147,7 @@ public class purchasePlanListController {
                 System.out.println("레스게릿팡팡타임");
                 List<PurchasePlanListItem> resultList = purchasePlanListService.getPurchasePlansByIds(selectedIds);
                 mav.addObject("PaymentPlanList", resultList);
+                System.out.println(resultList);
                 // 이후 로직 수행
             } else {
                 // 선택된 항목이 없는 경우

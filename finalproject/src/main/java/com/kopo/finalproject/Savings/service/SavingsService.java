@@ -1,4 +1,11 @@
 package com.kopo.finalproject.Savings.service;
 
-public class SavingsService {
+import com.kopo.finalproject.Savings.model.dto.Account;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public interface SavingsService {
+    List<Account> getAllAccounts();
 }

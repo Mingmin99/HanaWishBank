@@ -143,7 +143,7 @@
         .title {
             font-size: 32px;
             font-weight: 600;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 CM";
             color: #4F4F4F;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -159,7 +159,7 @@
             padding: 10px;
             font-size: 16px;
             font-weight: 500;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 L";
             color: #5A5A5A;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -168,7 +168,7 @@
             padding: 10px;
             font-size: 16px;
             font-weight: 500;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 L";
             color: #5A5A5A;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             /* 	display: flex;
@@ -180,7 +180,7 @@
             margin-top: 30px;
             font-size: 20px;
             font-weight: 500;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 L";
             color: #4F4F4F;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -206,11 +206,11 @@
 
         /* 납입계획 입력 양식------------------------------------------------------------------------------------------------------- */
         .paymntPlanTitle {
-            margin-top: 5rem;
+            margin-top: 2rem;
             margin-bottom: 2rem;
             font-size: 24px;
             font-weight: 500;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 L";
             color: #4F4F4F;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -218,7 +218,7 @@
         .payment-plan-form {
             margin-right: 5rem;
             width: 85%;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 L";
             color: #333;
             padding: 2rem;
             border: 1px solid #ddd;
@@ -233,6 +233,7 @@
         h3 {
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
+            font-family: "Hana2.0 CM";
         }
 
         .input-container {
@@ -245,6 +246,7 @@
             width: 30%;
             font-weight: bold;
             margin-right: 1rem;
+            font-family: "Hana2.0 CM";
         }
 
 
@@ -254,6 +256,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 1rem;
+            color: black;
         }
 
         .section {
@@ -265,6 +268,7 @@
             font-size: 18px;
             margin-top: 10px;
             margin-bottom: 10px;
+            font-family: "Hana2.0 CM";
         }
 
         /*----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -278,6 +282,7 @@
         .ratio-input {
             display: flex;
             align-items: center;
+            font-family: "Hana2.0 CM";
             justify-content: space-between;
             flex-wrap: wrap; /* 추가 */
         }
@@ -286,6 +291,7 @@
         .PlanName {
             font-weight: bold;
             margin-right: 10px;
+            font-family: "Hana2.0 CM";
         }
 
         .selectPlanName {
@@ -296,9 +302,11 @@
             width: 10% !important;
             font-weight: bold;
             margin-right: 5px;
+            font-family: "Hana2.0 CM";
         }
 
         .percent-label {
+            font-family: "Hana2.0 CM";
             width: 0% !important;
             font-weight: bold;
             margin-left: 5px;
@@ -307,6 +315,7 @@
         input[type="number"] {
             width: 50px;
             padding: 5px;
+            font-family: "Hana2.0 CM";
             border: 1px solid #ccc;
             border-radius: 5px;
         }
@@ -315,6 +324,7 @@
             font-size: 14px;
             color: #888;
             margin-top: 5px;
+            font-family: "Hana2.0 CM";
         }
 
         /*----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -390,7 +400,7 @@
     <h4>나의 챌린지 계좌</h4>
     <ul>
         <li><a href="registerMyWishList.jsp">나의 납입계획 등록</a></li>
-        <li><a href="registerMyPurchasePlanList.jsp">나의 챌린지 계좌 조회</a></li>
+        <li><a href="registerMyPurchasePlanList.jsp">나의 챌린지 적금 조회</a></li>
 
     </ul>
 </div>
@@ -413,7 +423,7 @@
     <!---위시리스트 조회 ------------------------------------------------------------------------------------------------------- -->
 
     <div class="interestRateContainer">
-        <div class="interestRateTableTitle">◉ 챌린지 적금 기간별 이자율</div>
+        <div class="interestRateTableTitle">• 챌린지 적금 기간별 이자율</div>
         <table class="interest-table">
             <thead>
             <tr>
@@ -423,22 +433,31 @@
             </thead>
             <tbody>
             <tr>
-                <td>1년</td>
-                <td>3.55%</td>
+                <td>6개월 - 12개월</td>
+                <td>연 3.50%</td>
             </tr>
             <tr>
-                <td>2년</td>
-                <td>3.65%</td>
+                <td>12개월 - 24개월</td>
+                <td>연 3.80%</td>
             </tr>
             <tr>
-                <td>3년</td>
-                <td>3.75%</td>
+                <td>24개월 - 36개월</td>
+                <td>연 3.80%</td>
+            </tr>
+            <tr>
+                <td>36개월 이상</td>
+                <td>연 3.80%</td>
             </tr>
             </tbody>
         </table>
     </div>
 
     <div class="paymntPlanTitle">◆ 납입계획 세우기</div>
+    <c:forEach var="plan" items="${PaymentPlanList}">
+        <div class="selectPurchasePlanID">${plan.purchasePlanID}</div>
+        <div class="selectWishListID">${plan.wishListID}</div>
+    </c:forEach>
+
 
     <div class="payment-plan-form">
         <div class="section">
@@ -447,6 +466,25 @@
                 <label for="planName">계획명</label> <input type="text" id="planName"
                                                          name="planName" placeholder="계획명을 입력하세요" required>
             </div>
+            <p id="planNameInfo" class="ratio-info"></p>
+            <script>
+                $(document).ready(function () {
+                    // 계획명 입력 필드를 선택
+                    var planNameInput = $("#planName");
+
+                    // 입력 필드 값 변경 이벤트 리스너 추가
+                    planNameInput.on("input", function () {
+                        var planNameInfo = $("#planNameInfo");
+
+                        if (planNameInput.val().trim() === "") {
+                            planNameInfo.text("* 계획명은 필수 입력 사항입니다.").css("color", "red");
+                        } else {
+                            planNameInfo.text("* 계획명 입력 완료하셨습니다.").css("color", "green");
+                        }
+                    });
+                });
+            </script>
+
             <div class="input-container">
                 <label for="goalDuration">목표기간</label>
                 <input type="number" id="goalDuration" name="goalDuration" placeholder="개월" required
@@ -575,6 +613,13 @@
                 }
             }
 
+            document.getElementById("paymentAmount").addEventListener("input", function () {
+                var enteredAmount = parseFloat(this.value.replace(" 원", "").replace(",", "")); // 입력값에서 " 원" 제거 및 숫자로 변환
+                if (enteredAmount < paymentAmount) {
+                    alert("목표 기간 안에 목표 금액을 모으기 위한 최소 금액보다 낮은 금액입니다.");
+                }
+            });
+
             // 납입주기 변경 감지
             document.getElementById("paymentFrequency").addEventListener("change", function () {
                 paymentFrequency = this.value;
@@ -584,7 +629,6 @@
 
             // 결과 표시
             function updatePaymentAmount() {
-                alert("납입금액은 " + paymentAmount + " 원입니다.");
                 document.getElementById("paymentAmount").value = paymentAmount;
             }
 
@@ -602,11 +646,46 @@
             </div>
 
             <div class="input-container">
-                <label for="autoTransferAccount">자동이체 계좌</label> <input type="text"
-                                                                        id="autoTransferAccount"
-                                                                        name="autoTransferAccount"
-                                                                        placeholder="계좌번호를 입력하세요">
+                <label for="autoTransferAccount">자동이체 계좌</label>
+                <select id="autoTransferAccount" name="autoTransferAccount"></select>
             </div>
+            <script>
+                // AJAX로 계좌 목록 가져오기
+                $.ajax({
+                    url: "/getAllAccounts",
+                    method: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        // 드롭다운을 참조
+                        var dropdown = document.getElementById("autoTransferAccount");
+
+                        // 각 계좌 정보에 대한 option 엘리먼트를 생성하여 추가
+                        data.forEach(function (accounts) {
+                            var option = document.createElement("option");
+                            option.value = accounts.accountNumber;
+                            option.text = accounts.accountNumber;
+
+                            // 드롭다운에 옵션 추가
+                            dropdown.appendChild(option);
+                        });
+
+                        // 받아온 데이터를 콘솔에 출력
+                        console.log("계좌 목록 데이터: ", data);
+                    },
+                    error: function (error) {
+                        console.log("Error fetching account data: " + error);
+                    }
+                });
+
+                // 드롭다운 값이 변경될 때 발생하는 이벤트 핸들러
+                $("#autoTransferAccount").on("change", function () {
+                    // 선택한 값 가져오기
+                    var selectedValue = $(this).val();
+                    console.log("선택한 계좌 번호: " + selectedValue);
+                });
+            </script>
+
+
         </div>
 
         <div class="section">
@@ -618,27 +697,87 @@
                         <div class="selectPlanName">${plan.planName}</div>
                         <!-- 특정 라벨에 클래스 추가 -->
                         <label class="ratio-label">분배비율</label>
-                        <input type="number" id="ratio1" name="ratio1" value="${plan.allocationRatio}">
+                        <input type="number" class="ratio1" name="ratio1" value="${plan.allocationRatio}">
                         <label class="percent-label">%</label>
                     </div>
                 </div>
             </c:forEach>
             <p class="ratio-info">* 연결된 구매계획리스트 분배 비율 합이 100이 되어야 합니다.</p>
         </div>
+        <script>
+            $(document).ready(function () {
+                // 모든 .ratio1 인풋 필드를 선택
+                var ratioInputs = $(".ratio1");
+
+                // 입력 필드 값 변경 이벤트 리스너 추가
+                ratioInputs.on("input", function () {
+                    // 모든 입력 필드 값을 합산
+                    var total = 0;
+                    ratioInputs.each(function () {
+                        var inputValue = parseFloat($(this).val()) || 0;
+                        total += inputValue;
+                    });
+
+                    // 합계가 100이 아닌 경우 경고 표시
+                    if (total !== 100) {
+                        $(".ratio-info").text("* 연결된 구매계획리스트 분배 비율 합이 100이 되어야 합니다.").css("color", "red");
+                    } else {
+                        $(".ratio-info").text("* 연결된 구매계획리스트 분배 비율 합이 100이 되었습니다.").css("color", "green");
+                    }
+                });
+            });
+        </script>
 
 
         <div class="section">
             <h3>만기 예상</h3>
+            <!-- 만기 예상 원금 입력 필드 -->
             <div class="input-container">
-                <label for="expectedPrincipal">만기 예상 원금</label> <input
-                    type="number" id="expectedPrincipal" name="expectedPrincipal"
-                    placeholder="원">
+                <label for="expectedPrincipal">만기 예상 원금</label>
+                <input type="number" id="expectedPrincipal" name="expectedPrincipal" placeholder="클릭하여 만기 예상 이자를 확인하세요!"
+                       onclick="calculateInterest()">
             </div>
+
+            <!-- 만기 예상 이자 입력 필드 -->
             <div class="input-container">
-                <label for="expectedInterest">만기 예상 이자</label> <input type="number"
-                                                                      id="expectedInterest" name="expectedInterest"
-                                                                      placeholder="원">
+                <label for="expectedInterest">만기 예상 이자</label>
+                <input type="number" id="expectedInterest" name="expectedInterest" placeholder="클릭하여 만기 예상 이자를 확인하세요!"
+                       onclick="calculateInterest()">
             </div>
+
+            <script>
+                function calculateInterest() {
+                    // 사용자 입력
+                    var goalDuration = parseInt(document.getElementById("goalDuration").value);
+                    var paymentAmount = parseFloat(document.getElementById("paymentAmount").value);
+
+                    // 목표 기간에 따라 이자율 설정
+                    var interestRate;
+                    if (goalDuration >= 6 && goalDuration < 12) {
+                        interestRate = 0.035; // 연 3.50%
+                    } else if (goalDuration >= 12 && goalDuration < 24) {
+                        interestRate = 0.038; // 연 3.80%
+                    } else if (goalDuration >= 24 && goalDuration <= 36) {
+                        interestRate = 0.038; // 연 3.80%
+                    } else {
+                        // 기타 조건에 대한 처리
+                        alert("설정된 목표 기간은 유효하지 않습니다.");
+                        return;
+                    }
+
+                    // 월별 이자 계산
+                    var monthlyInterest = paymentAmount * interestRate / 12;
+
+                    // 만기 예상 원금 및 이자 계산
+                    var totalPrincipal = paymentAmount * goalDuration;
+                    var totalInterest = monthlyInterest * goalDuration;
+
+                    // 결과를 입력 필드에 설정
+                    document.getElementById("expectedPrincipal").value = totalPrincipal.toFixed(2);
+                    document.getElementById("expectedInterest").value = totalInterest.toFixed(2);
+                }
+            </script>
+
             <div class="input-container">
                 <label for="terminationMethod">해지방식</label> <select
                     id="terminationMethod" name="terminationMethod">
@@ -652,7 +791,7 @@
                 <textarea id="expectedTerminationDate" rows="1" readonly></textarea>
             </div>
             <script>
-                // goalDuration 입력 필드의 값을 가져옴
+                //goalDuration 입력 필드의 값을 가져옴
                 var goalDurationMonths = parseInt(document.getElementById("goalDuration").value);
 
                 // 현재 날짜를 가져옴

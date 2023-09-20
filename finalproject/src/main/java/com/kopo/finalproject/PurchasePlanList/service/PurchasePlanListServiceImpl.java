@@ -59,7 +59,6 @@ public class PurchasePlanListServiceImpl implements PurchasePlanListService {
             resultList.add(purchasePlanListMapper.getPurchasePlansById(selectedId));
         }
 
-
         for (PurchasePlanListItem i : resultList) {
             System.out.println("1 " + i);
         }

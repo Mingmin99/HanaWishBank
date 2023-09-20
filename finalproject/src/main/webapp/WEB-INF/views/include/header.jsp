@@ -24,7 +24,7 @@
                                             aria-current="page" href="/checkMyCard">나의 소비패턴</a></li>
                     <li class="nav-item"><a class="nav-link"
                                             href="/checkMyWishList">나의 위시리스트</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/getAllPurchasePlanList">나의
+                    <li class="nav-item"><a class="nav-link" href="/checkMyPurchasePlanList">나의
                         구매계획리스트</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">나의 챌린지
                         계좌</a></li>

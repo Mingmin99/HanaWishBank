@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,12 +33,6 @@ public class testController {
         return mav;
     }
 
-    @RequestMapping("/login")
-    public ModelAndView login() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("login");
-        return mav;
-    }
 
     @PostMapping("/login-member")
     public ResponseEntity<String> loginMember(@RequestBody HashMap<String, String> loginData, HttpServletRequest request) {
@@ -46,23 +41,33 @@ public class testController {
         if (loginMember != null) {
             session.setAttribute("name", loginMember.getName());
             session.setAttribute("memberID", loginMember.getMemberID());
-            return ResponseEntity.ok("로그인 성공 레스레릿 로그ㅜ이ㅏㄴ타임");
+            return ResponseEntity.ok("로그인 성공");
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("로그인 실패");
         }
     }
 
-    @RequestMapping(value = "/logout")
-    public ModelAndView deleteGuest(HttpSession session) {
-        String memberID = (String) session.getAttribute("memberID");
-        System.out.println(memberID);
+    @RequestMapping("/login")
+    public ModelAndView login() {
         ModelAndView mav = new ModelAndView();
-        session.invalidate();
-        mav.addObject("msg", "로그아웃 성공");
-        mav.addObject("loc", "/");
-        mav.setViewName("message");
+        mav.setViewName("login");
         return mav;
     }
+
+
+    @GetMapping(value = "/logout")
+    public ModelAndView deleteMember(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        ModelAndView mav = new ModelAndView();
+        if (session != null) {
+            session.invalidate();
+        }
+        mav.addObject("msg", "로그아웃 성공");
+        mav.addObject("loc", "/");
+        mav.setViewName("/message");
+        return mav;
+    }
+
 
     @RequestMapping("/register")
     public ModelAndView register() {
