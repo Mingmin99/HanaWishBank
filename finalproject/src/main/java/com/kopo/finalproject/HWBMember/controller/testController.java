@@ -77,4 +77,12 @@ public class testController {
         return mav;
     }
 
+    @RequestMapping("/myPage")
+    public ModelAndView myPage() {
+        System.out.println("레스게릿붐붐타임");
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("myPage");
+        return mav;
+    }
+
 }

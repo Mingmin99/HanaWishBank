@@ -65,6 +65,4 @@ public class PurchasePlanListServiceImpl implements PurchasePlanListService {
 
         return resultList;
     }
-
-
 }

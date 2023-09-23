@@ -10,23 +10,22 @@ import java.util.Date;
 @Setter
 @Data
 public class ChallengeSavings {
-    private String MemberID;
-    private int PurchasePlanID;
-    private int WishListID;
-    private int ChallengeSavingsAccountNumber;
-    private String PlanName;
-    private int TargetSavingsAmount;
-    private int TargetSavingsPeriod;
-    private int PaymentAmount;
-    private String PaymentFrequency;
-    private String PaymentDay;
-    private int PaymentDate;
-    private String TransferMethod;
-    private int TransferAccount;
-    private int ExpectedPrincipal;
-    private int ExpectedInterest;
-    private String ExpirationOption;
-    private Date StartDay;
-    private Date EndDay;
+    private int challengeSavingsID;
+    private String memberID;
+    private String planName;
+    private int targetSavingsAmount;
+    private int targetSavingsPeriod;
+    private int paymentAmount;
+    private String paymentFrequency;
+    private String paymentDay;
+    private int paymentDate;
+    private String transferMethod;
+    private long transferAccount;
+    private int expectedPrincipal;
+    private int expectedInterest;
+    private String expirationOption;
+    private Date startDay;
+    private Date endDay;
+    private long challengeSavingsAccountNumber;
 };
 

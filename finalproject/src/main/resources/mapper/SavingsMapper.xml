@@ -9,4 +9,38 @@
         SELECT *
         FROM Account
     </select>
+    <insert id="insertPaymentPlan" parameterType="com.kopo.finalproject.Savings.model.dto.ChallengeSavings">
+        INSERT INTO ChallengeSavings (planName, memberID, targetSavingsPeriod, targetSavingsAmount, paymentFrequency,
+                                      paymentDate,
+                                      paymentDay, paymentAmount, transferMethod, transferAccount, expectedPrincipal,
+                                      expectedInterest, expirationOption, endDay,
+                                      challengeSavingsAccountNumber)
+        VALUES (#{planName}, #{memberID}, #{targetSavingsPeriod}, #{targetSavingsAmount}, #{paymentFrequency},
+                #{paymentDate},
+                #{paymentDay}, #{paymentAmount}, #{transferMethod}, #{transferAccount}, #{expectedPrincipal},
+                #{expectedInterest}, #{expirationOption}, #{endDay, jdbcType=DATE},
+                #{challengeSavingsAccountNumber})
+    </insert>
+
+
+    <select id="getAllChallengeSavings" resultType="com.kopo.finalproject.Savings.model.dto.ChallengeSavings">
+        SELECT *
+        FROM ChallengeSavings
+        WHERE MemberID = #{memberID}
+    </select>
+
+    <!-- PlanItemRatio 엔티티와 관련된 매퍼 -->
+        <update id="updatePlanItemRatio" parameterType="com.kopo.finalproject.Savings.model.dto.PlanItemRatio">
+            UPDATE PurchasePlanListItem
+            SET AllocationRatio = #{ratio}
+            WHERE PurchasePlanID = #{selectPurchasePlanID}
+        </update>
+
+    <update id="updatePlanItemSavingStatus">
+        UPDATE WishListItem
+        SET SavingStatus = 'T'
+        WHERE PurchasePlanID = #{selectPurchasePlanID}
+          AND MemberID = #{memberID}
+    </update>
 </mapper>
+

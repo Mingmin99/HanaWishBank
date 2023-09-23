@@ -44,27 +44,33 @@
 
     <select id="getTopCategoryDetailedExpenseCategory" resultType="com.kopo.finalproject.Expense.model.dto.SubCategory">
     <![CDATA[
-        SELECT SubCategoryDescription,
-               RepresentativePrice,
-               ParentCategoryCode,
-               TagImage,
-               SubCategoryCount
-        FROM (SELECT de.description AS SubCategoryDescription,
-                     de.RepresentativePrice,
-                     de.ParentCategoryCode,
-                     de.TagImage,
-                     COUNT(*)       AS SubCategoryCount
-              FROM Expense e
-                       JOIN ExpenseCategory ec ON e.ExpenseCategoryCode = ec.code
-                       JOIN DetailedExpenseCategory de ON de.ParentCategoryCode = ec.code
-              WHERE e.ExpenseDate >= TRUNC(SYSDATE) - 30
-                AND e.ExpenseDate < TRUNC(SYSDATE)
-                AND e.CardID = #{cardID}
-              GROUP BY de.description, de.RepresentativePrice, de.ParentCategoryCode, de.TagImage
-              ORDER BY COUNT(*) DESC)
-        WHERE ROWNUM = 1
+        WITH TopExpenseCategory AS (
+            SELECT ec.description AS CategoryDescription, COUNT(*) AS CategoryCount
+            FROM Expense e
+                     JOIN ExpenseCategory ec ON e.ExpenseCategoryCode = ec.code
+            WHERE e.ExpenseDate >= TRUNC(SYSDATE) - 30 AND e.ExpenseDate < TRUNC(SYSDATE)
+              AND e.CardID = 'C001'
+            GROUP BY ec.description
+            ORDER BY CategoryCount DESC
+                FETCH FIRST 1 ROWS ONLY
+        )
+        SELECT de.description AS SubCategoryDescription,
+               de.RepresentativePrice,
+               de.ParentCategoryCode,
+               de.TagImage,
+               COUNT(*) AS SubCategoryCount
+        FROM Expense e
+                 JOIN ExpenseCategory ec ON e.ExpenseCategoryCode = ec.code
+                 JOIN DetailedExpenseCategory de ON de.ParentCategoryCode = ec.code
+                 JOIN TopExpenseCategory tec ON ec.description = tec.CategoryDescription -- 여기서 수정
+        WHERE e.ExpenseDate >= TRUNC(SYSDATE) - 30 AND e.ExpenseDate < TRUNC(SYSDATE)
+          AND e.CardID = 'C001'
+        GROUP BY de.description, de.RepresentativePrice, de.ParentCategoryCode, de.TagImage
+        ORDER BY SubCategoryCount DESC
+            FETCH FIRST 1 ROWS ONLY
         ]]>
 </select>
+
 
     <select id="getTopAmountDetailedExpenseCategory" resultType="com.kopo.finalproject.Expense.model.dto.SubCategory">
     <![CDATA[

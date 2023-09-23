@@ -17,6 +17,5 @@ public class PurchasePlanListItem {
     private int planAmount;
     private int planPeriod;
     private int allocationRatio;
-
 }
 

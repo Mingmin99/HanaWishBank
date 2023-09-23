@@ -26,8 +26,7 @@
                                             href="/checkMyWishList">나의 위시리스트</a></li>
                     <li class="nav-item"><a class="nav-link" href="/checkMyPurchasePlanList">나의
                         구매계획리스트</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">나의 챌린지
-                        계좌</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/checkMyChallengeSavings">나의 챌린지 적금</a></li>
                 </ul>
             </div>
 
@@ -50,7 +49,7 @@
                         <a href="/signup" class="signup">회원가입</a>
                     </div>
                     <%}%>
-                    <li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/myPage">마이페이지</a></li>
                 </ul>
             </div>
 
