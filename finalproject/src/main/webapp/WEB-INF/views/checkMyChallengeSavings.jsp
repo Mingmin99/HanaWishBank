@@ -127,61 +127,87 @@
         }
 
         .container {
-            background-color: #f0f0f0;
+            /*background-image: linear-gradient(-20deg, #f794a4 0%, #fdd6bd 100%);*/
+            /*background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);*/
+            background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
             border-radius: 10px;
             padding: 20px;
-            margin-top: 30px;
+            margin-top: 20px;
             width: 90% !important;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); /* 미세하게 수정된 그림자 스타일 */
             margin-left: 0 !important;
+            /*border: 2px double #4a4949;*/
         }
 
-        /* 적금 계좌 정보 스타일 */
         .savingTitle {
             color: #333;
             font-family: "Hana2.0 CM";
             font-size: 24px;
-            margin: 0;
+            margin-left: 10px;
+        }
+
+        .savingAccountNumber,
+        .savingProgressInfo {
+            display: inline-block; /* 인라인 블록 요소로 배치 */
+            margin-right: 20px; /* 간격을 조절할 수 있습니다. */
+            margin-top: 10px; /* 간격을 조절할 수 있습니다. */
+        }
+
+        .savingAccountNumber {
+            color: #555;
+            font-family: "Hana2.0 L";
+            font-size: 18px;
+            margin-left: 10px;
         }
 
         .savingProgressInfo {
             color: #555;
             font-family: "Hana2.0 L";
-            font-size: 16px;
-            margin: 5px 0;
+            font-size: 18px;
+            margin-left: 10px;
         }
 
-        /* 구매 계획 리스트 스타일 */
         .purchase-plans {
             margin-top: 20px;
         }
 
         .plan-item {
-            background-color: #fff;
-            border-radius: 5px;
-            padding: 10px;
-            margin: 10px 0;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(to bottom, #ffffff, #f5f5f5); /* 그라데이션 배경색 */
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); /* 미세하게 수정된 그림자 스타일 */
         }
 
         .plan-item-title {
             color: #333;
             font-family: "Hana2.0 CM";
-            font-size: 18px;
+            font-size: 20px;
             margin: 0;
         }
 
-        .plan-item-title-progress-bar {
-            color: #555;
+        .plan-item-price {
+            color: #333;
             font-size: 16px;
             font-family: "Hana2.0 L";
-            margin: 0;
         }
 
-        /* 프로그레스 바 스타일 */
+        .plan-item-progress-bar {
+            color: #333;
+            font-size: 16px;
+            font-family: "Hana2.0 L";
+        }
+
+        .plan-item-price,
+        .plan-item-progress-bar {
+            display: inline-block; /* 인라인 블록 요소로 배치 */
+            margin-right: 20px; /* 간격을 조절할 수 있습니다. */
+            margin-top: 10px; /* 간격을 조절할 수 있습니다. */
+        }
+
         .progress-bar {
-            height: 10px;
-            background-color: #ddd !important;
+            height: 30px;
+            background-image: linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%);
             border-radius: 5px;
             margin-top: 10px;
         }
@@ -189,9 +215,154 @@
         .progress {
             height: 100%;
             border-radius: 5px;
-            background-color: #6a978d !important;
-            width: 50%; /* 목표 달성률에 따라 조절하세요 */
+            /*background: linear-gradient(to right, #4e72a0, #9cb8dc); !* 그라데이션 배경색 *!*/
+            background-image: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
+            width: 0; /* 초기 너비를 0으로 설정 */
+            transition: width 2s ease-in-out; /* 너비(width) 속성에 대한 애니메이션 설정 */
+            animation: fillProgress 2s ease-in-out; /* fillProgress 애니메이션 적용 */
         }
+
+        /* 애니메이션 키프레임 정의 */
+        @keyframes fillProgress {
+            0% {
+                width: 0; /* 애니메이션 시작 시 너비를 0으로 설정 */
+            }
+            100% {
+                width: 100%; /* 애니메이션 종료 시 너비를 100%로 설정 (퍼센트만큼 채움) */
+            }
+        }
+
+
+        /* --------------------------------------------모달 스타일 -------------------------------------------- */
+        .password-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* 배경에 어둡게 처리 */
+            z-index: 1;
+        }
+
+        .password-modal-content {
+            position: absolute;
+            width: 30% !important;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        input[type="password"] {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button#checkPasswordBtn {
+            background-color: #fcb69f;
+            color: #252525;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button#checkPasswordBtn:hover {
+            background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        /* 모달 스타일 */
+        .saving-detail-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* 배경에 어둡게 처리 */
+            z-index: 1;
+            overflow-y: auto; /* 수직 스크롤 활성화 */
+        }
+
+        .saving-detail-modal-content {
+            position: absolute;
+            width: 30% !important; /* 필요에 따라 조정 */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #f1f1f1; /* 배경 색상 추가 */
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* 그림자 추가 */
+            text-align: center;
+            max-height: 80%; /* 최대 높이 설정 */
+            overflow-y: auto; /* 내용이 모달 내에서 넘칠 때 스크롤 활성화 */
+        }
+
+        /* 모달 콘텐츠 스타일링 */
+        .saving-detail-modal h3 {
+            font-family: "Hana2.0 CM";
+            font-size: 1.8em; /* 폰트 크기 증가 */
+            color: #6a978d; /* 글자 색상 변경 */
+        }
+
+        .separator {
+            border: 1px solid #ccc; /* 구분선 스타일을 지정 */
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1.4em; /* 폰트 크기 증가 */
+        }
+
+        .info-value {
+            display: flex;
+            font-family: "Hana2.0 CM";
+            justify-content: space-between;
+            color: #8aaba3; /* 글자 색상 변경 */
+            margin-bottom: 10px;
+            font-size: 1em; /* 폰트 크기 증가 */
+
+        }
+
+        .info-label {
+            font-family: "Hana2.0 CM";
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* 버튼 스타일 */
+        .saving-detail-modal button#closeDetailModal {
+            background-color: #fcb69f;
+            color: #fff; /* 글자색을 흰색으로 변경 */
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1.2em;
+            margin-top: 20px; /* 버튼 상단 여백 추가 */
+        }
+
+        .saving-detail-modal button#closeDetailModal:hover {
+            background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        /*-----------------------------------*/
+
     </style>
     <!-- 부트스트랩 연결 -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -223,98 +394,269 @@
     <!---위시리스트 조회   ------------------------------------------------------------------------------------------------------- -->
 
     <div class="ChallengeSavingTitle">◆ 나의 챌린지 대시보드</div>
-    <div class="container">
-        <div class="savingTitle">적금 계좌 1</div>
-        <div class="savingProgressInfo">계좌 진행률: 70%</div>
-        <!-- 가장 큰 챌린지의 구매 계획 리스트 -->
-        <div class="purchase-plans">
-            <div class="plan-item">
-                <div class="plan-item-title">구매 계획 1</div>
-                <div class="plan-item-title-progress-bar">목표 달성률: 50%</div>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 50%;"></div>
-                </div>
-            </div>
-            <div class="plan-item">
-                <div class="plan-item-title">구매 계획 2</div>
-                <div class="plan-item-title-progress-bar">목표 달성률: 75%</div>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 75%;"></div>
+    <!-- 컨테이너 템플릿 -->
+    <div id="container-template" style="display: none;">
+        <div class="container">
+            <div class="savingTitle">적금 계좌 1</div>
+            <div class="savingAccountNumber">계좌번호 :</div>
+            <div class="savingProgressInfo">계좌 진행률: 70%</div>
+            <!-- 가장 큰 챌린지의 구매 계획 리스트 -->
+            <div class="purchase-plans">
+                <div class="plan-item">
+                    <div class="plan-item-title">구매 계획 1</div>
+                    <div class="plan-item-price">목표 금액: 원</div>
+                    <div class="plan-item-progress-bar">목표 달성률: 50%</div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 50%;"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div id="passwordModal" class="modal password-modal">
+        <div class="modal-content password-modal-content">
+            <input type="password" id="passwordInput" placeholder="비밀번호 입력">
+            <button id="checkPasswordBtn">확인</button>
+        </div>
+    </div>
+
+    <div id="savingDetailModal" class="modal saving-detail-modal">
+        <div class="modal-content saving-detail-modal-content">
+            <h3>적금 상세 정보</h3>
+            <hr class="separator">
+            <div class="info-item">
+                <span class="info-label">적금명:</span>
+                <span class="info-value" id="savingPlanName"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">계좌번호:</span>
+                <span class="info-value" id="savingAccountNumber"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">목표 금액:</span>
+                <span class="info-value" id="targetSavingsAmount"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">목표 기간:</span>
+                <span class="info-value" id="targetSavingsPeriod"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">납입 금액:</span>
+                <span class="info-value" id="paymentAmount"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">납입 주기:</span>
+                <span class="info-value" id="paymentFrequency"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">납입 요일:</span>
+                <span class="info-value" id="paymentDay"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">납입일:</span>
+                <span class="info-value" id="paymentDate"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">이체 방식:</span>
+                <span class="info-value" id="transferMethod"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">이체 계좌:</span>
+                <span class="info-value" id="transferAccount"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">잔액:</span>
+                <span class="info-value" id="accountBalance"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">만기 원금:</span>
+                <span class="info-value" id="expectedPrincipal"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">만기 이자:</span>
+                <span class="info-value" id="expectedInterest"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">만기 해제 방식 :</span>
+                <span class="info-value" id="expirationOption"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">적금 시작일 :</span>
+                <span class="info-value" id="startDay"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">적금 해제일 :</span>
+                <span class="info-value" id="endDay"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">적금 목표 달성률 :</span>
+                <span class="info-value" id="goalAchievementRate"></span>
+            </div>
+            <button id="closeDetailModal">닫기</button>
+        </div>
+    </div>
+
+    <!-- JavaScript 코드 -->
     <script>
-        // Ajax 요청을 통해 ChallengeSavings 데이터 가져오기
-        $.ajax({
-            type: "GET",
-            url: "/getAllChallengeSavings",
-            success: function (data) {
-                var container = document.querySelector(".container");
+        $(document).ready(function () {
+            var containerCount = 0; // 컨테이너의 고유한 카운터
+            $.ajax({
+                type: "GET",
+                url: "/getAllChallengeSavings",
+                success: function (data) {
+                    var container = $("#container-template").parent(); // 컨테이너 템플릿의 부모
+                    var containerTemplate = $("#container-template"); // 컨테이너 템플릿
 
-                data.forEach(function (challengeSavings) {
-                    var planName = challengeSavings.planName;
+                    data.forEach(function (savingsData) {
+                        // 컨테이너 템플릿 복제
+                        var newContainer = containerTemplate.clone();
+                        newContainer.css("display", "block"); // 보이도록 설정
+                        containerCount++; // 컨테이너 카운터 증가
+                        var containerID = "container-" + containerCount; // 고유한 ID 생성
+                        newContainer.attr("id", containerID); // 컨테이너에 고유한 ID 할당
 
-                    // 새로운 컨테이너 엘리먼트 생성
-                    var newContainer = document.createElement("div");
-                    newContainer.className = "container";
+                        // 데이터를 컨테이너에 채워넣기
+                        newContainer.find(".savingTitle").text(savingsData.planName);
+                        newContainer.find(".savingAccountNumber").text("계좌번호 : " + savingsData.challengeSavingsAccountNumber);
+                        newContainer.find(".savingAccountPW").text("계좌 비밀번호 : " + savingsData.challengeSavingsAccountPW);
+                        newContainer.find(".savingProgressInfo").text("계좌 진행률: " + savingsData.goalAchievementRate + "%");
 
-                    // 적금 계좌 타이틀 추가
-                    var savingTitleElement = document.createElement("div");
-                    savingTitleElement.className = "savingTitle";
-                    savingTitleElement.textContent = "적금 계좌 " + planName;
-                    newContainer.appendChild(savingTitleElement);
+                        // 기존의 purchase-plans 요소 초기화
+                        var purchasePlans = newContainer.find(".purchase-plans");
+                        purchasePlans.empty(); // 기존 내용 삭제
 
-                    // 계좌 진행률 정보 등의 내용 추가 (필요에 따라 추가)
+                        // 생성한 컨테이너를 페이지에 추가
+                        container.append(newContainer);
 
-                    // 구매 계획 리스트 추가
-                    var purchasePlansContainer = document.createElement("div");
-                    purchasePlansContainer.className = "purchase-plans";
+                        // 추가한 컨테이너 내에서 새로운 Ajax 요청을 수행
+                        $.ajax({
+                            type: "GET",
+                            url: "/getPurchasePlanByAccountNumber",
+                            data: {challengeSavingsAccountNumber: savingsData.challengeSavingsAccountNumber},
+                            success: function (purchasePlanData) {
+                                try {
+                                    // 구매 계획 데이터를 사용하여 각 계획의 이름을 설정
+                                    purchasePlanData.forEach(function (plan) {
+                                        // ...
 
-                    // 예시: 두 개의 구매 계획을 추가
-                    for (var i = 1; i <= 2; i++) {
-                        var planItem = document.createElement("div");
-                        planItem.className = "plan-item";
+                                        // 각각의 구매 계획 데이터를 해당하는 요소에 설정
+                                        var planItem = $("<div>").addClass("plan-item");
+                                        var planItemTitle = $("<div>").addClass("plan-item-title").text(plan.planName);
+                                        var planItemPrice = $("<div>").addClass("plan-item-price").text("목표 금액: " + plan.planAmount + "원");
+                                        var planItemProgressBar = $("<div>").addClass("plan-item-progress-bar").text("목표 달성률: " + Math.round(((savingsData.accountBalance * plan.allocationRatio) / plan.planAmount) * 10) / 10 + "%");
+                                        var progressBar = $("<div>").addClass("progress-bar");
+                                        var progress = $("<div>").addClass("progress").css("width", ((savingsData.accountBalance * plan.allocationRatio) / plan.planAmount) + "%");
 
-                        // 구매 계획 타이틀 추가
-                        var planItemTitle = document.createElement("div");
-                        planItemTitle.className = "plan-item-title";
-                        planItemTitle.textContent = "구매 계획 " + i;
-                        planItem.appendChild(planItemTitle);
+                                        progressBar.append(progress);
+                                        planItem.append(planItemTitle, planItemPrice, planItemProgressBar, progressBar);
 
-                        // 목표 달성률 추가 (예시로 50%와 75%)
-                        var planItemTitleProgressBar = document.createElement("div");
-                        planItemTitleProgressBar.className = "plan-item-title-progress-bar";
-                        planItemTitleProgressBar.textContent = "목표 달성률: " + (i === 1 ? "50%" : "75%");
-                        planItem.appendChild(planItemTitleProgressBar);
+                                        // 수정된 구매 계획 요소를 새로운 컨테이너에 추가
+                                        purchasePlans.append(planItem);
+                                    });
+                                } catch (error) {
+                                    console.error("구매 계획 데이터 처리 중 오류 발생:", error);
+                                }
+                            },
+                            error: function (error) {
+                                console.error("구매 계획 오류:", error);
+                            }
+                        });
 
-                        // 프로그레스 바 추가 (예시로 50%와 75%)
-                        var progressBarContainer = document.createElement("div");
-                        progressBarContainer.className = "progress-bar";
+                        // 컨테이너 클릭 이벤트 핸들러
+                        newContainer.on("click", function () {
+                            var passwordModal = $("#passwordModal");
+                            var passwordInput = $("#passwordInput");
 
-                        var progressBar = document.createElement("div");
-                        progressBar.className = "progress";
-                        progressBar.style.width = i === 1 ? "50%" : "75%";
-                        progressBarContainer.appendChild(progressBar);
+                            // 클로저로 현재 클릭한 컨테이너의 savingsData 유지
+                            var currentSavingsData = savingsData;
+                            // savingsData.challengeSavingsAccountPW 역시 숫자로 변환
+                            var savedPassword = parseInt(currentSavingsData.challengeSavingsAccountPW, 10);
 
-                        planItem.appendChild(progressBarContainer);
+                            console.log("내가 클릭한 적금 계좌의 비밀번호 " + savedPassword);
 
-                        // 구매 계획을 구매 계획 리스트에 추가
-                        purchasePlansContainer.appendChild(planItem);
-                    }
+                            // 비밀번호 확인 모달 창 열기
+                            passwordModal.css("display", "block");
 
-                    // 구매 계획 리스트를 컨테이너에 추가
-                    newContainer.appendChild(purchasePlansContainer);
+                            $("#checkPasswordBtn").off("click"); // 이전 클릭 이벤트 핸들러 제거
 
-                    // 생성한 컨테이너를 원래 컨테이너에 추가
-                    container.appendChild(newContainer);
-                });
-            },
-            error: function (error) {
-                console.log("오류:", error);
-            }
+                            // 새로운 클릭 이벤트 핸들러 연결
+                            $("#checkPasswordBtn").on("click", function () {
+                                // 내가 입력한거
+                                var enteredPassword = parseInt(passwordInput.val(), 10); // 10진수로 변환
+                                console.log("내가 입력한 비밀번호 " + enteredPassword + " " + savedPassword);
+                                // 입력한 비밀번호와 저장된 비밀번호 비교
+                                if (enteredPassword === savedPassword) {
+                                    // 비밀번호 일치하는 경우 적금 상세 내용 모달 창 열기
+                                    openSavingDetailModal(currentSavingsData);
+                                    // alert("비밀번호가 일치");
+                                    passwordInput.val(""); // 입력 필드를 비웁니다.
+                                    passwordModal.css("display", "none"); // 모달 창 닫기
+                                    // ---------------------------------적금 상세 내용 모달 창 열기 함수---------------------------------
+                                    function openSavingDetailModal(savingsData) {
+                                        // savingsData 객체의 속성을 사용하여 정보 표시
+                                        $("#savingPlanName").text(savingsData.planName);
+                                        $("#savingAccountNumber").text(savingsData.challengeSavingsAccountNumber);
+                                        $("#targetSavingsAmount").text(savingsData.targetSavingsAmount + "원");
+                                        $("#targetSavingsPeriod").text(savingsData.targetSavingsPeriod + "개월");
+                                        $("#paymentAmount").text(savingsData.paymentAmount + "원");
+                                        $("#paymentFrequency").text(savingsData.paymentFrequency);
+                                        $("#paymentDay").text(savingsData.paymentDay);
+                                        $("#paymentDate").text(savingsData.paymentDate);
+                                        $("#transferMethod").text(savingsData.transferMethod);
+                                        $("#transferAccount").text(savingsData.transferAccount);
+                                        $("#accountBalance").text(savingsData.accountBalance + "원");
+                                        $("#expectedPrincipal").text(savingsData.expectedPrincipal + "원");
+                                        $("#expectedInterest").text(savingsData.expectedInterest + "원");
+                                        $("#expirationOption").text(savingsData.expirationOption);
+                                        // savingsData에서 날짜 데이터 가져오기
+                                        const startDay = new Date(savingsData.startDay);
+                                        const endDay = new Date(savingsData.endDay);
+
+                                        const startDateString = startDay.toLocaleDateString('en-US', {
+                                            year: 'numeric',
+                                            month: '2-digit',
+                                            day: '2-digit'
+                                        });
+                                        const endDateString = endDay.toLocaleDateString('en-US', {
+                                            year: 'numeric',
+                                            month: '2-digit',
+                                            day: '2-digit'
+                                        });
+                                        $("#startDay").text(startDateString);
+                                        $("#endDay").text(endDateString);
+
+                                        $("#goalAchievementRate").text(savingsData.goalAchievementRate + "%");
+
+                                        // 모달 열기
+                                        $("#savingDetailModal").css("display", "block");
+
+                                        // 닫기 버튼 클릭 이벤트
+                                        $("#closeDetailModal").click(function () {
+                                            $("#savingDetailModal").css("display", "none");
+                                        });
+                                    }
+
+                                } else {
+                                    // 비밀번호 불일치 메시지 표시 또는 처리
+                                    alert("비밀번호가 일치하지 않습니다.");
+                                    passwordInput.val(""); // 입력 필드를 비웁니다.
+                                }
+                                // 비밀번호 확인 모달 창 닫기
+                                passwordModal.css("display", "none");
+                                passwordInput.val(""); // 입력 필드를 비웁니다.
+                            });
+                        });
+                    });
+                },
+                error: function (error) {
+                    console.error("데이터를 불러오는 중 오류 발생:", error);
+                }
+            });
         });
+
     </script>
+
+
 </main>
 
 
@@ -328,10 +670,10 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
 
-<!-- Unpkg AOS 연결 -->
+<!— Unpkg AOS 연결 —>
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
 
-<!-- jQuery 연결 -->
+<!— jQuery 연결 —>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </body>
 </html>

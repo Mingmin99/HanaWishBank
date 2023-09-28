@@ -27,7 +27,9 @@
                w.price           as price
         from PurchasePlanListItem p
                  join WishListItem w on w.WishListID = p.WishListID
-        where w.memberID = #{memberID}</select>
+        where w.memberID = #{memberID}
+          AND SavingStatus = 'F'
+    </select>
 
 
     <update id="updatePurchasePlanListInfo"
@@ -49,13 +51,14 @@
     </delete>
 
 
-
     <!-- PurchasePlanListItemMapper.xml -->
 
-    <select id="getPurchasePlansById" resultType="com.kopo.finalproject.PurchasePlanList.model.dto.PurchasePlanListItem">
-        SELECT * FROM PurchasePlanListItem
+    <select id="getPurchasePlansById"
+            resultType="com.kopo.finalproject.PurchasePlanList.model.dto.PurchasePlanListItem">
+        SELECT *
+        FROM PurchasePlanListItem
         WHERE PurchasePlanID = #{selectedId}
-</select>
+    </select>
 
 
 </mapper>

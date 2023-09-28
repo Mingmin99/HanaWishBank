@@ -489,6 +489,7 @@
                             .then(data => {
                                 if (data === "success") {
                                     alert('아이템이 위시리스트에 추가되었습니다!');
+                                    window.location.href = '/checkMyWishList';
                                 } else {
                                     alert('아이템 추가에 실패했습니다.');
                                 }

@@ -10,7 +10,7 @@ import java.util.List;
 public interface ExpenseMapper {
     List<ExpenseAnalysisResult> getExpenseCategoryTotalAmount();
 
-    List<ExpenseAnalysisResult> getChartData(String cardID);
+    List<ExpenseChartData> getExpenseChartData(String cardID, String memberID);
 
     ExpenseMaxCountCategory getTopCategory(String cardID);
 

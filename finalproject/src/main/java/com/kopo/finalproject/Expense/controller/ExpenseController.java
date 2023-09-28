@@ -1,9 +1,6 @@
 package com.kopo.finalproject.Expense.controller;
 
-import com.kopo.finalproject.Expense.model.dto.ExpenseMaxCountCategory;
-import com.kopo.finalproject.Expense.model.dto.ExpenseMaxSumCategory;
-import com.kopo.finalproject.Expense.model.dto.SubCategory;
-import com.kopo.finalproject.Expense.model.dto.TotalExpenseAmount;
+import com.kopo.finalproject.Expense.model.dto.*;
 import com.kopo.finalproject.Expense.service.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -31,12 +31,17 @@ public class ExpenseController {
         return mav;
     }
 
-//    @GetMapping("/analysis")
-//    @ResponseBody
-//    public List<ExpenseAnalysisResult> getExpenseData(@RequestParam("cardID") String cardID) {
-//        List<ExpenseAnalysisResult> expenseData = expenseService.getExpenseCategoryTotalAmount(cardID);
-//        return expenseData;
-//    }
+    @GetMapping("/getExpenseChartData")
+    @ResponseBody
+    public List<ExpenseChartData> getExpenseChartData(@RequestParam("cardID") String cardID, HttpServletRequest request) {
+        System.out.println("이 메서드 호출");
+        HttpSession session = request.getSession();
+        String memberID = (String) session.getAttribute("memberID");
+        List<ExpenseChartData> chartData = expenseService.getExpenseChartData(cardID, memberID);
+        System.out.println("차트 데이터" + chartData);
+        return chartData;
+
+    }
 
     @GetMapping("/checkMyExpenseData")
     public ResponseEntity<Map<String, Object>> checkMyExpenseData(@RequestParam("cardID") String cardID) {

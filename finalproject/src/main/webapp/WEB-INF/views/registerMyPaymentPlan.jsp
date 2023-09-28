@@ -269,6 +269,14 @@
             font-family: "Hana2.0 CM";
         }
 
+        .error-message {
+            color: red;
+        }
+
+        .success-message {
+            color: green;
+        }
+
         /*----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
         .section:not(:last-child) {
@@ -290,6 +298,7 @@
             resize: none;
             background-color: #f5f5f5;
         }
+
 
         .button-container {
             text-align: center;
@@ -395,9 +404,9 @@
     </div>
 
     <div class="paymntPlanTitle">◆ 납입계획 세우기</div>
-<%--        <c:forEach var="plan" items="${PaymentPlanList}">--%>
-<%--            <div class="selectPurchasePlanID">${plan.purchasePlanID}</div>--%>
-<%--        </c:forEach>--%>
+    <%--        <c:forEach var="plan" items="${PaymentPlanList}">--%>
+    <%--            <div class="selectPurchasePlanID">${plan.purchasePlanID}</div>--%>
+    <%--        </c:forEach>--%>
 
     <form id="myForm" action="/insertPaymentPlan" method="post">
         <div class="payment-plan-form">
@@ -490,7 +499,7 @@
                 </div>
                 <div class="input-container">
                     <label for="paymentAmount">납입금액</label>
-                    <input type="number" id="paymentAmount" name="paymentAmount" placeholder="원" required readonly>
+                    <input type="number" id="paymentAmount" name="paymentAmount" placeholder="원" required>
                 </div>
 
 
@@ -569,6 +578,7 @@
                 });
             </script>
 
+
             <div class="section">
                 <h3>만기 예상</h3>
                 <!-- 만기 예상 원금 입력 필드 -->
@@ -598,8 +608,42 @@
                     <label for="expectedTerminationDate">예상 만기 일자</label>
                     <input type="text" name="expectedTerminationDate" id="expectedTerminationDate" readonly>
                 </div>
-
                 <div class="input-container">
+                    <label for="challengeSavingsAccountPW">계좌 비밀번호 생성</label>
+                    <input type="text" id="challengeSavingsAccountPW" name="challengeSavingsAccountPW">
+                </div>
+                <div class="error-message"></div>
+
+                <script>
+                    var passwordInput = document.getElementById('challengeSavingsAccountPW');
+                    var errorMessage = document.querySelector('.error-message');
+
+                    // 입력 필드의 내용이 변경될 때마다 검증 함수를 호출합니다.
+                    passwordInput.addEventListener('input', validatePassword);
+
+                    function validatePassword() {
+                        var password = passwordInput.value;
+                        var isValid = /^\d{4}$/.test(password);
+
+                        if (password === '') {
+                            errorMessage.textContent = '비밀번호를 입력하세요.';
+                            errorMessage.className = 'error-message';
+                        } else if (isValid) {
+                            errorMessage.textContent = '사용 가능한 비밀번호입니다.';
+                            errorMessage.className = 'success-message';
+                        } else {
+                            errorMessage.textContent = '4자리의 숫자만 입력하세요.';
+                            errorMessage.className = 'error-message';
+                        }
+
+                        // 입력 길이가 4자리를 초과하면 마지막 4자리만 유지합니다.
+                        if (password.length > 4) {
+                            passwordInput.value = password.slice(0, 4);
+                        }
+                    }
+                </script>
+
+                <div class="input-container" style="display:none;">
                     <label for="challengeSavingsAccountNumber">계좌번호</label>
                     <input type="text" id="challengeSavingsAccountNumber" name="challengeSavingsAccountNumber" readonly>
                 </div>
@@ -734,6 +778,8 @@
         // 초기 계산
         calculatePaymentAmount();
         updatePaymentAmount();
+
+        // ------------------------------------------------------------------------------
         // AJAX로 계좌 목록 가져오기
         $.ajax({
             url: "/getAllAccounts",
@@ -806,7 +852,7 @@
 
             // 입력 값이 비어 있는지 확인
             if (goalDurationStr === "" || paymentAmountStr === "") {
-                alert("목표 기간과 결제 금액을 입력하세요.");
+                alert("목표 기간과 결제 금액을 확인하세요.");
                 return;
             }
 
@@ -840,7 +886,7 @@
             var totalInterest = monthlyInterest * goalDuration;
 
             // 결과를 입력 필드에 설정
-            document.getElementById("expectedPrincipal").value = Math.round(totalPrincipal * 100) / 100;
+            document.getElementById("expectedPrincipal").value = (totalPrincipal + totalInterest);
             document.getElementById("expectedInterest").value = Math.round(totalInterest * 100) / 100;
 
         }
@@ -909,17 +955,20 @@
     </script>
 
 </main>
-
-<!— 푸터 추가 —>
-<!—
-<footer class="bg-dark text-light text-center py-3"> © 2023
-    Your Website. All rights reserved.
-</footer>
-—>
+<!-- 푸터 -->
 <%@ include file="include/footer.jsp" %>
+<!-- 부트스트랩 JavaScript 연결 -->
+<!-- 부트스트랩 CSS 연결 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
 
-<!— 부트스트랩 JavaScript 연결 —>
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+<!-- 부트스트랩 JavaScript 연결 -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+
+<!-- Unpkg AOS 연결 -->
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+
+<!-- jQuery 연결 -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </body>
 </html>

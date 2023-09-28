@@ -47,4 +47,9 @@ public class ExpenseServiceImpl implements ExpenseService {
         return expenseMapper.getTopAmountDetailedExpenseCategory(cardID);
     }
 
+    @Override
+    public List<ExpenseChartData> getExpenseChartData(String cardID, String memberID) {
+        return expenseMapper.getExpenseChartData(cardID, memberID);
+    }
+
 }

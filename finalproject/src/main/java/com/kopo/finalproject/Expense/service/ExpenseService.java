@@ -20,4 +20,5 @@ public interface ExpenseService {
 
     SubCategory getTopAmountDetailedExpenseCategory(String cardID);
 
+    List<ExpenseChartData> getExpenseChartData(String cardID, String memberID);
 }

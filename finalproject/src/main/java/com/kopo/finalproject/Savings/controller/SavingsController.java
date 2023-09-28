@@ -1,5 +1,6 @@
 package com.kopo.finalproject.Savings.controller;
 
+import com.kopo.finalproject.PurchasePlanList.model.dto.SavingPurchasePlan;
 import com.kopo.finalproject.PurchasePlanList.service.PurchasePlanListService;
 import com.kopo.finalproject.Savings.model.dto.Account;
 import com.kopo.finalproject.Savings.model.dto.ChallengeSavings;
@@ -51,9 +52,6 @@ public class SavingsController {
         String memberID = (String) session.getAttribute("memberID");
         System.out.println("이거 적금 회원 아이디 넣을 거 " + memberID);
         // 폼 데이터에서 필요한 데이터 추출
-
-        //아이디 찾아서 계좌번호 넣어주기 위해서
-        int purchasePlanID = Integer.parseInt(request.getParameter("selectPurchasePlanID"));
 //        ---------------------------------------------------------------------------------------------------------
         String planName = request.getParameter("planName");
         int targetSavingsPeriod = Integer.parseInt(request.getParameter("goalDuration"));
@@ -68,6 +66,7 @@ public class SavingsController {
         int expectedInterest = Integer.parseInt(request.getParameter("expectedInterest"));
         String expirationOption = request.getParameter("terminationMethod");
         long challengeSavingsAccountNumber = Long.parseLong(request.getParameter("challengeSavingsAccountNumber"));
+        int challengeSavingsAccountPW = Integer.parseInt(request.getParameter("challengeSavingsAccountPW"));
         // "expectedTerminationDate" 파라미터를 받아옴
         String expectedTerminationDateStr = request.getParameter("expectedTerminationDate");
         System.out.println("날짜 받아와야 하는 거 " + expectedTerminationDateStr);
@@ -104,12 +103,25 @@ public class SavingsController {
         challengeSavings.setExpectedInterest(expectedInterest);
         challengeSavings.setExpirationOption(expirationOption);
         challengeSavings.setChallengeSavingsAccountNumber(challengeSavingsAccountNumber);
+        challengeSavings.setChallengeSavingsAccountPW(challengeSavingsAccountPW);
         // endDay를 ChallengeSavings 객체에 설정
         challengeSavings.setEndDay(endDay);
         System.out.println(challengeSavings);
 
         // 서비스를 통해 데이터베이스에 저장
         savingsService.insertPaymentPlan(challengeSavings);
+        // 서비스 클래스의 메서드를 통해 PurchasePlanListItem 업데이트
+        String[] purchasePlanIDs = request.getParameterValues("selectPurchasePlanID");
+
+        if (purchasePlanIDs != null) {
+            for (String planID : purchasePlanIDs) {
+                int purchasePlanID = Integer.parseInt(planID);
+
+                // 서비스 클래스의 메서드를 통해 PurchasePlanListItem 업데이트
+                savingsService.updatePlanListItemSavingsAccountNumber(memberID, purchasePlanID, challengeSavingsAccountNumber);
+                savingsService.updatePlanItemSavingStatus(memberID, purchasePlanID);
+            }
+        }
 
         return "redirect:/checkMyChallengeSavings";
     }
@@ -143,7 +155,27 @@ public class SavingsController {
         String memberID = (String) session.getAttribute("memberID");
 
         List<ChallengeSavings> savingList = savingsService.getAllChallengeSavings(memberID);
-        System.out.println(savingList + " 테스트");
+        System.out.println(" 테스트" + savingList);
         return ResponseEntity.ok(savingList);
     }
+
+    @GetMapping("/getPurchasePlanByAccountNumber")
+    public ResponseEntity<List<SavingPurchasePlan>> getPurchasePlanByAccountNumber(
+            @RequestParam("challengeSavingsAccountNumber") String challengeSavingsAccountNumber,
+            HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String memberID = (String) session.getAttribute("memberID");
+
+        // challengeSavingsAccountNumber를 이용하여 해당 계좌의 구매 계획을 조회
+        List<SavingPurchasePlan> purchasePlanList = savingsService.getPurchasePlanByAccountNumber(challengeSavingsAccountNumber, memberID);
+        System.out.println("적금계좌와 연결된 구매계획리스트" + purchasePlanList);
+        if (!purchasePlanList.isEmpty()) {
+            // 조회된 구매 계획 목록을 반환
+            return ResponseEntity.ok(purchasePlanList);
+        } else {
+            // 구매 계획이 없을 경우 404 상태 코드 반환
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

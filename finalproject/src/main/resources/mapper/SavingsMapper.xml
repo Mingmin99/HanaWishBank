@@ -13,12 +13,12 @@
         INSERT INTO ChallengeSavings (planName, memberID, targetSavingsPeriod, targetSavingsAmount, paymentFrequency,
                                       paymentDate,
                                       paymentDay, paymentAmount, transferMethod, transferAccount, expectedPrincipal,
-                                      expectedInterest, expirationOption, endDay,
+                                      expectedInterest, expirationOption, endDay,challengeSavingsAccountPW,
                                       challengeSavingsAccountNumber)
         VALUES (#{planName}, #{memberID}, #{targetSavingsPeriod}, #{targetSavingsAmount}, #{paymentFrequency},
                 #{paymentDate},
                 #{paymentDay}, #{paymentAmount}, #{transferMethod}, #{transferAccount}, #{expectedPrincipal},
-                #{expectedInterest}, #{expirationOption}, #{endDay, jdbcType=DATE},
+                #{expectedInterest}, #{expirationOption}, #{endDay, jdbcType=DATE},#{challengeSavingsAccountPW},
                 #{challengeSavingsAccountNumber})
     </insert>
 
@@ -27,20 +27,64 @@
         SELECT *
         FROM ChallengeSavings
         WHERE MemberID = #{memberID}
+
     </select>
 
     <!-- PlanItemRatio 엔티티와 관련된 매퍼 -->
-        <update id="updatePlanItemRatio" parameterType="com.kopo.finalproject.Savings.model.dto.PlanItemRatio">
-            UPDATE PurchasePlanListItem
-            SET AllocationRatio = #{ratio}
-            WHERE PurchasePlanID = #{selectPurchasePlanID}
-        </update>
+    <update id="updatePlanItemRatio" parameterType="com.kopo.finalproject.Savings.model.dto.PlanItemRatio">
+        UPDATE PurchasePlanListItem
+        SET AllocationRatio = #{ratio}
+        WHERE PurchasePlanID = #{selectPurchasePlanID}
+    </update>
 
     <update id="updatePlanItemSavingStatus">
-        UPDATE WishListItem
+        UPDATE PurchasePlanListItem
         SET SavingStatus = 'T'
-        WHERE PurchasePlanID = #{selectPurchasePlanID}
+        WHERE PurchasePlanID = #{purchasePlanID}
           AND MemberID = #{memberID}
     </update>
-</mapper>
 
+    <update id="updatePlanListItemSavingsAccountNumber">
+        UPDATE PurchasePlanListItem
+        SET challengeSavingsAccountNumber = #{challengeSavingsAccountNumber}
+        WHERE PurchasePlanID = #{purchasePlanID}
+          AND MemberID = #{memberID}
+    </update>
+
+    <select id="getPurchasePlanByAccountNumber"
+            resultType="com.kopo.finalproject.PurchasePlanList.model.dto.SavingPurchasePlan">
+        SELECT *
+        FROM PurchasePlanListItem
+        WHERE MemberID = #{memberID}
+          AND ChallengeSavingsAccountNumber = #{challengeSavingsAccountNumber}
+    </select>
+    <!--    <select id="getAllSavingsInfo" resultType="com.kopo.finalproject.Savings.model.dto.SavingInfo">-->
+    <!--        SELECT-->
+    <!--            cs.planName AS savingTitle,-->
+    <!--            cs.GoalAchievementRate AS GoalAchievementRate,-->
+    <!--            cs.ChallengeSavingsAccountNumber AS ChallengeSavingsAccountNumber,-->
+    <!--            (-->
+    <!--                SELECT AccountBalance-->
+    <!--                FROM ChallengeSavings-->
+    <!--                WHERE ChallengeSavingsAccountNumber = #{ChallengeSavingsAccountNumber}-->
+    <!--            ) AS AccountBalance,-->
+    <!--            p.planName AS planName,-->
+    <!--            (-->
+    <!--                SELECT AllocationRatio-->
+    <!--                FROM PurchasePlanListItem-->
+    <!--                WHERE ChallengeSavingsAccountNumber = #{ChallengeSavingsAccountNumber}-->
+    <!--            ) AS AllocationRatio,-->
+    <!--            (-->
+    <!--                SELECT PlanAmount-->
+    <!--                FROM PurchasePlanListItem-->
+    <!--                WHERE ChallengeSavingsAccountNumber = #{ChallengeSavingsAccountNumber}-->
+    <!--            ) AS PlanAmount,-->
+    <!--            (-->
+    <!--                (cs.AccountBalance * p.AllocationRatio / 100) / p.PlanAmount * 100-->
+    <!--                ) AS ProgressRate-->
+    <!--        FROM ChallengeSavings cs-->
+    <!--                 LEFT JOIN PurchasePlanListItem p ON cs.ChallengeSavingsAccountNumber = p.ChallengeSavingsAccountNumber-->
+    <!--        WHERE cs.memberID = #{memberID}-->
+    <!--    </select>-->
+
+</mapper>

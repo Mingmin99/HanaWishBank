@@ -21,11 +21,14 @@ public class ChallengeSavings {
     private int paymentDate;
     private String transferMethod;
     private long transferAccount;
+    private long accountBalance;
     private int expectedPrincipal;
     private int expectedInterest;
     private String expirationOption;
     private Date startDay;
     private Date endDay;
     private long challengeSavingsAccountNumber;
+    private int challengeSavingsAccountPW;
+    private long  goalAchievementRate;
 };
 

@@ -350,11 +350,13 @@
                             <input type="number" id="planAmount" name="planAmount" placeholder="목표금액을 입력하세요" required>
                             <span class="unit">원</span>
                         </div>
+                        <div id="planAmountMessage"></div>
                         <div class="input-container" style="text-align: left;">
                             <label for="planPeriod">목표기간</label>
                             <input type="number" id="planPeriod" name="planPeriod" placeholder="목표기간을 입력하세요" required>
                             <span class="unit">개월</span>
                         </div>
+                        <div id="planPeriodMessage"></div>
 
                     </div>
                 </div>
@@ -401,8 +403,8 @@
 
                     if (planAmount < itemPrice2) {
                         alert("입력하신 금액이 상품의 가격보다 적습니다. 목표 금액을 재설정해주세요.");
-                    } else if (planPeriod < 1 || planPeriod > 36) {
-                        alert("목표기간은 1개월부터 36개월까지 가능합니다.");
+                    } else if (planPeriod < 6 || planPeriod > 36) {
+                        alert("목표기간은 6개월부터 36개월까지 가능합니다.");
                     } else {
                         // JSON 데이터 생성
                         const requestData = {

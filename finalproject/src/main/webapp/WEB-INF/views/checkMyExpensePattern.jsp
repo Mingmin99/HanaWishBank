@@ -8,6 +8,7 @@
 <html>
 <head>
     <title>웹 페이지</title>
+
     <style>
         body {
             background-color: white;
@@ -134,6 +135,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        #expenseChart {
+            width: 400px !important;
+            height: 400px !important;
         }
 
         /* 테이블  ------------------------------------------------------------------------------------------------------- */
@@ -321,7 +327,6 @@
             right: 20px;
         }
 
-
         /*.thisMonthContainer {*/
         /*    margin-right: 10%;*/
         /*    margin-top: 50px;*/
@@ -346,9 +351,6 @@
     <ul>
         <li><a href="checkMyCard">카드조회</a></li>
         <li><a href="checkMyExpensePattern">소비내역조회</a></li>
-        <!-- <li><a href="#">대출신청</a></li>
-        <li><a href="#">카드신청</a></li>
-        <li><a href="#">고객센터</a></li> -->
     </ul>
 </div>
 <!---메인  ------------------------------------------------------------------------------------------------------- -->
@@ -372,55 +374,90 @@
     <div class="chart">
         <div class="chartTitle">• 나의 지출 차트</div>
     </div>
+
     <div class="expense-section">
-        <%--        <div class="chart-container" style="width: 60%;">--%>
-        <%--            <% String cardNum = request.getParameter("cardNum"); %>--%>
-        <%--            <% String cardName = request.getParameter("cardName"); %>--%>
-        <%--            <% String cardExpiryDate = request.getParameter("cardExpiryDate"); %>--%>
-        <%--            <% String CVV = request.getParameter("CVV"); %>--%>
-        <%--            <% String cardType = request.getParameter("cardType"); %>--%>
 
-        <%--            <p>Card Number: <%= cardNum %></p>--%>
-        <%--            <p>Name: <%= cardName %></p>--%>
-        <%--            <p>Expiry Date: <%= cardExpiryDate %></p>--%>
-        <%--            <p>CVV: <%= CVV %></p>--%>
-        <%--            <p>Type: <%= cardType %></p>--%>
-        <%--            <canvas id="expenseChart"></canvas>--%>
+        <!-- 차트를 표시할 캔버스 -->
+        <canvas id="expenseChart" width="400" height="400"></canvas>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var cardID = localStorage.getItem('cardID');
+                console.log("이거 차트 불러올 카드 아이디 " + cardID);
 
+                // 차트 초기화 함수
+                function initChart() {
+                    var ctx = document.getElementById('expenseChart').getContext('2d');
+                    window.myChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: [],
+                            datasets: [{
+                                data: [],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)',
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)',
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                ],
+                                borderWidth: 1
+                            }]
+                        }
+                    });
+                }
 
-        <%--            <script>--%>
-        <%--                // 서버에서 받은 데이터를 JavaScript 변수로 변환합니다.--%>
-        <%--                var expenseData = /* 서버에서 받은 데이터 */;--%>
+                // 함수를 정의하여 데이터를 가져오고 차트를 업데이트하는 역할을 수행합니다.
+                function updateChart() {
+                    console.log("updateChart 함수 호출");
+                    $.ajax({
+                        type: 'GET',
+                        url: '/getExpenseChartData',
+                        data: {cardID: cardID},
+                        dataType: 'json',
+                        success: function (data) {
+                            console.log("지금 차트 데이터 넘어오고있니?" + JSON.stringify(data));
 
-        <%--                // Chart.js를 사용하여 그래프를 그립니다.--%>
-        <%--                var ctx = document.getElementById('expenseChart').getContext('2d');--%>
-        <%--                var expenseChart = new Chart(ctx, {--%>
-        <%--                    type: 'bar', // 그래프 유형을 선택합니다. (막대 그래프, 선 그래프 등)--%>
-        <%--                    data: {--%>
-        <%--                        labels: expenseData.map(data => data.expenseCategoryCode), // X축 레이블 설정--%>
-        <%--                        datasets: [{--%>
-        <%--                            label: 'Total Expense Amount', // 그래프 레이블--%>
-        <%--                            data: expenseData.map(data => data.totalExpenseCategoryExpenseAmount), // Y축 데이터 설정--%>
-        <%--                            backgroundColor: 'rgba(75, 192, 192, 0.2)', // 막대 그래프 색상--%>
-        <%--                            borderColor: 'rgba(75, 192, 192, 1)', // 막대 그래프 테두리 색상--%>
-        <%--                            borderWidth: 1 // 테두리 두께--%>
-        <%--                        }]--%>
-        <%--                    },--%>
-        <%--                    options: {--%>
-        <%--                        scales: {--%>
-        <%--                            y: {--%>
-        <%--                                beginAtZero: true--%>
-        <%--                            }--%>
-        <%--                        }--%>
-        <%--                    }--%>
-        <%--                });--%>
-        <%--            </script>--%>
-        <%--        </div>--%>
+                            // 서버에서 받은 JSON 데이터를 파싱하여 x, y 축 데이터 추출
+                            // 서버에서 받은 JSON 데이터를 파싱하여 x, y 축 데이터 추출
+                            var labels = data.map(item => item.description); // description을 x축으로 사용
+                            console.log(labels);
+                            var values = data.map(item => item.totalExpenseCategoryExpenseAmount);
+                            // totalExpenseCategoryExpenseAmount를 y축으로 사용
 
+                            // 차트 업데이트
+                            window.myChart.data.labels = labels;
+                            window.myChart.data.datasets[0].data = values;
+                            window.myChart.update();
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+                    });
+                }
 
-        <!-- 차트를 표시할 영역 -->
-        <div id="expenseChart" style="width: 80%; margin: 0 auto;"></div>
-
+                // 페이지 로드 시 차트 초기화 및 업데이트
+                $(document).ready(function () {
+                    initChart(); // 차트 초기화
+                    updateChart(); // 차트 업데이트
+                });
+            });
+        </script>
 
         <script>
             // 페이지 로딩 시 localStorage에서 데이터 가져오기
@@ -443,6 +480,7 @@
 
 
                         // 데이터를 화면에 표시
+
                         document.getElementById('topCategory').textContent = responseData.topCategory.expenseCategoryCode;
                         document.getElementById('categoryCount').textContent = responseData.topCategory.categoryCount;
                         document.getElementById('topAmount').textContent = responseData.topAmount.expenseCategoryCode;
@@ -546,6 +584,7 @@
                 id="categoryCountValue" class="category-count"></span>회 소비하셨습니다.
         </div>
     </div>
+
 
     <!-- 이번달  ------------------------------------------------------------------------------------------------------- -->
 
@@ -707,7 +746,9 @@
 <%@ include file="include/footer.jsp" %>
 <!-- 부트스트랩 JavaScript 연결 -->
 <!-- 부트스트랩 CSS 연결 -->
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+
 
 <!-- 부트스트랩 JavaScript 연결 -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

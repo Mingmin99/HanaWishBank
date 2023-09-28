@@ -1,9 +1,11 @@
 package com.kopo.finalproject.Savings.service;
 
+import com.kopo.finalproject.PurchasePlanList.model.dto.SavingPurchasePlan;
 import com.kopo.finalproject.Savings.model.dao.SavingsMapper;
 import com.kopo.finalproject.Savings.model.dto.Account;
 import com.kopo.finalproject.Savings.model.dto.ChallengeSavings;
 import com.kopo.finalproject.Savings.model.dto.PlanItemRatio;
+import com.kopo.finalproject.Savings.model.dto.SavingInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,6 +36,26 @@ public class SavingsServiceImpl implements SavingsService {
     @Override
     public void updatePlanItemRatio(PlanItemRatio planData) {
         savingsMapper.updatePlanItemRatio(planData);
+    }
+
+    @Override
+    public void updatePlanListItemSavingsAccountNumber(String memberID, int purchasePlanID, long challengeSavingsAccountNumber) {
+        savingsMapper.updatePlanListItemSavingsAccountNumber(memberID, purchasePlanID, challengeSavingsAccountNumber);
+    }
+
+    @Override
+    public void updatePlanItemSavingStatus(String memberID, int purchasePlanID) {
+        savingsMapper.updatePlanItemSavingStatus(memberID, purchasePlanID);
+    }
+
+    @Override
+    public List<SavingInfo> getAllSavingsInfo(String memberID) {
+        return savingsMapper.getAllSavingsInfo(memberID);
+    }
+
+    @Override
+    public List<SavingPurchasePlan> getPurchasePlanByAccountNumber(String challengeSavingsAccountNumber, String memberID) {
+        return savingsMapper.getPurchasePlanByAccountNumber(challengeSavingsAccountNumber, memberID);
     }
 
 }
