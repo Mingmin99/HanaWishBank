@@ -8,7 +8,7 @@
     <title>웹 페이지</title>
     <style>
         body {
-            background-image: linear-gradient(to bottom, #E0F8FF, #E0F8FF);
+            background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
         }
 
         .navbar {
@@ -161,6 +161,43 @@
             75% {
                 transform: translateX(20px); }
         } */
+        .serviceInfo{
+            margin-top: -240px;
+            margin-left: 30px;
+        }
+        .section {
+            width: 70%;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px;
+            border-radius: 20px;
+            text-align: left;
+            transition: background-color 0.3s;
+        }
+
+        /* 제목 스타일 */
+        h2 {
+            font-size: 24px;
+            font-family: "Hana2.0 CM";
+            color: #333;
+            margin: 0 0 10px 0;
+        }
+
+        /* 본문 스타일 */
+        p {
+            font-family: "Hana2.0 L";
+            font-size: 16px;
+            color: #666;
+            margin: 0;
+        }
+
+        /* 호버 효과 */
+        .section:hover {
+            background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+        }
+
         /* 기본 스타일 */
         .BankFooter {
             padding: 30px 0;
@@ -253,40 +290,13 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <c:url var="logoUrl" value="../../resources/img/logo.png"/>
-            <a class="navbar-brand" href="mainHana.jsp"> <img
+            <a class="navbar-brand" href="/"> <img
                     src="${logoUrl}" alt="로고" class="logo-img">
             </a>
-
-            <!-- 	<div class="collapse navbar-collapse ml-auto"
-                id="navbarSupportedContent1">
-                첫 번째 메뉴 내용
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active"
-                        aria-current="page" href="#">나의 소비패턴</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">나의
-                            위시리스트</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">나의
-                            구매계획리스트</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">나의 챌린지
-                            계좌</a></li>
-                </ul>
-            </div>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent2">
-                두 번째 메뉴 내용
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#">로그인</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">회원가입</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
-                </ul>
-            </div>
--->
         </div>
     </nav>
 </div>
-<!-- <div class="mainHello1">위시리스트를 향해 한 걸음씩!</div>
-<div class="mainHello2">단기 챌린지 적금으로 지갑과 소원을 동시에 이루는 똑똑한 소비를
-    경험해보세요</div> -->
+
 <div class="mainExplain">
     <img src="<c:url value='../../resources/img/mainExplain.png' />" alt="Main Explain"
          width="800">
@@ -314,11 +324,31 @@
 </div>
 
 <c:url var="mainButton" value="../../resources/img/mainButton.svg"/>
-<a class="mainButton" href="index.jsp"> <img src="${mainButton}"
-                                             alt="버튼" class="mainButton">
-</a>
+<a class="mainButton" href="/"> <img src="${mainButton}"
+                                     alt="버튼" class="mainButton">
+</a> <!-- 섹션 1: 소비패턴 분석 -->
+<div class="serviceInfo">
+    <section class="section">
+        <h2>01. 소비패턴 분석</h2>
+        <p>사용자가 등록한 카드의 지출 내역을 통해 나의 소비를 차트화 및 분석하여 소비 패턴을 파악하고, 지출이 가장 큰 카테고리와 지출 횟수가 잦은 카테고리 분석 후 소비태그 제공</p>
+    </section>
 
+    <!-- 섹션 2: 위시리스트 관리 -->
+    <section class="section">
+        <h2>02. 위시리스트 관리</h2>
+        <p>검색을 통하여 원하는 상품을 위시리스트에 등록, 관리</p>
+        <p>나의 소비태그를 바탕으로 위시리스트 상품의 가격을 대체 표현하여 실질 가격을 체감할 수 있는 서비스 제공</p>
+        <p>구매 고민 후 결정 된 항목에 대하여 간단 구매계획리스트 작성</p>
+    </section>
 
+    <!-- 섹션 3: 챌린지 적금 개설 -->
+    <section class="section">
+        <h2>03. 챌린지 적금 개설</h2>
+        <p>구매계획리스트 중 목표기간이 같은 항목끼리 묶어서 챌린지 적금 계좌 개설 가능</p>
+        <p>납입 분배 비율 설정에 따라 납입 금액 자동 분배 납입 가능</p>
+        <p>적금 현황 대시보드에서 목표 달성률 확인 가능</p>
+    </section>
+</div>
 <!-- 푸터 추가 -->
 <!-- <footer class="bg-dark text-light text-center py-3"> © 2023
     Your Website. All rights reserved. </footer> -->

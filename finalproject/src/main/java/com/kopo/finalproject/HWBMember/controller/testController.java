@@ -32,6 +32,12 @@ public class testController {
         mav.setViewName("index");
         return mav;
     }
+    @RequestMapping("/introduce")
+    public ModelAndView introduce() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("introduce");
+        return mav;
+    }
 
 
     @PostMapping("/login-member")

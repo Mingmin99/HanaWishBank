@@ -116,82 +116,38 @@
             justify-content: center; */
         }
 
-        /* 위시리스트 조회------------------------------------------------------------------------------------------------------- */
-        .ChallengeSavingTitle {
-            margin-top: 48px;
-            font-size: 24px;
-            font-weight: 500;
-            font-family: "Hana2.0 CM";
-            color: #4F4F4F;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .container {
-            background-color: #f0f0f0;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
-            width: 90% !important;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-            margin-left: 0 !important;
-        }
-
-        /* 적금 계좌 정보 스타일 */
-        .savingTitle {
-            color: #333;
-            font-family: "Hana2.0 CM";
-            font-size: 24px;
+        /* 탭 스타일 */
+        .tabs {
+            list-style-type: none;
+            padding: 0;
             margin: 0;
         }
 
-        .savingProgressInfo {
-            color: #555;
-            font-family: "Hana2.0 L";
-            font-size: 16px;
-            margin: 5px 0;
+        .tabs li {
+            display: inline;
+            margin-right: 10px;
         }
 
-        /* 구매 계획 리스트 스타일 */
-        .purchase-plans {
-            margin-top: 20px;
-        }
-
-        .plan-item {
-            background-color: #fff;
+        .tabs a {
+            text-decoration: none;
+            padding: 5px 10px;
+            background-color: #eee;
+            border: 1px solid #ccc;
             border-radius: 5px;
-            padding: 10px;
-            margin: 10px 0;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .plan-item-title {
-            color: #333;
-            font-family: "Hana2.0 CM";
-            font-size: 18px;
-            margin: 0;
+        .tabs a:hover {
+            background-color: #ddd;
         }
 
-        .plan-item-title-progress-bar {
-            color: #555;
-            font-size: 16px;
-            font-family: "Hana2.0 L";
-            margin: 0;
+        .tab-content {
+            display: none;
         }
 
-        /* 프로그레스 바 스타일 */
-        .progress-bar {
-            height: 10px;
-            background-color: #ddd !important;
-            border-radius: 5px;
-            margin-top: 10px;
+        .tab-content.active {
+            display: block;
         }
 
-        .progress {
-            height: 100%;
-            border-radius: 5px;
-            background-color: #6a978d !important;
-            width: 50%; /* 목표 달성률에 따라 조절하세요 */
-        }
     </style>
     <!-- 부트스트랩 연결 -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -216,13 +172,70 @@
 
     <div class="description-box">
         <div class="description-text1"> 👤 내 정보를 확인하세요.</div>
-<%--        <div class="description-text2">➡️상품 별로 얼마나 목표를 달성했는지 확인해보세요!--%>
-        </div>
+        <%--        <div class="description-text2">➡️상품 별로 얼마나 목표를 달성했는지 확인해보세요!--%>
+    </div>
     </div>
     <hr class="divider">
     <!---위시리스트 조회   ------------------------------------------------------------------------------------------------------- -->
 
-    <div class="ChallengeSavingTitle">◆ 나의 챌린지 대시보드</div>
+    <nav>
+        <!-- 네비게이션 메뉴 탭 -->
+        <ul class="tabs">
+            <li><a href="#profile">기본정보</a></li>
+            <li><a href="#expenses">나의 소비</a></li>
+            <li><a href="#items">아이템</a></li>
+            <li><a href="#savings">적금</a></li>
+        </ul>
+    </nav>
+
+
+    <section id="profile" class="tab-content">
+        <!-- 프로필 정보 표시 -->
+        <h2>기본정보</h2>
+        <!-- 사용자 정보 및 프로필 이미지 표시 -->
+    </section>
+
+    <section id="expenses" class="tab-content">
+        <!-- 사용자 설정 표시 -->
+        <h2>나의 소비</h2>
+        <!-- 나의 소비 정보 표시 -->
+    </section>
+
+    <section id="items" class="tab-content">
+        <!-- 활동 기록 표시 -->
+        <h2>아이템</h2>
+        <!-- 아이템 정보 표시 -->
+    </section>
+
+    <section id="savings" class="tab-content">
+        <!-- 활동 기록 표시 -->
+        <h2>적금</h2>
+        <!-- 적금 정보 표시 -->
+    </section>
+    <script>// JavaScript를 사용하여 탭 메뉴 구현
+    document.addEventListener("DOMContentLoaded", function () {
+        const tabLinks = document.querySelectorAll('.tabs a');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        // 기본정보 탭 활성화
+        document.getElementById("profile").classList.add('active');
+
+        tabLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                // 모든 다른 탭 숨김
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+
+                const targetTabId = e.target.getAttribute('href').substr(1);
+                const targetTab = document.getElementById(targetTabId);
+                targetTab.classList.add('active');
+            });
+        });
+    });
+    </script>
 
 </main>
 
