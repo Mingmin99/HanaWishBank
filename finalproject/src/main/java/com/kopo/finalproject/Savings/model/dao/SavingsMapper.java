@@ -26,4 +26,9 @@ public interface SavingsMapper {
     List<SavingInfo> getAllSavingsInfo(String memberID);
 
     List<SavingPurchasePlan> getPurchasePlanByAccountNumber(String challengeSavingsAccountNumber, String memberID);
+
+    void firstWithdrawal(ChallengeSavings challengeSavings);
+
+    void firstDeposit(ChallengeSavings challengeSavings);
+
 }

@@ -204,7 +204,7 @@
 <div class="sidebar">
     <h3>마이페이지</h3>
     <ul>
-        <li><a href="/checkMyWishList">나의 정보</a></li>
+        <li><a href="/myPage">나의 정보</a></li>
     </ul>
 </div>
 <!---메인  ------------------------------------------------------------------------------------------------------- -->
@@ -215,8 +215,8 @@
     </div>
 
     <div class="description-box">
-        <div class="description-text1">🏆 나의 챌린지 현황을 조회보세요!</div>
-        <div class="description-text2">➡️상품 별로 얼마나 목표를 달성했는지 확인해보세요!
+        <div class="description-text1"> 👤 내 정보를 확인하세요.</div>
+<%--        <div class="description-text2">➡️상품 별로 얼마나 목표를 달성했는지 확인해보세요!--%>
         </div>
     </div>
     <hr class="divider">

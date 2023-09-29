@@ -110,6 +110,7 @@ public class SavingsController {
 
         // 서비스를 통해 데이터베이스에 저장
         savingsService.insertPaymentPlan(challengeSavings);
+        savingsService.firstDepositWithdrawal(challengeSavings);
         // 서비스 클래스의 메서드를 통해 PurchasePlanListItem 업데이트
         String[] purchasePlanIDs = request.getParameterValues("selectPurchasePlanID");
 

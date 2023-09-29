@@ -13,21 +13,33 @@
         INSERT INTO ChallengeSavings (planName, memberID, targetSavingsPeriod, targetSavingsAmount, paymentFrequency,
                                       paymentDate,
                                       paymentDay, paymentAmount, transferMethod, transferAccount, expectedPrincipal,
-                                      expectedInterest, expirationOption, endDay,challengeSavingsAccountPW,
+                                      expectedInterest, expirationOption, endDay, challengeSavingsAccountPW,
                                       challengeSavingsAccountNumber)
         VALUES (#{planName}, #{memberID}, #{targetSavingsPeriod}, #{targetSavingsAmount}, #{paymentFrequency},
                 #{paymentDate},
                 #{paymentDay}, #{paymentAmount}, #{transferMethod}, #{transferAccount}, #{expectedPrincipal},
-                #{expectedInterest}, #{expirationOption}, #{endDay, jdbcType=DATE},#{challengeSavingsAccountPW},
+                #{expectedInterest}, #{expirationOption}, #{endDay, jdbcType=DATE}, #{challengeSavingsAccountPW},
                 #{challengeSavingsAccountNumber})
     </insert>
+
+    <update id="firstWithdrawal">
+        UPDATE ChallengeSavings
+        SET accountBalance = accountBalance + #{paymentAmount}
+        WHERE challengeSavingsAccountNumber = #{challengeSavingsAccountNumber}
+          AND memberID = #{memberID}
+    </update>
+    <update id="firstDeposit">
+        UPDATE Account
+        SET Balance = Balance - #{paymentAmount}
+        WHERE AccountNumber = #{transferAccount}
+          AND memberID = #{memberID}
+    </update>
 
 
     <select id="getAllChallengeSavings" resultType="com.kopo.finalproject.Savings.model.dto.ChallengeSavings">
         SELECT *
         FROM ChallengeSavings
         WHERE MemberID = #{memberID}
-
     </select>
 
     <!-- PlanItemRatio 엔티티와 관련된 매퍼 -->

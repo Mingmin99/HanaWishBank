@@ -58,4 +58,10 @@ public class SavingsServiceImpl implements SavingsService {
         return savingsMapper.getPurchasePlanByAccountNumber(challengeSavingsAccountNumber, memberID);
     }
 
+    @Override
+    public void firstDepositWithdrawal(ChallengeSavings challengeSavings) {
+        savingsMapper.firstWithdrawal(challengeSavings);
+        savingsMapper.firstDeposit(challengeSavings);
+    }
+
 }
