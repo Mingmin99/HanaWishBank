@@ -56,6 +56,6 @@
         </div>
     </nav>
 </div>
-<hr class="navbar-divider" style="border-top: 2px solid #009591; margin-top: 0; margin-bottom: 0; width: 100%;">
+<hr class="navbar-divider" style="border-top: 2px solid #ABCBCD; margin-top: 0; margin-bottom: 0; width: 100%;">
 
 

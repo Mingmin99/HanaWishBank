@@ -272,9 +272,18 @@
             font-family: "Hana2.0 CM";
             color: #5A5A5A;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-
+            animation: slideIn 1s; /* 애니메이션 적용 및 지속 시간 설정 */
         }
-
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
         .summary {
             margin-top: 2rem;
             margin-left: 4rem;

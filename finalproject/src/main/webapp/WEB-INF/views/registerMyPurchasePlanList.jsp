@@ -347,9 +347,32 @@
                         </div>
                         <div class="input-container" style="text-align: left;">
                             <label for="planAmount">목표금액</label>
-                            <input type="number" id="planAmount" name="planAmount" placeholder="목표금액을 입력하세요" required>
+                            <input type="text" id="planAmount" name="planAmount" placeholder="목표금액을 입력하세요" required>
                             <span class="unit">원</span>
                         </div>
+
+                        <script>
+                            // 입력 필드의 ID를 기반으로 해당 입력 필드를 선택
+                            var inputField = document.getElementById("planAmount");
+
+                            // 입력 값이 변경될 때마다 이벤트 처리
+                            inputField.addEventListener('input', function (e) {
+                                // 현재 입력값 가져오기
+                                var inputValue = e.target.value;
+
+                                // 입력값에서 모든 쉼표(,) 제거
+                                var numericValue = inputValue.replace(/,/g, '');
+
+                                // 숫자로 파싱
+                                var numericAmount = parseInt(numericValue);
+
+                                // 쉼표로 3자리마다 구분하여 다시 포매팅
+                                var formattedValue = numericAmount.toLocaleString('ko-KR');
+
+                                // 포매팅된 값을 입력 필드에 설정
+                                e.target.value = formattedValue;
+                            });
+                        </script>
                         <div id="planAmountMessage"></div>
                         <div class="input-container" style="text-align: left;">
                             <label for="planPeriod">목표기간</label>
@@ -398,7 +421,11 @@
                     const itemWishListID = parseInt($("#itemWishListID").text());
                     const itemPrice2 = parseInt($("#itemPrice2").text());
                     const planName = $("#planName").val();
-                    const planAmount = parseInt($("#planAmount").val());
+
+                    const planAmountInput = $("#planAmount");
+                    const planAmount = parseInt(planAmountInput.val().replace(/,/g, ''));
+
+                    console.log("타입 어떻게 둘어오나 확인해보기 " + planAmount)
                     const planPeriod = parseInt($("#planPeriod").val());
 
                     if (planAmount < itemPrice2) {

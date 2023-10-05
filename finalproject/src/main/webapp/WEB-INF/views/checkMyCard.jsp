@@ -142,7 +142,7 @@
         .title {
             font-size: 32px;
             font-weight: 600;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 CM";
             color: #4F4F4F;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -158,7 +158,7 @@
             padding: 10px;
             font-size: 16px;
             font-weight: 500;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 L";
             color: #5A5A5A;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -167,7 +167,7 @@
             padding: 10px;
             font-size: 16px;
             font-weight: 500;
-            font-family: 'Helvetica', sans-serif;
+            font-family: "Hana2.0 L";
             color: #5A5A5A;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             /* 	display: flex;
@@ -309,7 +309,6 @@
         }
 
 
-
         #cardButton {
             background-color: #9bc5bc; /* 배경색 */
             color: #fff; /* 글자색 */
@@ -373,7 +372,7 @@
                                     <img src="../../resources/img/${card.imageFront}" alt="hoverLeft 이미지"
                                          width="400px">
                                     <figcaption>
-                                        <h6>${card.cardOwnerName}님이 보유한  ${card.cardType}</h6>
+                                        <h6>${card.cardOwnerName}님이 보유한 ${card.cardType}</h6>
                                     </figcaption>
                                 </figure>
                                 <figure class="back">

@@ -5,6 +5,7 @@ import com.kopo.finalproject.PurchasePlanList.service.PurchasePlanListService;
 import com.kopo.finalproject.Savings.model.dto.Account;
 import com.kopo.finalproject.Savings.model.dto.ChallengeSavings;
 import com.kopo.finalproject.Savings.model.dto.PlanItemRatio;
+import com.kopo.finalproject.Savings.model.dto.PurchasePlanAndWishListItem;
 import com.kopo.finalproject.Savings.service.SavingsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -55,15 +56,23 @@ public class SavingsController {
 //        ---------------------------------------------------------------------------------------------------------
         String planName = request.getParameter("planName");
         int targetSavingsPeriod = Integer.parseInt(request.getParameter("goalDuration"));
-        int targetSavingsAmount = Integer.parseInt(request.getParameter("goalAmount"));
+        String goalAmountStr = request.getParameter("goalAmount");
+        goalAmountStr = goalAmountStr.replace(",", "").replace(" 원", "");
+        int targetSavingsAmount = Integer.parseInt(goalAmountStr);
         String paymentFrequency = request.getParameter("paymentFrequency");
         int paymentDate = Integer.parseInt(request.getParameter("paymentDate"));
         String paymentDay = request.getParameter("paymentDayOfWeek");
-        int paymentAmount = Integer.parseInt(request.getParameter("paymentAmount"));
+        String paymentAmountStr = request.getParameter("paymentAmount");
+        paymentAmountStr = paymentAmountStr.replace(",", "").replace(" 원", "");
+        int paymentAmount = Integer.parseInt(paymentAmountStr);
         String transferMethod = request.getParameter("transferMethod");
         long transferAccount = Long.parseLong(request.getParameter("autoTransferAccount"));
-        int expectedPrincipal = Integer.parseInt(request.getParameter("expectedPrincipal"));
-        int expectedInterest = Integer.parseInt(request.getParameter("expectedInterest"));
+        String expectedPrincipalStr = request.getParameter("expectedPrincipal");
+        expectedPrincipalStr = expectedPrincipalStr.replace(",", "").replace(" 원", "");
+        int expectedPrincipal = Integer.parseInt(expectedPrincipalStr);
+        String expectedInterestStr = request.getParameter("expectedInterest");
+        expectedInterestStr = expectedInterestStr.replace(",", "").replace(" 원", "");
+        int expectedInterest = Integer.parseInt(expectedInterestStr);
         String expirationOption = request.getParameter("terminationMethod");
         long challengeSavingsAccountNumber = Long.parseLong(request.getParameter("challengeSavingsAccountNumber"));
         int challengeSavingsAccountPW = Integer.parseInt(request.getParameter("challengeSavingsAccountPW"));
@@ -88,14 +97,13 @@ public class SavingsController {
         }
 
         // ChallengeSavings 객체 생성
+        // ChallengeSavings 객체 생성
         ChallengeSavings challengeSavings = new ChallengeSavings();
         challengeSavings.setMemberID(memberID);
         challengeSavings.setPlanName(planName);
         challengeSavings.setTargetSavingsPeriod(targetSavingsPeriod);
         challengeSavings.setTargetSavingsAmount(targetSavingsAmount);
         challengeSavings.setPaymentFrequency(paymentFrequency);
-        challengeSavings.setPaymentDate(paymentDate);
-        challengeSavings.setPaymentDay(paymentDay);
         challengeSavings.setPaymentAmount(paymentAmount);
         challengeSavings.setTransferMethod(transferMethod);
         challengeSavings.setTransferAccount(transferAccount);
@@ -104,13 +112,26 @@ public class SavingsController {
         challengeSavings.setExpirationOption(expirationOption);
         challengeSavings.setChallengeSavingsAccountNumber(challengeSavingsAccountNumber);
         challengeSavings.setChallengeSavingsAccountPW(challengeSavingsAccountPW);
-        // endDay를 ChallengeSavings 객체에 설정
         challengeSavings.setEndDay(endDay);
-        System.out.println(challengeSavings);
+        // 조건에 따라 추가 설정
+        if ("매월".equals(paymentFrequency)) {
+            challengeSavings.setPaymentDate(paymentDate);
+            challengeSavings.setPaymentDay("-"); // 기본값 설정
+        } else if ("매주".equals(paymentFrequency)) {
+            challengeSavings.setPaymentDate(0); // 기본값 설정
+            challengeSavings.setPaymentDay(paymentDay);
+        }
+
 
         // 서비스를 통해 데이터베이스에 저장
+        // 적금 챌린지 만들고
         savingsService.insertPaymentPlan(challengeSavings);
+        //이건 이체 내역 등록해주기
+        savingsService.insertTransferRecord(challengeSavings);
+        //첫 자동이체 시작해주고
         savingsService.firstDepositWithdrawal(challengeSavings);
+
+
         // 서비스 클래스의 메서드를 통해 PurchasePlanListItem 업데이트
         String[] purchasePlanIDs = request.getParameterValues("selectPurchasePlanID");
 
@@ -118,7 +139,7 @@ public class SavingsController {
             for (String planID : purchasePlanIDs) {
                 int purchasePlanID = Integer.parseInt(planID);
 
-                // 서비스 클래스의 메서드를 통해 PurchasePlanListItem 업데이트
+                // 서비스 클래스의 메서드를 통해 PurchasePlanListItem에 적금계좌 번호랑 상태 업데이트
                 savingsService.updatePlanListItemSavingsAccountNumber(memberID, purchasePlanID, challengeSavingsAccountNumber);
                 savingsService.updatePlanItemSavingStatus(memberID, purchasePlanID);
             }
@@ -179,4 +200,22 @@ public class SavingsController {
         }
     }
 
+    @GetMapping("/getPurchasePlanAndWishListItemByAccountNumber")
+    public ResponseEntity<List<PurchasePlanAndWishListItem>> getPurchasePlanAndWishListItemByAccountNumber(
+            @RequestParam("challengeSavingsAccountNumber") String challengeSavingsAccountNumber,
+            HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String memberID = (String) session.getAttribute("memberID");
+
+        // challengeSavingsAccountNumber를 이용하여 해당 계좌의 구매 계획을 조회
+        List<PurchasePlanAndWishListItem> purchasePlanAndWishListItems = savingsService.getPurchasePlanAndWishListItemByAccountNumber(challengeSavingsAccountNumber, memberID);
+        System.out.println("적금계좌와 연결된 구매계획리스트랑 위시리스트아이템들" + purchasePlanAndWishListItems);
+        if (!purchasePlanAndWishListItems.isEmpty()) {
+            // 조회된 구매 계획 목록을 반환
+            return ResponseEntity.ok(purchasePlanAndWishListItems);
+        } else {
+            // 구매 계획이 없을 경우 404 상태 코드 반환
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

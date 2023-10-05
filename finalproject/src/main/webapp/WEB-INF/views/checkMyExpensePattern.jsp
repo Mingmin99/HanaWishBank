@@ -628,12 +628,11 @@
         </div>
 
 
-        <div class="monthlyKing1Tmp">
+        <div class="monthlyKing1Tmp" style="display: none">
             <div id="categoryImgTmp"></div>
             <div id="categoryRepresentativePriceTmp"></div>
         </div>
-        <div class="monthlyKing2Tmp">
-
+        <div class="monthlyKing2Tmp" style="display: none">
             <div id="amountImgTmp"></div>
             <div id="amountRepresentativePriceTmp"></div>
         </div>

@@ -122,7 +122,7 @@
             margin-top: 48px;
             font-size: 24px;
             font-weight: 500;
-            font-family: "Hana2.0 L";
+            font-family: "Hana2.0 CM";
             color: #4F4F4F;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -271,7 +271,7 @@
     <hr class="divider">
     <!---위시리스트 조회   ------------------------------------------------------------------------------------------------------- -->
 
-    <div class="purchasePlanListTitle">◆ 나의 구매계획리스트 목록</div>
+    <div class="purchasePlanListTitle">• 나의 구매계획리스트 목록</div>
 
     <div class="btn-container"> <!-- 전체 선택 버튼 -->
         <button type="button" class="btn btnSuccess" onclick="selectAll()">전체 선택</button>
@@ -296,8 +296,24 @@
                         <li class="list-group-item" style="display: none">구매계획아이디: ${plan.purchasePlanID}</li>
                         <li class="list-group-item" style="display: none">위시리스트아이디: ${plan.wishListID}</li>
                         <li class="list-group-item title-text">상품명: ${plan.title}</li>
-                        <li class="list-group-item price">상품금액: ${plan.price} 원</li>
-                        <li class="list-group-item price">목표금액: ${plan.planAmount} 원</li>
+                        <li class="list-group-item price">상품금액: <span class="price-value">${plan.price} 원</span></li>
+                        <li class="list-group-item price">목표금액: <span class="price-value">${plan.planAmount} 원</span>
+                        </li>
+                        <script>
+                            $(document).ready(function () {
+                                // 가격 표시를 가진 요소를 선택하고 각 요소에 대해 가격 포맷을 적용
+                                $(".price-value").each(function () {
+                                    var priceValue = $(this).text(); // "원"이 포함된 텍스트 가져오기
+                                    var priceNumber = parseFloat(priceValue.replace(" 원", "").replace(/,/g, "")); // 숫자로 변환
+
+                                    if (!isNaN(priceNumber)) {
+                                        var formattedPrice = priceNumber.toLocaleString(); // 콤마(,)를 추가한 형식으로 포맷팅
+                                        $(this).text(formattedPrice + " 원"); // 포맷팅된 값으로 업데이트
+                                    }
+                                });
+                            });
+
+                        </script>
                         <li class="list-group-item">목표기간: ${plan.planPeriod}개월</li>
                     </ul>
                 </div>
@@ -368,8 +384,26 @@
                         </div>
                         <div class="form-group">
                             <label for="editPlanAmount">목표금액:</label>
-                            <input type="number" class="form-control" id="editPlanAmount" name="planAmount" required>
+                            <input type="text" class="form-control" id="editPlanAmount" name="planAmount" required>
                         </div>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                const editPlanAmountInput = document.getElementById('editPlanAmount');
+
+                                editPlanAmountInput.addEventListener('input', function (e) {
+                                    // Remove non-numeric characters and parse the input as a number
+                                    let numericValue = parseFloat(this.value.replace(/[^0-9]/g, ''));
+
+                                    // Check if the numeric value is a valid number
+                                    if (!isNaN(numericValue)) {
+                                        // Format the numeric value with commas
+                                        let formattedValue = numericValue.toLocaleString();
+                                        this.value = formattedValue;
+                                    }
+                                });
+                            });
+                        </script>
+
                         <div class="form-group">
                             <label for="editPlanPeriod">목표기간:</label>
                             <input type="number" class="form-control" id="editPlanPeriod" name="planPeriod" required>
@@ -408,7 +442,25 @@
             // 선택한 상품 정보 가져오기
             const purchasePlanID = document.getElementById("editPlanID").value;
             const planName = document.getElementById("editPlanName").value;
-            const planAmount = document.getElementById("editPlanAmount").value;
+            const planAmountInput = document.getElementById("editPlanAmount");
+
+            planAmountInput.addEventListener('input', function (e) {
+                // Remove non-numeric characters and parse the input as a number
+                let numericValue = parseFloat(this.value.replace(/[^0-9]/g, ''));
+
+                // Check if the numeric value is a valid number
+                if (!isNaN(numericValue)) {
+                    // Format the numeric value with commas
+                    let formattedValue = numericValue.toLocaleString();
+                    this.value = formattedValue;
+                }
+            });
+
+            // To get the numeric value without commas
+            const planAmount = parseFloat(planAmountInput.value.replace(/[^0-9]/g, ''));
+
+
+
             const planPeriod = document.getElementById("editPlanPeriod").value;
 
             // JSON 데이터 생성
@@ -460,7 +512,7 @@
     <script>
         function redirectToMakeAccount() {
             const selectedIds = [];
-            $('input[type="checkbox"]:checked').each(function() {
+            $('input[type="checkbox"]:checked').each(function () {
                 // 체크된 체크박스에서 ID를 추출하여 배열에 추가
                 const purchasePlanID = $(this).attr('id').replace("checkboxHeader", "");
                 selectedIds.push(purchasePlanID);
@@ -482,13 +534,12 @@
 
 </main>
 
-
 <!-- 푸터 추가 -->
-<!-- <footer class="bg-dark text-light text-center py-3"> © 2023
-    Your Website. All rights reserved. </footer> -->
+<!— <footer class="bg-dark text-light text-center py-3"> © 2023
+    Your Website. All rights reserved. </footer> —>
 <%@ include file="include/footer.jsp" %>
 
-<!-- 부트스트랩 JavaScript 연결 -->
+<!— 부트스트랩 JavaScript 연결 —>
 <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
 </body>

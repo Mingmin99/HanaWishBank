@@ -1,10 +1,7 @@
 package com.kopo.finalproject.Savings.model.dao;
 
 import com.kopo.finalproject.PurchasePlanList.model.dto.SavingPurchasePlan;
-import com.kopo.finalproject.Savings.model.dto.Account;
-import com.kopo.finalproject.Savings.model.dto.ChallengeSavings;
-import com.kopo.finalproject.Savings.model.dto.PlanItemRatio;
-import com.kopo.finalproject.Savings.model.dto.SavingInfo;
+import com.kopo.finalproject.Savings.model.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -31,4 +28,8 @@ public interface SavingsMapper {
 
     void firstDeposit(ChallengeSavings challengeSavings);
 
+    void insertTransferRecord(ChallengeSavings challengeSavings);
+    List<PurchasePlanAndWishListItem> getPurchasePlanAndWishListItemByAccountNumber(String challengeSavingsAccountNumber, String memberID);
+
 }
+

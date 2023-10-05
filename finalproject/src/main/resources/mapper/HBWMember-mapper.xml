@@ -17,6 +17,37 @@
         where MemberID = #{memberID}
           and MemberPW = #{memberPW}
     </select>
+    <select id="getHWBMemberInfoByID" parameterType="String"
+            resultType="com.kopo.finalproject.HWBMember.model.dto.HWBMember">
+        SELECT *
+        FROM HWBMember
+        where MemberID = #{memberID}
+    </select>
+
+    <select id="getCountWishListItemByID" parameterType="String">
+        SELECT COUNT(*)
+        FROM WishListItem
+        WHERE PurchaseStatus = 'F'
+          AND MemberID = #{memberID}
+    </select>
+    <select id="getCountPurchasePlanListItemByID" parameterType="String">
+        SELECT COUNT(*)
+        FROM PurchasePlanListItem
+        WHERE SavingStatus = 'F'
+          AND MemberID = #{memberID}
+    </select>
+    <select id="getCountChallengeSavingsByID" parameterType="String">
+        SELECT COUNT(*)
+        FROM ChallengeSavings
+        WHERE MemberID = #{memberID}
+    </select>
+
+    <select id="getTransferRecordByID" parameterType="String">
+        SELECT *
+        FROM TransferRecord
+        WHERE MemberID = #{memberID}
+        order by  RecordID desc
+    </select>
 
     <!--    <select id="selectNameOfMember" parameterType="String" resultType="com.kopo.finalproject.guest.model.dto.Guest">-->
     <!--        SELECT-->

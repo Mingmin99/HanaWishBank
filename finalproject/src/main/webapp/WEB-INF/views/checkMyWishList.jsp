@@ -234,7 +234,7 @@
     <hr class="divider">
     <!---위시리스트 조회   ------------------------------------------------------------------------------------------------------- -->
 
-    <div class="wishListTitle">◆ 나의 위시리스트 목록</div>
+    <div class="wishListTitle">• 나의 위시리스트 목록</div>
     <div class="container">
         <div class="row" id="item-container">
             <!-- 아이템 카드들이 여기에 동적으로 추가될 것입니다. -->

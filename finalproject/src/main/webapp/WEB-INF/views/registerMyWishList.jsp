@@ -104,7 +104,7 @@
             padding: 10px;
             font-size: 16px;
             font-weight: 500;
-            font-family:"Hana2.0 L";
+            font-family: "Hana2.0 L";
             color: #5A5A5A;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -113,7 +113,7 @@
             padding: 10px;
             font-size: 16px;
             font-weight: 500;
-            font-family:"Hana2.0 L";
+            font-family: "Hana2.0 L";
             color: #5A5A5A;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             /* 	display: flex;
@@ -263,7 +263,7 @@
         }
 
         .price {
-            margin-left: auto;
+            width: 150px;
             font-size: medium;
             font-family: "Hana2.0 CM";
         }
@@ -411,7 +411,8 @@
             <tbody>
             <c:forEach var="item" items="${items}" varStatus="status">
                 <tr>
-                    <td><img src="<c:out value="${item.image}" />" alt="<c:out value="${item.image}" />" width="100" height="100">
+                    <td><img src="<c:out value="${item.image}" />" alt="<c:out value="${item.image}" />" width="100"
+                             height="100">
                     </td>
                     <td>
                         <div class="item-info">

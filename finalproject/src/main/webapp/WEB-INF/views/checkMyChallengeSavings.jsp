@@ -116,6 +116,15 @@
             justify-content: center; */
         }
 
+        .ChallengeSavingTitle {
+            margin-top: 48px;
+            font-size: 24px;
+            font-weight: 500;
+            font-family: "Hana2.0 CM";
+            color: #4F4F4F;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
         /* 위시리스트 조회------------------------------------------------------------------------------------------------------- */
         .ChallengeSavingTitle {
             margin-top: 48px;
@@ -127,13 +136,13 @@
         }
 
         .container {
-            /*background-image: linear-gradient(-20deg, #f794a4 0%, #fdd6bd 100%);*/
-            /*background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);*/
-            background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+            background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255, 255, 255, 0.50) 47%, rgba(0, 0, 0, 0.50) 100%);
+            background-blend-mode: screen;
             border-radius: 10px;
             padding: 20px;
             margin-top: 20px;
             width: 90% !important;
+            /*border: 1px solid #a09e9e;*/
             box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); /* 미세하게 수정된 그림자 스타일 */
             margin-left: 0 !important;
             /*border: 2px double #4a4949;*/
@@ -160,15 +169,50 @@
             margin-left: 10px;
         }
 
+
+
         .savingProgressInfo {
             color: #555;
             font-family: "Hana2.0 L";
             font-size: 18px;
             margin-left: 10px;
+            margin-top: 10px;
         }
 
+        .savingStatus {
+            color: #555;
+            font-size: 18px;
+            font-weight: bold;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+
+        .savingTerminateButton {
+            background-color: darkred; /* 배경색 설정 */
+            color: white; /* 글자색 설정 */
+            border: none; /* 테두리 제거 */
+            border-radius: 4px; /* 테두리 모서리 둥글게 */
+            padding:3px 10px; /* 안쪽 여백 설정 */
+            font-family: "Hana2.0 L";
+            font-size: 14px; /* 폰트 크기 설정 */
+            margin-top: 10px; /* 버튼 상단 여백 설정 */
+        }
+        .savingStatusWithButton {
+            display: flex;
+            align-items: center; /* 가운데 정렬 */
+        }
+
+        /* 선택적으로 아이콘과 버튼 간격 조정 */
+        .savingStatus {
+            margin-right: 10px; /* 버튼과 간격 설정 */
+        }
+
+
         .purchase-plans {
-            margin-top: 20px;
+            display: grid; /* 구매 계획을 그리드 컨테이너로 설정 */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 자동으로 열을 생성하고 최소 300px 너비로 설정 */
+            grid-gap: 20px;
+
         }
 
         .plan-item {
@@ -253,7 +297,7 @@
             transform: translate(-50%, -50%);
             padding: 20px;
             background-color: #fff;
-            border-radius: 8px;
+            border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             text-align: center;
         }
@@ -295,7 +339,7 @@
 
         .saving-detail-modal-content {
             position: absolute;
-            width: 30% !important; /* 필요에 따라 조정 */
+            width: 70% !important; /* 필요에 따라 조정 */
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -312,7 +356,7 @@
         .saving-detail-modal h3 {
             font-family: "Hana2.0 CM";
             font-size: 1.8em; /* 폰트 크기 증가 */
-            color: #6a978d; /* 글자 색상 변경 */
+            color: #4a4949; /* 글자 색상 변경 */
         }
 
         .separator {
@@ -333,16 +377,19 @@
             display: flex;
             font-family: "Hana2.0 CM";
             justify-content: space-between;
-            color: #8aaba3; /* 글자 색상 변경 */
+            color: #6a978d; /* 글자 색상 변경 */
             margin-bottom: 10px;
             font-size: 1em; /* 폰트 크기 증가 */
+            margin-right: 20px;
 
         }
 
         .info-label {
+            margin-left: 20px;
             font-family: "Hana2.0 CM";
             font-weight: bold;
-            margin-right: 10px;
+            color: #4F4F4F;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         /* 버튼 스타일 */
@@ -354,11 +401,66 @@
             padding: 10px 20px;
             cursor: pointer;
             font-size: 1.2em;
-            margin-top: 20px; /* 버튼 상단 여백 추가 */
+            margin: 20px auto;
+            width: 300px;
         }
 
         .saving-detail-modal button#closeDetailModal:hover {
             background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        /* -----테이블 스타일------------- */
+        .getPurchasePlanAndWishListItemContainer .Title {
+            margin-bottom: 10px;
+            font-size: 24px;
+            font-family: "Hana2.0 CM";
+            color: #4F4F4F;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+        }
+
+        .getPurchasePlanAndWishListItemContainer table {
+            width: 95%;
+            border-collapse: collapse;
+            margin: 20px auto;
+
+        }
+
+        /* 테이블 헤더 스타일 */
+        .getPurchasePlanAndWishListItemContainer th {
+            background-color: #c3d5d1;
+            color: #4a4949;
+            padding: 10px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        /* 테이블 셀 스타일 */
+        .getPurchasePlanAndWishListItemContainer td {
+            border: 1px solid #4a4949;
+            padding: 5px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .getPurchasePlanAndWishListItemContainer tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* 테이블 테두리 스타일 */
+        .getPurchasePlanAndWishListItemContainer td, .transferRecordContainer th {
+            border: 1px solid #b3b3b3;
+        }
+
+        /* 마우스 호버 스타일 */
+        .getPurchasePlanAndWishListItemContainer tbody tr:hover {
+            background-color: #fdfdfb;
+            cursor: pointer;
+        }
+
+        /* 테이블 내용 중앙 정렬 스타일 */
+        .getPurchasePlanAndWishListItemContainer td {
+            text-align: center;
         }
 
         /*-----------------------------------*/
@@ -393,13 +495,19 @@
     <hr class="divider">
     <!---위시리스트 조회   ------------------------------------------------------------------------------------------------------- -->
 
-    <div class="ChallengeSavingTitle">◆ 나의 챌린지 대시보드</div>
+    <div class="ChallengeSavingTitle">• 나의 챌린지 대시보드</div>
     <!-- 컨테이너 템플릿 -->
     <div id="container-template" style="display: none;">
         <div class="container">
-            <div class="savingTitle">적금 계좌 1</div>
-            <div class="savingAccountNumber">계좌번호 :</div>
-            <div class="savingProgressInfo">계좌 진행률: 70%</div>
+            <div class="savingTitle"></div>
+            <div class="savingAccountNumber"></div>
+            <div class="savingProgressInfo"></div>
+            <div class="savingStatusWithButton">
+                <div class="savingStatus">상태</div>
+                <button class="savingTerminateButton">적금해지</button>
+            </div>
+
+
             <!-- 가장 큰 챌린지의 구매 계획 리스트 -->
             <div class="purchase-plans">
                 <div class="plan-item">
@@ -413,6 +521,7 @@
             </div>
         </div>
     </div>
+
     <div id="passwordModal" class="modal password-modal">
         <div class="modal-content password-modal-content">
             <input type="password" id="passwordInput" placeholder="비밀번호 입력">
@@ -424,6 +533,24 @@
         <div class="modal-content saving-detail-modal-content">
             <h3>적금 상세 정보</h3>
             <hr class="separator">
+            <div class="getPurchasePlanAndWishListItemContainer">
+                <div class="Title"> < 해당 챌린지 적금에 연결된 구매계획리스트 아이템 목록 ></div>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>상품 이미지</th>
+                        <th>상품명</th>
+                        <th>상품 가격</th>
+                        <th>계획명</th>
+                        <th>목표 금액</th>
+                    </tr>
+                    </thead>
+                    <tbody id="purchasePlanAndWishListItems">
+                    <!-- 이곳에 이체 내역이 동적으로 추가될 것입니다 -->
+                    </tbody>
+                </table>
+            </div>
             <div class="info-item">
                 <span class="info-label">적금명:</span>
                 <span class="info-value" id="savingPlanName"></span>
@@ -492,6 +619,7 @@
                 <span class="info-label">적금 목표 달성률 :</span>
                 <span class="info-value" id="goalAchievementRate"></span>
             </div>
+
             <button id="closeDetailModal">닫기</button>
         </div>
     </div>
@@ -515,11 +643,37 @@
                         var containerID = "container-" + containerCount; // 고유한 ID 생성
                         newContainer.attr("id", containerID); // 컨테이너에 고유한 ID 할당
 
+                        // 만기적금 여부 확인
+                        if (savingsData.goalAchievementRate >= 99 && savingsData.goalAchievementRate <= 110) {
+                            newContainer.find(".savingStatus").text("만기적금");
+                            newContainer.find(".savingStatus").css("color", "red"); // 초록색 텍스트
+
+                            // 만기적금인 경우 "적금해지" 버튼 표시
+                            var terminateButton = newContainer.find(".savingTerminateButton");
+                            terminateButton.show();
+
+                            // "적금해지" 버튼 클릭 이벤트 처리
+                            terminateButton.click(function () {
+                                // 여기에 적금해지 처리 로직을 추가하세요.
+                                // 적금을 해지하는 동작을 수행합니다.
+                                alert("적금을 해지합니다.");
+                            });
+                        } else {
+                            newContainer.find(".savingStatus").text("진행 중인 적금");
+                            newContainer.find(".savingStatus").css("color", "green"); // 빨강색 텍스트
+
+                            // 만기적금이 아닌 경우 "적금해지" 버튼 숨김
+                            var terminateButton = newContainer.find(".savingTerminateButton");
+                            terminateButton.hide();
+                        }
+
+
                         // 데이터를 컨테이너에 채워넣기
                         newContainer.find(".savingTitle").text(savingsData.planName);
                         newContainer.find(".savingAccountNumber").text("계좌번호 : " + savingsData.challengeSavingsAccountNumber);
                         newContainer.find(".savingAccountPW").text("계좌 비밀번호 : " + savingsData.challengeSavingsAccountPW);
                         newContainer.find(".savingProgressInfo").text("계좌 진행률: " + savingsData.goalAchievementRate + "%");
+
 
                         // 기존의 purchase-plans 요소 초기화
                         var purchasePlans = newContainer.find(".purchase-plans");
@@ -542,14 +696,16 @@
                                         // 각각의 구매 계획 데이터를 해당하는 요소에 설정
                                         var planItem = $("<div>").addClass("plan-item");
                                         var planItemTitle = $("<div>").addClass("plan-item-title").text(plan.planName);
-                                        var planItemPrice = $("<div>").addClass("plan-item-price").text("목표 금액: " + plan.planAmount + "원");
+                                        var planItemPrice = $("<div>").addClass("plan-item-price").text("목표 금액: " + plan.planAmount.toLocaleString() + "원");
                                         var planItemProgressBar = $("<div>").addClass("plan-item-progress-bar").text("목표 달성률: " + Math.round(((savingsData.accountBalance * plan.allocationRatio) / plan.planAmount) * 10) / 10 + "%");
                                         var progressBar = $("<div>").addClass("progress-bar");
+                                        console.log(savingsData.accountBalance);
+                                        console.log(plan.allocationRatio);
+                                        console.log(plan.planAmount);
                                         var progress = $("<div>").addClass("progress").css("width", ((savingsData.accountBalance * plan.allocationRatio) / plan.planAmount) + "%");
 
                                         progressBar.append(progress);
                                         planItem.append(planItemTitle, planItemPrice, planItemProgressBar, progressBar);
-
                                         // 수정된 구매 계획 요소를 새로운 컨테이너에 추가
                                         purchasePlans.append(planItem);
                                     });
@@ -593,24 +749,61 @@
                                     passwordModal.css("display", "none"); // 모달 창 닫기
                                     // ---------------------------------적금 상세 내용 모달 창 열기 함수---------------------------------
                                     function openSavingDetailModal(savingsData) {
+
+                                        $.ajax({
+                                            type: "GET",
+                                            url: "/getPurchasePlanAndWishListItemByAccountNumber",
+                                            data: {challengeSavingsAccountNumber: savingsData.challengeSavingsAccountNumber},
+                                            success: function (data) {
+                                                console.log(data);
+                                                var tbody = $("#purchasePlanAndWishListItems");
+
+                                                for (var i = 0; i < data.length; i++) {
+                                                    var items = data[i];
+                                                    var newRow = $("<tr>");
+
+                                                    newRow.append($("<td>").text(i + 1));
+                                                    newRow.append($("<td>").append($("<img>").attr("src", items.image).css({
+                                                        width: "60px",  // 원하는 너비로 설정
+                                                        height: "60px"  // 원하는 높이로 설정
+                                                    })));
+                                                    newRow.append($("<td>").text(items.title));
+                                                    newRow.append($("<td>").text(items.price.toLocaleString() + "원"));
+                                                    newRow.append($("<td>").text(items.planName));
+                                                    newRow.append($("<td>").text(items.planAmount.toLocaleString() + "원"));
+
+                                                    tbody.append(newRow);
+                                                }
+                                            },
+                                            error: function () {
+                                                console.log("에러 발생");
+                                            }
+                                        });
+
                                         // savingsData 객체의 속성을 사용하여 정보 표시
+                                        function formatPrice(price) {
+                                            return price.toLocaleString() + " 원";
+                                        }
+
                                         $("#savingPlanName").text(savingsData.planName);
                                         $("#savingAccountNumber").text(savingsData.challengeSavingsAccountNumber);
-                                        $("#targetSavingsAmount").text(savingsData.targetSavingsAmount + "원");
+                                        $("#targetSavingsAmount").text(formatPrice(savingsData.targetSavingsAmount));
                                         $("#targetSavingsPeriod").text(savingsData.targetSavingsPeriod + "개월");
-                                        $("#paymentAmount").text(savingsData.paymentAmount + "원");
+                                        $("#paymentAmount").text(formatPrice(savingsData.paymentAmount));
                                         $("#paymentFrequency").text(savingsData.paymentFrequency);
                                         $("#paymentDay").text(savingsData.paymentDay);
-                                        $("#paymentDate").text(savingsData.paymentDate);
+                                        $("#paymentDate").text(savingsData.paymentDate + "일");
                                         $("#transferMethod").text(savingsData.transferMethod);
                                         $("#transferAccount").text(savingsData.transferAccount);
-                                        $("#accountBalance").text(savingsData.accountBalance + "원");
-                                        $("#expectedPrincipal").text(savingsData.expectedPrincipal + "원");
-                                        $("#expectedInterest").text(savingsData.expectedInterest + "원");
+                                        $("#accountBalance").text(formatPrice(savingsData.accountBalance));
+                                        $("#expectedPrincipal").text(formatPrice(savingsData.expectedPrincipal));
+                                        $("#expectedInterest").text(formatPrice(savingsData.expectedInterest));
                                         $("#expirationOption").text(savingsData.expirationOption);
                                         // savingsData에서 날짜 데이터 가져오기
                                         const startDay = new Date(savingsData.startDay);
+
                                         const endDay = new Date(savingsData.endDay);
+                                        console.log(endDay)
 
                                         const startDateString = startDay.toLocaleDateString('en-US', {
                                             year: 'numeric',
@@ -653,7 +846,6 @@
                 }
             });
         });
-
     </script>
 
 

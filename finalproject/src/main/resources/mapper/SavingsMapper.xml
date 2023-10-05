@@ -35,6 +35,10 @@
           AND memberID = #{memberID}
     </update>
 
+    <insert id="insertTransferRecord" parameterType="com.kopo.finalproject.Savings.model.dto.ChallengeSavings">
+        INSERT INTO TransferRecord (memberID, DepositAccount, AccountNumber, TransferAmount)
+        VALUES (#{memberID}, #{challengeSavingsAccountNumber}, #{transferAccount}, #{paymentAmount})
+    </insert>
 
     <select id="getAllChallengeSavings" resultType="com.kopo.finalproject.Savings.model.dto.ChallengeSavings">
         SELECT *
@@ -70,33 +74,26 @@
         WHERE MemberID = #{memberID}
           AND ChallengeSavingsAccountNumber = #{challengeSavingsAccountNumber}
     </select>
-    <!--    <select id="getAllSavingsInfo" resultType="com.kopo.finalproject.Savings.model.dto.SavingInfo">-->
-    <!--        SELECT-->
-    <!--            cs.planName AS savingTitle,-->
-    <!--            cs.GoalAchievementRate AS GoalAchievementRate,-->
-    <!--            cs.ChallengeSavingsAccountNumber AS ChallengeSavingsAccountNumber,-->
-    <!--            (-->
-    <!--                SELECT AccountBalance-->
-    <!--                FROM ChallengeSavings-->
-    <!--                WHERE ChallengeSavingsAccountNumber = #{ChallengeSavingsAccountNumber}-->
-    <!--            ) AS AccountBalance,-->
-    <!--            p.planName AS planName,-->
-    <!--            (-->
-    <!--                SELECT AllocationRatio-->
-    <!--                FROM PurchasePlanListItem-->
-    <!--                WHERE ChallengeSavingsAccountNumber = #{ChallengeSavingsAccountNumber}-->
-    <!--            ) AS AllocationRatio,-->
-    <!--            (-->
-    <!--                SELECT PlanAmount-->
-    <!--                FROM PurchasePlanListItem-->
-    <!--                WHERE ChallengeSavingsAccountNumber = #{ChallengeSavingsAccountNumber}-->
-    <!--            ) AS PlanAmount,-->
-    <!--            (-->
-    <!--                (cs.AccountBalance * p.AllocationRatio / 100) / p.PlanAmount * 100-->
-    <!--                ) AS ProgressRate-->
-    <!--        FROM ChallengeSavings cs-->
-    <!--                 LEFT JOIN PurchasePlanListItem p ON cs.ChallengeSavingsAccountNumber = p.ChallengeSavingsAccountNumber-->
-    <!--        WHERE cs.memberID = #{memberID}-->
-    <!--    </select>-->
+
+
+    <select id="getPurchasePlanAndWishListItemByAccountNumber"
+            resultType="com.kopo.finalproject.Savings.model.dto.PurchasePlanAndWishListItem">
+        SELECT pp.PurchasePlanID,
+               pp.PlanName,
+               pp.PlanAmount,
+               pp.PlanPeriod,
+               pp.AllocationRatio,
+               wl.WishListID,
+               wl.Title,
+               wl.Price,
+               wl.Image
+        FROM PurchasePlanListItem pp
+                 INNER JOIN WishListItem wl
+                            ON pp.WishListID = wl.WishListID
+                                AND pp.MemberID = wl.MemberID
+        WHERE pp.MemberID = #{memberID}
+          AND pp.ChallengeSavingsAccountNumber = #{challengeSavingsAccountNumber}
+    </select>
+
 
 </mapper>

@@ -1,10 +1,7 @@
 package com.kopo.finalproject.Savings.service;
 
 import com.kopo.finalproject.PurchasePlanList.model.dto.SavingPurchasePlan;
-import com.kopo.finalproject.Savings.model.dto.Account;
-import com.kopo.finalproject.Savings.model.dto.ChallengeSavings;
-import com.kopo.finalproject.Savings.model.dto.PlanItemRatio;
-import com.kopo.finalproject.Savings.model.dto.SavingInfo;
+import com.kopo.finalproject.Savings.model.dto.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,4 +25,8 @@ public interface SavingsService {
     List<SavingPurchasePlan> getPurchasePlanByAccountNumber(String challengeSavingsAccountNumber, String  memberID);
 
     void firstDepositWithdrawal(ChallengeSavings challengeSavings);
+
+    void insertTransferRecord(ChallengeSavings challengeSavings);
+
+    List<PurchasePlanAndWishListItem> getPurchasePlanAndWishListItemByAccountNumber(String challengeSavingsAccountNumber, String memberID);
 }

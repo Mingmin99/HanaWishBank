@@ -9,6 +9,7 @@
     <style>
         body {
             background-color: white;
+
         }
 
         .carouselExampleIndicators {
@@ -27,8 +28,8 @@
 
         #carouselExampleIndicators .hello-word {
             margin-top: -50px;
-            margin-left: 15%;
-            margin-right: 5%;
+            margin-left: 12%;
+            margin-right: 8%;
             text-align: left;
             white-space: nowrap;
         }
@@ -58,7 +59,7 @@
         }
 
         .container-box {
-            background-image: linear-gradient(to top, #feada6 0%, #f5efef 100%);
+            background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
             border: 3px #a7a7a7;
             border-radius: 20px;
             margin: 20px;
@@ -72,6 +73,7 @@
             /* This centers the content vertically (optional) */
         }
 
+        /*---------캐러센--------------------------------------------------------------------*/
         .section1 {
             align-items: center;
             display: flex;
@@ -103,6 +105,7 @@
             width: 70px; /* 아이콘의 크기 설정 */
             height: 70px;
         }
+
         /* Define a bounce animation */
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
@@ -123,7 +126,8 @@
             text-decoration: none;
             display: block;
             animation: bounce 0.5s ease; /* 애니메이션을 한 번만 재생하도록 설정 */
-            animation-fill-mode: forwards; /* 애니메이션 종료 시 마지막 상태 유지 */}
+            animation-fill-mode: forwards; /* 애니메이션 종료 시 마지막 상태 유지 */
+        }
 
         /* Add a hover effect on menu items */
         .menu-item:hover {
@@ -238,6 +242,7 @@
             border: 3px #a7a7a7;
             border-radius: 20px;
             margin: 20px;
+            margin-bottom: 100px !important;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 설정 */
             padding: 20px;
 
@@ -338,8 +343,7 @@
 <%@ include file="include/header.jsp" %>
 <body>
 
-<div id="carouselExampleIndicators" class="carousel slide"
-     data-bs-ride="true">
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators"
                 data-bs-slide-to="0" class="active" aria-current="true"
@@ -447,8 +451,8 @@
         </div>
         <div class="col">
             <img class="menu-icon" src="../../resources/img/ic_myExpansePattern.svg" alt="아이콘 2">
-            <a class="menu-item" href="/checkMyExpensePattern">
-                소비 분석
+            <a class="menu-item" href="/checkMyCard">
+                소비패턴 분석
             </a>
         </div>
 
@@ -461,7 +465,7 @@
         <div class="col">
             <img class="menu-icon" src="../../resources/img/ic_challengeSaving.svg" alt="아이콘 3">
             <a class="menu-item" href="/checkMyChallengeSavings">
-                챌린지 현황
+                챌린지 현황 조회
             </a>
         </div>
     </div>

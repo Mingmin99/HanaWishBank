@@ -25,10 +25,9 @@
         .WelcomeTitle {
             margin-top: 20px;
             margin-bottom: 20px;
-            font-size: 28px;
+            font-size: 30px;
             font-weight: 800;
-            font-family: "Hana2.0 CM";
-            color: #4F4F4F;
+            color: #63867e;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
@@ -121,6 +120,7 @@
             top: 50%;
             transform: translateY(-50%);
             color: #999;
+
             font-size: 18px;
             transition: .3s;
         }

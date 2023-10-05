@@ -76,6 +76,7 @@
 
         /* 메인 ------------------------------------------------------------------------------------------------------- */
         main {
+            height: 2000px;
             margin-top: 3%;
             margin-left: 25%;
             margin-bottom: 10%;
@@ -116,39 +117,206 @@
             justify-content: center; */
         }
 
+        .Title {
+            margin-top: 3%;
+            margin-left: 5%;
+            font-size: 30px;
+            font-family: "Hana2.0 CM";
+            color: #4F4F4F;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
         /* 탭 스타일 */
         .tabs {
             list-style-type: none;
             padding: 0;
             margin: 0;
+            display: flex;
         }
 
         .tabs li {
-            display: inline;
-            margin-right: 10px;
+            margin-top: 30px;
+            margin-left: 20px;
         }
 
         .tabs a {
-            text-decoration: none;
-            padding: 5px 10px;
-            background-color: #eee;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            font-size: 20px;
+            font-family: "Hana2.0 CM";
+            padding: 10px 30px;
+            background-color: #c3d5d1;
+            border: 1px solid #c3d5d1;
+            border-radius: 40px;
+            color: #4a4949;
+            text-decoration: none; /* 밑줄 제거 */
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
         }
 
         .tabs a:hover {
-            background-color: #ddd;
+            text-decoration: none; /* 밑줄 제거 */
+            background-color: #b4d0ca;
+            color: #4a4949;
         }
 
         .tab-content {
+            padding-bottom: 5% !important;
+            margin-top: -10px;
             display: none;
+            padding: 20px;
+            background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+            /*background-color: #ecdede;*/
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
         }
 
         .tab-content.active {
             display: block;
         }
 
-    </style>
+        section {
+            width: 95%;
+
+        }
+
+        /*----------------------프로필---------------------- */
+        .profileDataImg {
+            margin-top: 15%;
+        }
+
+        /* 프로필 데이터 스타일 */
+        .profileData {
+            margin-left: -180px;
+            margin-top: 3%;
+            background-color: #fffefe;
+            border: 1px solid #E0E0E0;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 5px #B0B0B0;
+        }
+
+        /* 각 데이터 항목 스타일 */
+        .profileDataInfo {
+            margin-bottom: 10px;
+            font-family: "Hana2.0 CM";
+            color: #4a4949 !important;
+            font-size: 16px;
+        }
+
+        /* 라벨 스타일 */
+        .profileDataInfo::before {
+            content: attr(id);
+            color: #7f9899;
+            font-weight: bold !important;
+            margin-right: 5px;
+        }
+
+        /* 데이터 값 스타일 */
+        .profileDataInfo::after {
+            content: attr(data-value);
+
+        }
+
+        /*----------상세정보------------------------------------------------------*/
+        .detailInfoContainer {
+            margin-top: 3%;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .detailInfoContainer-col {
+            background-color: #fff; /* 박스 배경 색상 */
+            border: 1px solid #ddd; /* 테두리 스타일 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+            padding: 10px;
+            margin: 20px;
+            border-radius: 8px; /* 박스 모서리를 둥글게 만듦 */
+            text-align: center;
+        }
+
+        .countName {
+            margin-bottom: 10px;
+            font-family: "Hana2.0 CM";
+            color: #4a4949 !important;
+        }
+
+        .count {
+            font-family: "Hana2.0 CM";
+            color: #4a4949 !important;
+
+        }
+
+        .custom-buttonContainer {
+            margin-top: 1%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .custom-button {
+            margin-top: -30px;
+            padding: 10px 20px;
+            background-color: #c3d5d1; /* 버튼 배경 색상 */
+            color: #4a4949; /* 텍스트 색상 */
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: bold;
+            transition: background-color 0.3s ease; /* 애니메이션 효과 */
+            font-family: "Hana2.0 CM";
+        }
+/*---------------이체내역 ---------------*/
+
+        /* 테이블 타이틀 스타일 */
+        .transferRecordContainer .Title {
+            margin-bottom: 30px;
+            margin-top: 50px;
+        }
+
+        /* 테이블 스타일 */
+        .transferRecordContainer table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: auto;
+        }
+
+        /* 테이블 헤더 스타일 */
+        .transferRecordContainer th {
+            background-color: #c3d5d1;
+            color: #4a4949;
+            padding: 10px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        /* 테이블 셀 스타일 */
+        .transferRecordContainer td {
+            border: 1px solid #4a4949;
+            padding: 5px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* 짝수 행 배경
+/* 짝수 행 배경색 스타일 */
+        .transferRecordContainer tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* 테이블 테두리 스타일 */
+        .transferRecordContainer td, .transferRecordContainer th {
+            border: 1px solid #b3b3b3;
+        }
+
+        /* 마우스 호버 스타일 */
+        .transferRecordContainer tbody tr:hover {
+            background-color: #f8eec4;
+            cursor: pointer;
+        }
+
+        /* 테이블 내용 중앙 정렬 스타일 */
+        .transferRecordContainer td {
+            text-align: center;
+        }
+
+</style>
     <!-- 부트스트랩 연결 -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
@@ -174,43 +342,173 @@
         <div class="description-text1"> 👤 내 정보를 확인하세요.</div>
         <%--        <div class="description-text2">➡️상품 별로 얼마나 목표를 달성했는지 확인해보세요!--%>
     </div>
-    </div>
-    <hr class="divider">
     <!---위시리스트 조회   ------------------------------------------------------------------------------------------------------- -->
 
     <nav>
         <!-- 네비게이션 메뉴 탭 -->
         <ul class="tabs">
             <li><a href="#profile">기본정보</a></li>
-            <li><a href="#expenses">나의 소비</a></li>
-            <li><a href="#items">아이템</a></li>
-            <li><a href="#savings">적금</a></li>
+            <li><a href="#detailInfo">상세정보</a></li>
         </ul>
     </nav>
 
 
     <section id="profile" class="tab-content">
         <!-- 프로필 정보 표시 -->
-        <h2>기본정보</h2>
-        <!-- 사용자 정보 및 프로필 이미지 표시 -->
+        <div class="Title"> 기본정보</div>
+        <div class="row">
+            <div class="col mx-2">
+                <div class="profileDataImg">
+                    <img src="<c:url value='../../resources/img/iv_profileDataImg.svg' /> ">
+                </div>
+            </div>
+            <!-- HTML 부분 -->
+            <div class="col mx-2">
+                <div class="profileData">
+                    <div class="profileDataInfo" id="Name"></div>
+                    <div class="profileDataInfo" id="Gender"></div>
+                    <div class="profileDataInfo" id="Email"></div>
+                    <div class="profileDataInfo" id="Phone"></div>
+                    <div class="profileDataInfo" id="Birth"></div>
+                    <div class="profileDataInfo" id="Zipcode"></div>
+                    <div class="profileDataInfo" id="Address"></div>
+                    <div class="profileDataInfo" id="DetailAddress"></div>
+                    <div class="profileDataInfo" id="RegisterDate"></div>
+                </div>
+            </div>
+
+            <script>
+                $(document).ready(function () {
+                    // Ajax 요청 수행
+                    $.ajax({
+                        url: '/getHWBMemberInfoByID', // 데이터를 가져올 엔드포인트
+                        method: 'GET', // GET 요청
+
+                        success: function (data) {
+                            // 서버에서 가져온 JSON 데이터를 파싱
+                            var memberInfo = data;
+                            console.log(memberInfo);
+
+                            // 프로필 데이터 항목 채우기
+                            $('#Name').text(': ' + memberInfo.name);
+                            $('#Gender').text(': ' + memberInfo.gender);
+                            $('#Email').text(': ' + memberInfo.email);
+                            $('#Phone').text(': ' + memberInfo.phone);
+                            $('#Birth').text(': ' + memberInfo.birth);
+                            $('#Zipcode').text(': ' + memberInfo.zipCode);
+                            $('#Address').text(': ' + memberInfo.address);
+                            $('#DetailAddress').text(': ' + memberInfo.detailAddress);
+                            $('#RegisterDate').text(': ' + memberInfo.registerDate);
+                        },
+                        error: function (error) {
+                            console.log('Ajax 요청 에러: ' + error);
+                        }
+                    });
+                });
+            </script>
+        </div>
     </section>
 
-    <section id="expenses" class="tab-content">
-        <!-- 사용자 설정 표시 -->
-        <h2>나의 소비</h2>
-        <!-- 나의 소비 정보 표시 -->
-    </section>
+    <section id="detailInfo" class="tab-content">
+        <div class="Title"> 상세정보</div>
+        <div class="detailInfoContainer text-center">
+            <div class="row">
+                <div class="col detailInfoContainer-col">
+                    <img class="menu-icon" src="../../resources/img/ic_wishList.svg" alt="아이콘 3"
+                         style="margin-bottom: 10px; margin-top: 5px;">
+                    <div class="countName">나의 위시리스트 아이템 개수</div>
+                    <div class="count" id="wishListItemCount"></div>
+                </div>
+                <div class="col detailInfoContainer-col">
+                    <img class="menu-icon" src="../../resources/img/ic_purchasePlanList.svg" alt="아이콘 3">
+                    <div class="countName"> 나의 구매계획리스트 아이템 개수</div>
+                    <div class="count" id="purchasePlanCount"></div>
+                </div>
+                <div class="col detailInfoContainer-col">
+                    <img class="menu-icon" src="../../resources/img/ic_challengeSaving.svg" alt="아이콘 3"
+                         style="margin-bottom: 10px; margin-top: 5px;">
+                    <div class="countName"> 나의 챌린지 적금 개수</div>
+                    <div class="count" id="challengeSavingsCount"></div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/getCounts", // 위에서 정의한 컨트롤러 메서드 엔드포인트
+                    success: function (data) {
+                        $("#wishListItemCount").text(data.wishListItemCount + "개");
+                        $("#purchasePlanCount").text(data.purchasePlanCount + "개");
+                        $("#challengeSavingsCount").text(data.challengeSavingsCount + "개");
+                    },
+                    error: function () {
+                        console.log("에러 발생");
+                    }
+                });
+            });
+        </script>
+        <div class="custom-buttonContainer text-center">
+            <div class="row">
+                <div class="col custom-button-col">
+                    <a href="/checkMyWishList" class="custom-button">나의 위시리스트 바로가기</a>
+                </div>
+                <div class="col  custom-button-col">
+                    <a href="/checkMyPurchasePlanList" class="custom-button">나의 구매계획리스트 바로가기 </a>
+                </div>
+                <div class="col  custom-button-col">
+                    <a href="/checkMyChallengeSavings" class="custom-button">나의 챌린지 적금 바로가기</a>
+                </div>
+            </div>
+        </div>
+        <div class="transferRecordContainer">
+            <div class="Title">이체 내역</div>
+            <table>
+                <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>입금 계좌</th>
+                    <th>출금 계좌</th>
+                    <th>이체 금액</th>
+                    <th>이체 날짜</th>
+                    <th>이체 방법</th>
+                </tr>
+                </thead>
+                <tbody id="transferRecords">
+                <!-- 이곳에 이체 내역이 동적으로 추가될 것입니다 -->
+                </tbody>
+            </table>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/getTransferRecordByID",
+                    success: function (data) {
+                        console.log(data);
+                        var tbody = $("#transferRecords");
 
-    <section id="items" class="tab-content">
-        <!-- 활동 기록 표시 -->
-        <h2>아이템</h2>
-        <!-- 아이템 정보 표시 -->
-    </section>
+                        for (var i = 0; i < data.length; i++) {
+                            var record = data[i];
+                            var newRow = $("<tr>");
 
-    <section id="savings" class="tab-content">
-        <!-- 활동 기록 표시 -->
-        <h2>적금</h2>
-        <!-- 적금 정보 표시 -->
+                            newRow.append($("<td>").text(i + 1));
+                            newRow.append($("<td>").text(record.depositAccount));
+                            newRow.append($("<td>").text(record.accountNumber));
+                            newRow.append($("<td>").text(record.transferAmount.toLocaleString() + "원"));
+                            newRow.append($("<td>").text(record.transferDate));
+                            newRow.append($("<td>").text(record.transferMethod));
+
+                            tbody.append(newRow);
+                        }
+                    },
+                    error: function () {
+                        console.log("에러 발생");
+                    }
+                });
+            });
+        </script>
+
     </section>
     <script>// JavaScript를 사용하여 탭 메뉴 구현
     document.addEventListener("DOMContentLoaded", function () {
@@ -236,6 +534,8 @@
         });
     });
     </script>
+
+
 
 </main>
 

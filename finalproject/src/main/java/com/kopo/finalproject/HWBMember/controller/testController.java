@@ -1,20 +1,21 @@
 package com.kopo.finalproject.HWBMember.controller;
 
 import com.kopo.finalproject.HWBMember.model.dto.HWBMember;
+import com.kopo.finalproject.HWBMember.model.dto.TransferRecord;
 import com.kopo.finalproject.HWBMember.service.HWBMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class testController {
@@ -32,6 +33,7 @@ public class testController {
         mav.setViewName("index");
         return mav;
     }
+
     @RequestMapping("/introduce")
     public ModelAndView introduce() {
         ModelAndView mav = new ModelAndView();
@@ -60,24 +62,31 @@ public class testController {
         return mav;
     }
 
+//
+//    @GetMapping(value = "/logout")
+//    public ModelAndView deleteMember(HttpServletRequest request) {
+//        HttpSession session = request.getSession(false);
+//        ModelAndView mav = new ModelAndView();
+//        if (session != null) {
+//            session.invalidate();
+//        }
+//        mav.addObject("msg", "로그아웃 성공");
+//        mav.addObject("loc", "/");
+//        mav.setViewName("/message");
+//        return mav;
+//    }
 
     @GetMapping(value = "/logout")
-    public ModelAndView deleteMember(HttpServletRequest request) {
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
-        ModelAndView mav = new ModelAndView();
         if (session != null) {
-            session.invalidate();
+            session.invalidate(); // 세션 만료
         }
-        mav.addObject("msg", "로그아웃 성공");
-        mav.addObject("loc", "/");
-        mav.setViewName("/message");
-        return mav;
+        return "redirect:/"; // "/index"로 리다이렉트
     }
-
 
     @RequestMapping("/register")
     public ModelAndView register() {
-        System.out.println("레스게릿붐붐타임");
         ModelAndView mav = new ModelAndView();
         mav.setViewName("register");
         return mav;
@@ -85,10 +94,74 @@ public class testController {
 
     @RequestMapping("/myPage")
     public ModelAndView myPage() {
-        System.out.println("레스게릿붐붐타임");
         ModelAndView mav = new ModelAndView();
         mav.setViewName("myPage");
         return mav;
     }
 
+    //    @GetMapping(value = "/getHWBMemberInfoByID")
+//    public ModelAndView getHWBMemberInfoByID(HttpServletRequest request) {
+//        HttpSession session = request.getSession(false); // 세션이 없을 경우 null 반환
+//
+//        if (session == null || session.getAttribute("memberID") == null) {
+//            // 세션이 없거나 memberID가 없을 경우 /login으로 리다이렉트
+//            return new ModelAndView("redirect:/login");
+//        }
+//        ModelAndView mav = new ModelAndView("/myPage");
+//        String memberID = (String) session.getAttribute("memberID");
+//        HWBMember memberInfo = hwbMemberService.getHWBMemberInfoByID(memberID);
+//        mav.addObject("memberInfo", memberInfo);
+//        System.out.println("이거 마이페이지 멤버 정보 " + memberInfo);
+//        return mav;
+//    }
+    @GetMapping(value = "/getHWBMemberInfoByID")
+    @ResponseBody
+    public HWBMember getHWBMemberInfoByID(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+
+        if (session == null || session.getAttribute("memberID") == null) {
+            // 세션이 없거나 memberID가 없을 경우 null 반환
+            return null;
+        }
+
+        String memberID = (String) session.getAttribute("memberID");
+        HWBMember memberInfo = hwbMemberService.getHWBMemberInfoByID(memberID);
+        System.out.println(memberInfo);
+        return memberInfo;
+    }
+
+    @GetMapping("/getCounts")
+    public ResponseEntity<Map<String, Integer>> getCounts(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        String memberID = (String) session.getAttribute("memberID");
+        HWBMember memberInfo = hwbMemberService.getHWBMemberInfoByID(memberID);
+        int wishListItemCount = hwbMemberService.getCountWishListItemByID(memberID);
+        int purchasePlanCount = hwbMemberService.getCountPurchasePlanListItemByID(memberID);
+        int challengeSavingsCount = hwbMemberService.getCountChallengeSavingsByID(memberID);
+
+        Map<String, Integer> counts = new HashMap<>();
+        counts.put("wishListItemCount", wishListItemCount);
+        counts.put("purchasePlanCount", purchasePlanCount);
+        counts.put("challengeSavingsCount", challengeSavingsCount);
+
+        return ResponseEntity.ok(counts);
+    }
+
+    @GetMapping("/getTransferRecordByID")
+    @ResponseBody
+    public List<TransferRecord> getTransferRecordByID(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+
+        if (session == null || session.getAttribute("memberID") == null) {
+            // 세션이 없거나 memberID가 없을 경우 null 반환
+            return null;
+        }
+
+        String memberID = (String) session.getAttribute("memberID");
+        List<TransferRecord> transferRecords = hwbMemberService.getTransferRecordByID(memberID);
+        System.out.println("이거 거래내역 " + transferRecords);
+
+        return transferRecords;
+    }
 }
+

@@ -8,7 +8,7 @@
     <title>웹 페이지</title>
     <style>
         body {
-            background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+            background-color: #c8eadd;
         }
 
         .navbar {
@@ -161,10 +161,11 @@
             75% {
                 transform: translateX(20px); }
         } */
-        .serviceInfo{
+        .serviceInfo {
             margin-top: -240px;
             margin-left: 30px;
         }
+
         .section {
             width: 70%;
             background-color: #fff;
@@ -198,85 +199,6 @@
             background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
         }
 
-        /* 기본 스타일 */
-        .BankFooter {
-            padding: 30px 0;
-        }
-
-        .BankFooterContent {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .FooterRow {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .FooterLinks {
-            list-style: none;
-            padding: 0;
-            display: flex;
-        }
-
-        .FooterLinks li {
-            margin-right: 20px;
-        }
-
-        .FooterLinks li:last-child {
-            margin-right: 0;
-        }
-
-        .FooterLinks a {
-            color: #136c62;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.2s ease-in-out;
-        }
-
-        .FooterLinks a:hover {
-            color: #0f4c48;
-        }
-
-        /* 연락처 섹션 스타일 */
-        .ContactItem {
-            display: flex;
-            align-items: center;
-        }
-
-        .ContactTitle {
-            font-size: 16px;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-
-        .ContactNumbers {
-            display: flex;
-            align-items: center;
-        }
-
-        .ContactNumber {
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .Strong15881111, .Strong15991111 {
-            margin: 0 5px;
-        }
-
-        .ContactSeparator {
-            margin: 0 10px;
-        }
-
-        /* 푸터 설명 스타일 */
-        .FooterDescription {
-            font-size: 14px;
-            color: #888;
-            margin-top: 20px;
-            font-weight: bold;
-        }
     </style>
 
     <!-- 부트스트랩 연결 -->
@@ -330,7 +252,8 @@
 <div class="serviceInfo">
     <section class="section">
         <h2>01. 소비패턴 분석</h2>
-        <p>사용자가 등록한 카드의 지출 내역을 통해 나의 소비를 차트화 및 분석하여 소비 패턴을 파악하고, 지출이 가장 큰 카테고리와 지출 횟수가 잦은 카테고리 분석 후 소비태그 제공</p>
+        <p>사용자가 등록한 카드의 지출 내역을 통해 나의 소비를 차트화 및 분석하여 소비 패턴을 파악하고,</p>
+        <p>지출이 가장 큰 카테고리와 지출 횟수가 잦은 카테고리 분석 후 소비태그 제공</p>
     </section>
 
     <!-- 섹션 2: 위시리스트 관리 -->
@@ -349,32 +272,12 @@
         <p>적금 현황 대시보드에서 목표 달성률 확인 가능</p>
     </section>
 </div>
+
+
 <!-- 푸터 추가 -->
 <!-- <footer class="bg-dark text-light text-center py-3"> © 2023
     Your Website. All rights reserved. </footer> -->
-
-<footer class="BankFooter">
-    <div class="BankFooterContent">
-        <div class="FooterRow">
-            <ul class="FooterLinks">
-                <li><a href="#">이용약관</a></li>
-                <li><a href="#">개인정보처리방침</a></li>
-                <li><a href="#">보안정책</a></li>
-                <li><a href="#">고객센터</a></li>
-            </ul>
-            <div class="ContactItem">
-                <div class="ContactTitle">고객센터</div>
-                <div class="ContactNumbers">
-                    <span class="ContactNumber Strong15881111">1588-1111</span> <span
-                        class="ContactSeparator">/</span> <span
-                        class="ContactNumber Strong15991111">1599-1111</span>
-                </div>
-            </div>
-        </div>
-        <p class="FooterDescription">© 2023 HANA WISH BANK. All rights
-            reserved.</p>
-    </div>
-</footer>
+<%@ include file="include/footer.jsp" %>
 
 <!-- 부트스트랩 JavaScript 연결 -->
 <script
