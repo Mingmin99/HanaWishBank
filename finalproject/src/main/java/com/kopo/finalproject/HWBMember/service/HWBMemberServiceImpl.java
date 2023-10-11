@@ -57,4 +57,9 @@ public class HWBMemberServiceImpl implements HWBMemberService {
     public List<TransferRecord> getTransferRecordByID(String memberID){
         return mapper.getTransferRecordByID(memberID);
     }
+
+    @Override
+    public int getCountChallengeSavingsByStatus(String memberID) {
+        return mapper.getCountChallengeSavingsByStatus(memberID);
+    }
 }

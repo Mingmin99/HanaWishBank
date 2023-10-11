@@ -7,6 +7,7 @@ import com.kopo.finalproject.Savings.model.dto.ChallengeSavings;
 import com.kopo.finalproject.Savings.model.dto.PlanItemRatio;
 import com.kopo.finalproject.Savings.model.dto.PurchasePlanAndWishListItem;
 import com.kopo.finalproject.Savings.service.SavingsService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -216,6 +217,40 @@ public class SavingsController {
         } else {
             // 구매 계획이 없을 경우 404 상태 코드 반환
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/completedSavingsTransferModal")
+    public ResponseEntity<String> completeSavingsTransfer(
+            @RequestParam("withdrawalAccount") String withdrawalAccount,
+            @RequestParam("selectedAccount") String selectedAccount,
+            @RequestParam("withdrawalAccountBalance") int withdrawalAccountBalance, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String memberID = (String) session.getAttribute("memberID");
+        System.out.println("이거는 출금할 적금 계좌번호 " + withdrawalAccount);
+        System.out.println("이거는 송금할 계좌번호 " + selectedAccount);
+        System.out.println("이거는 보내줄 돈 " + withdrawalAccountBalance);
+
+        String transferMethod = "만기적금해지 이체";
+        try {
+            // 여기에 DB 업데이트 작업을 수행
+            // withdrawalAccount, selectedAccount, withdrawalAccountBalance를 사용하여 송금 로직 수행
+
+
+            //출금계좌에서 잔액만큼 빼주고, 송금계좌에 잔액만큼 더해주는 로직
+            savingsService.completedSavingsDepositWithdrawal(memberID, withdrawalAccount, selectedAccount, withdrawalAccountBalance);
+            //이체내역 등록하기
+            savingsService.insertCompletedSavingsTransferRecord(memberID,withdrawalAccount, selectedAccount, withdrawalAccountBalance, transferMethod);
+            //추가로 적금계좌 상태 바꾸기 이거 해야함 status추가해야함
+            savingsService.updateCompletedSavingsExpirationStatus(memberID,withdrawalAccount);
+
+            // 업데이트가 성공했을 경우
+            return new ResponseEntity<>("송금이 완료되었습니다.", HttpStatus.OK);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            // 업데이트가 실패했을 경우
+            return new ResponseEntity<>("송금에 실패했습니다. 다시 시도해주세요.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

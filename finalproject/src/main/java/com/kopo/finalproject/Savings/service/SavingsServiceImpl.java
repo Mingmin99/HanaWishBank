@@ -68,7 +68,23 @@ public class SavingsServiceImpl implements SavingsService {
 
     @Override
     public List<PurchasePlanAndWishListItem> getPurchasePlanAndWishListItemByAccountNumber(String challengeSavingsAccountNumber, String memberID) {
-        return savingsMapper.getPurchasePlanAndWishListItemByAccountNumber(challengeSavingsAccountNumber,memberID);
+        return savingsMapper.getPurchasePlanAndWishListItemByAccountNumber(challengeSavingsAccountNumber, memberID);
+    }
+
+    @Override
+    public void completedSavingsDepositWithdrawal(String memberID, String withdrawalAccount, String selectedAccount, int withdrawalAccountBalance) {
+        savingsMapper.completedSavingsWithdrawal(memberID, withdrawalAccount, withdrawalAccountBalance);
+        savingsMapper.completedSavingsDeposit(memberID, selectedAccount, withdrawalAccountBalance);
+    }
+
+    @Override
+    public void insertCompletedSavingsTransferRecord(String memberID, String withdrawalAccount, String selectedAccount, int withdrawalAccountBalance, String transferMethod) {
+        savingsMapper.insertCompletedSavingsTransferRecord(memberID, selectedAccount, withdrawalAccount,  withdrawalAccountBalance, transferMethod);
+    }
+
+    @Override
+    public void updateCompletedSavingsExpirationStatus(String memberID, String withdrawalAccount) {
+        savingsMapper.updateCompletedSavingsExpirationStatus(memberID, withdrawalAccount);
     }
 
 }

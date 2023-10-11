@@ -16,13 +16,17 @@ public interface HWBMemberMapper {
 
     HWBMember loginMember(HashMap<String, String> loginData);
 
-     HWBMember getHWBMemberInfoByID(String memberID);
+    HWBMember getHWBMemberInfoByID(String memberID);
+
     int getCountWishListItemByID(String memberID);
 
     int getCountPurchasePlanListItemByID(String memberID);
 
     int getCountChallengeSavingsByID(String memberID);
+
     List<TransferRecord> getTransferRecordByID(String memberID);
+
+    int getCountChallengeSavingsByStatus(String memberID);
 }
 
 

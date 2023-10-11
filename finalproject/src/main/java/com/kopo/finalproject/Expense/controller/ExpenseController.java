@@ -52,6 +52,7 @@ public class ExpenseController {
         SubCategory deatailTopCategory = expenseService.getTopCategoryDetailedExpenseCategory(cardID);
         SubCategory deatailTopAmount = expenseService.getTopAmountDetailedExpenseCategory(cardID);
         SubCategory topCategorySubCategoryDescription = expenseService.getTopCategoryDetailedExpenseCategory(cardID);
+        System.out.println("getTopCategoryDetailedExpenseCategory" + topCategorySubCategoryDescription);
         SubCategory topAmountSubCategoryDescription = expenseService.getTopAmountDetailedExpenseCategory(cardID);
 
 

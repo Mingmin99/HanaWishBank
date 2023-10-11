@@ -29,7 +29,14 @@ public interface SavingsMapper {
     void firstDeposit(ChallengeSavings challengeSavings);
 
     void insertTransferRecord(ChallengeSavings challengeSavings);
+
     List<PurchasePlanAndWishListItem> getPurchasePlanAndWishListItemByAccountNumber(String challengeSavingsAccountNumber, String memberID);
 
-}
+    void completedSavingsDeposit(String memberID, String selectedAccount, int withdrawalAccountBalance);
 
+    void completedSavingsWithdrawal(String memberID, String withdrawalAccount, int withdrawalAccountBalance);
+
+    void insertCompletedSavingsTransferRecord(String memberID, String withdrawalAccount, String selectedAccount, int withdrawalAccountBalance, String transferMethod);
+
+    void updateCompletedSavingsExpirationStatus(String memberID, String withdrawalAccount);
+}

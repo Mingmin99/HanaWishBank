@@ -22,13 +22,14 @@
 
         #carouselExampleIndicators .section1 {
             background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
-            border-radius: 20px;
-            margin: 20px;
+            /*border-radius: 20px;*/
+            /*margin: 20px;*/
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
         }
 
+
         #carouselExampleIndicators .hello-word {
-            margin-top: -50px;
-            margin-left: 12%;
+            margin-left: 14%;
             margin-right: 8%;
             text-align: left;
             white-space: nowrap;
@@ -69,8 +70,7 @@
         .content {
             display: flex;
             align-items: center;
-            height: 400px;
-            /* This centers the content vertically (optional) */
+            height: 360px;
         }
 
         /*---------캐러센--------------------------------------------------------------------*/

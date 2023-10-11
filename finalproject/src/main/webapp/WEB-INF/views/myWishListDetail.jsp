@@ -97,7 +97,7 @@
 
         .description-text1 {
             padding: 10px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 500;
             font-family: "Hana2.0 L";
             color: #5A5A5A;
@@ -106,7 +106,7 @@
 
         .description-text2 {
             padding: 10px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 500;
             font-family: "Hana2.0 L";
             color: #5A5A5A;
@@ -114,6 +114,16 @@
             /* 	display: flex;
             justify-content: center; */
         }
+
+        .divider {
+            margin: 1rem 0;
+            color: inherit;
+            background-color: currentColor;
+            border: 0;
+            opacity: .25;
+            width: 95%;
+        }
+
 
         /* 위시리스트 조회------------------------------------------------------------------------------------------------------- */
         .calculation-container {
@@ -185,7 +195,7 @@
             width: 14rem !important;
             background-color: #fff !important;
             height: 240px; /* 원하는 크기로 조절 */
-            margin-top: 3rem !important;
+            margin-top: 3.5rem !important;
             margin-left: 4rem;
         }
 
@@ -213,26 +223,29 @@
         /* 표현식 ------------------------------------------------------------------------------------------------------- */
         #amountImage {
             max-width: 200px;
-            margin-top: 40%;
             margin-left: -7rem;
+            margin-top: 32%;
         }
 
         #amountPrice {
-            margin-top: 10%;
+            margin-top: 20%;
             margin-left: -7rem;
             font-family: "Hana2.0 CM";
+            font-size: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         #categoryImage {
             max-width: 200px;
             margin-left: -7rem;
-            margin-top: 24%;
+            margin-top: 32%;
         }
-
         #categoryPrice {
-            margin-top: 40%;
+            margin-top: 20%;
             margin-left: -7rem;
             font-family: "Hana2.0 CM";
+            font-size: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .wishListDetailEqual {
@@ -274,6 +287,7 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             animation: slideIn 1s; /* 애니메이션 적용 및 지속 시간 설정 */
         }
+
         @keyframes slideIn {
             from {
                 transform: translateX(100%);
@@ -284,6 +298,13 @@
                 opacity: 1;
             }
         }
+
+        #topAmountSubCategoryDescriptionElement {
+            font-size: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+        }
+
         .summary {
             margin-top: 2rem;
             margin-left: 4rem;
@@ -478,7 +499,7 @@
             <div id="myModal" class="modal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <p></p>
+                    <p id="topAmountSubCategoryDescriptionElement"></p>
                 </div>
             </div>
 

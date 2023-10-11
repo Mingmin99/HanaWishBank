@@ -40,6 +40,13 @@
         SELECT COUNT(*)
         FROM ChallengeSavings
         WHERE MemberID = #{memberID}
+         AND ExpirationStatus = 'F'
+    </select>
+    <select id="getCountChallengeSavingsByStatus" parameterType="String">
+        SELECT COUNT(*)
+        FROM ChallengeSavings
+        WHERE MemberID = #{memberID}
+          AND ExpirationStatus = 'T'
     </select>
 
     <select id="getTransferRecordByID" parameterType="String">

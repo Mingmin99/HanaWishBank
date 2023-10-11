@@ -44,6 +44,7 @@
         SELECT *
         FROM ChallengeSavings
         WHERE MemberID = #{memberID}
+        AND ExpirationStatus = 'F'
     </select>
 
     <!-- PlanItemRatio 엔티티와 관련된 매퍼 -->
@@ -95,5 +96,35 @@
           AND pp.ChallengeSavingsAccountNumber = #{challengeSavingsAccountNumber}
     </select>
 
+
+    <!-- 이 태그는 "Account" 테이블의 Balance 열을 업데이트합니다. -->
+    <update id="completedSavingsDeposit">
+        UPDATE Account
+        SET Balance = Balance + #{withdrawalAccountBalance}
+        WHERE AccountNumber = #{selectedAccount}
+          AND MemberID = #{memberID}
+    </update>
+
+    <update id="completedSavingsWithdrawal">
+        UPDATE ChallengeSavings
+        SET AccountBalance = AccountBalance - #{withdrawalAccountBalance}
+        WHERE ChallengeSavingsAccountNumber = #{withdrawalAccount}
+          AND MemberID = #{memberID}
+    </update>
+
+
+    <insert id="insertCompletedSavingsTransferRecord" >
+        INSERT INTO TransferRecord (memberID, DepositAccount, AccountNumber, TransferAmount, TransferMethod)
+        VALUES (#{memberID}, #{selectedAccount},#{withdrawalAccount}, #{withdrawalAccountBalance}, #{transferMethod})
+    </insert>
+
+
+
+    <update id="updateCompletedSavingsExpirationStatus">
+        UPDATE ChallengeSavings
+        SET ExpirationStatus = 'T'
+        WHERE ChallengeSavingsAccountNumber = #{withdrawalAccount}
+          AND MemberID = #{memberID}
+    </update>
 
 </mapper>

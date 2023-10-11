@@ -29,4 +29,10 @@ public interface SavingsService {
     void insertTransferRecord(ChallengeSavings challengeSavings);
 
     List<PurchasePlanAndWishListItem> getPurchasePlanAndWishListItemByAccountNumber(String challengeSavingsAccountNumber, String memberID);
+
+    void completedSavingsDepositWithdrawal(String memberID, String withdrawalAccount, String selectedAccount, int withdrawalAccountBalance);
+
+    void insertCompletedSavingsTransferRecord(String memberID, String withdrawalAccount, String selectedAccount, int withdrawalAccountBalance, String transferMethod);
+
+    void updateCompletedSavingsExpirationStatus(String memberID, String withdrawalAccount);
 }

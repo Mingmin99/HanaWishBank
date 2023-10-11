@@ -95,7 +95,7 @@
 
         .description-text1 {
             padding: 10px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 500;
             font-family: "Hana2.0 L";
             color: #5A5A5A;
@@ -104,7 +104,7 @@
 
         .description-text2 {
             padding: 10px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 500;
             font-family: "Hana2.0 L";
             color: #5A5A5A;
@@ -156,12 +156,12 @@
         }
 
         /* 납입계획 입력 양식------------------------------------------------------------------------------------------------------- */
-        .paymntPlanTitle {
-            margin-top: 2rem;
-            margin-bottom: 2rem;
+        .paymentPlanTitle {
+            margin-top: 48px;
+            margin-bottom: 30px;
             font-size: 24px;
             font-weight: 500;
-            font-family: "Hana2.0 L";
+            font-family: "Hana2.0 CM";
             color: #4F4F4F;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -361,6 +361,11 @@
         #terms-accordion {
             width: 90%;
             margin-top: 20px;
+        }
+
+        .accordion-body {
+            max-height: 200px;
+            overflow-y: auto;
         }
 
         /* 아코디언 버튼 스타일링 */
@@ -1249,40 +1254,41 @@
         <label for="overall-agreement">상품가입 약관 전체 동의
             <input type="checkbox" id="overall-agreement">
         </label>
-        <script>// 전체 동의 체크박스
-        const allAgreements = document.querySelectorAll('.agreement-checkbox');
-        const overallAgreement = document.getElementById('overall-agreement');
+        <script>
+            // 전체 동의 체크박스
+            const allAgreements = document.querySelectorAll('.agreement-checkbox');
+            const overallAgreement = document.getElementById('overall-agreement');
 
-        // 각 약관 섹션
-        const agreementSections = document.querySelectorAll('.accordion-item');
+            // 각 약관 섹션
+            const agreementSections = document.querySelectorAll('.accordion-item');
 
-        // 전체 동의 체크박스 상태 변경 시, 모든 동의 체크박스 업데이트
-        overallAgreement.addEventListener('change', function () {
-            const isChecked = overallAgreement.checked;
-            allAgreements.forEach((checkbox) => {
-                checkbox.checked = isChecked;
+            // 전체 동의 체크박스 상태 변경 시, 모든 동의 체크박스 업데이트
+            overallAgreement.addEventListener('change', function () {
+                const isChecked = overallAgreement.checked;
+                allAgreements.forEach((checkbox) => {
+                    checkbox.checked = isChecked;
+                });
             });
-        });
 
-        // 각 약관 섹션의 동의 체크박스 상태 확인
-        agreementSections.forEach((section, index) => {
-            section.querySelector('.agreement-checkbox').addEventListener('change', function () {
-                updateOverallAgreementStatus();
+            // 각 약관 섹션의 동의 체크박스 상태 확인
+            agreementSections.forEach((section, index) => {
+                section.querySelector('.agreement-checkbox').addEventListener('change', function () {
+                    updateOverallAgreementStatus();
+                });
             });
-        });
 
-        // 전체 동의 체크박스 상태 업데이트
-        function updateOverallAgreementStatus() {
-            const allChecked = Array.from(allAgreements).every((checkbox) => checkbox.checked);
-            overallAgreement.checked = allChecked;
-        }
+            // 전체 동의 체크박스 상태 업데이트
+            function updateOverallAgreementStatus() {
+                const allChecked = Array.from(allAgreements).every((checkbox) => checkbox.checked);
+                overallAgreement.checked = allChecked;
+            }
         </script>
 
         <%-------------------------------------------------------약관동의------------------------------------------------------------%>
         <div class="check"></div>
 
 
-        <div class="paymntPlanTitle">◆ 납입계획 세우기</div>
+        <div class="paymentPlanTitle">• 납입계획 작성하기</div>
         <%--        <c:forEach var="plan" items="${PaymentPlanList}">--%>
         <%--            <div class="selectPurchasePlanID">${plan.purchasePlanID}</div>--%>
         <%--        </c:forEach>--%>
@@ -1899,10 +1905,12 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
 
+
 <!-- Unpkg AOS 연결 -->
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
 
 <!-- jQuery 연결 -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 </body>
 </html>

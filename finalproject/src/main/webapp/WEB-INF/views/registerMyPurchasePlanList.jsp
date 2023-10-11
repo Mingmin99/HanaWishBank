@@ -11,15 +11,16 @@
             background-color: white;
         }
 
-        /* 사이드 바 ------------------------------------------------------------------------------------------------------- */
         .sidebar {
-            margin-top: 4%;
+            margin-top: 3%;
             margin-left: 5%;
             width: 200px;
             position: absolute;
+            /* 	border-right: 1px solid #ccc; */
         }
 
-        .sidebar h4 {
+        .sidebar h3 {
+            white-space: nowrap;
             color: #009591;
             font-family: "Hana2.0 CM";
             margin-bottom: 20px;
@@ -27,12 +28,12 @@
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
 
-        .sidebar h4::before {
+        .sidebar h3::before {
             content: "";
             position: absolute;
             bottom: -5px;
             left: 0;
-            width: 100%;
+            width: 110%;
             height: 3px; /* 굵기 변경 */
             background-color: #009591; /* 구분선 색상 */
         }
@@ -80,7 +81,7 @@
             margin-bottom: 10%;
         }
 
-        .title {
+        .registerMyPurchasePlanTitle {
             font-size: 32px;
             font-weight: 600;
             font-family: "Hana2.0 CM";
@@ -97,7 +98,7 @@
 
         .description-text1 {
             padding: 10px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 500;
             font-family: "Hana2.0 L";
             color: #5A5A5A;
@@ -106,7 +107,7 @@
 
         .description-text2 {
             padding: 10px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 500;
             font-family: "Hana2.0 L";
             color: #5A5A5A;
@@ -129,7 +130,7 @@
             margin-top: 15px;
             margin-left: 1rem;
             padding: 10px;
-            font-size: 15px;
+            font-size: 18px;
             font-weight: 400;
             font-family: "Hana2.0 L";
             color: #A91818;
@@ -173,13 +174,14 @@
 
         /* 표현식 ------------------------------------------------------------------------------------------------------- */
         .purchasePlanListInput {
-            margin-top: 4rem !important;
+            margin-top: 5rem !important;
+            margin-left: -50px;
             font-size: 20px;
             font-weight: 600;
             font-family: "Hana2.0 L";
             color: #526185;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            text-align: center;
+            text-align: left;
         }
 
         .input-container {
@@ -245,7 +247,7 @@
 
     <!-- 사이드바  ------------------------------------------------------------------------------------------------------- -->
     <div class="sidebar">
-        <h4>나의 구매계획리스트</h4>
+        <h3>나의 구매계획리스트</h3>
         <ul>
             <li><a href="/checkMyPurchasePlanList">나의 구매계획리스트 조회</a></li>
             <li><a href="/registerMyPurchasePlanList">나의 구매계획리스트 등록</a></li>
@@ -256,8 +258,8 @@
     </div>
     <!---메인  ------------------------------------------------------------------------------------------------------- -->
     <main>
-        <div class="title">
-            <img src="<c:url value='../../resources/img/ic_purchasePlanList.svg' />"
+        <div class="registerMyPurchasePlanTitle">
+            <img src="<c:url value='../../resources/img/ic_purchasePlanList.svg'/>"
                  alt="Main Wish List" width="80" style="vertical-align: middle;">
             나의 구매계획리스트 등록
         </div>

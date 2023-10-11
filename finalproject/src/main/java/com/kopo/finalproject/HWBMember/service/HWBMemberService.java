@@ -22,4 +22,6 @@ public interface HWBMemberService {
     int getCountChallengeSavingsByID(String memberID);
 
     List<TransferRecord> getTransferRecordByID(String memberID);
+
+    int getCountChallengeSavingsByStatus(String memberID);
 }

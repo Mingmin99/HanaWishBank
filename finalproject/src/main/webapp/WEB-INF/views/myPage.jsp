@@ -76,7 +76,6 @@
 
         /* 메인 ------------------------------------------------------------------------------------------------------- */
         main {
-            height: 2000px;
             margin-top: 3%;
             margin-left: 25%;
             margin-bottom: 10%;
@@ -117,12 +116,23 @@
             justify-content: center; */
         }
 
-        .Title {
+        .sectionTitle {
             margin-top: 3%;
-            margin-left: 5%;
+            margin-left: 4%;
             font-size: 30px;
             font-family: "Hana2.0 CM";
-            color: #4F4F4F;
+            color: #4a4949;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+        }
+
+        .Title {
+            margin-top: 5% !important;
+            margin-bottom: 2% !important;
+            margin-left: 4%;
+            font-size: 26px;
+            font-family: "Hana2.0 CM";
+            color: #646464;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
@@ -217,7 +227,6 @@
 
         /*----------상세정보------------------------------------------------------*/
         .detailInfoContainer {
-            margin-top: 3%;
             justify-content: center;
             align-items: center;
 
@@ -233,6 +242,29 @@
             text-align: center;
         }
 
+        @keyframes border-glow {
+            0% {
+                box-shadow: 0 0 5px #f4b8a3;
+            }
+            50% {
+                box-shadow: 0 0 20px #f4b8a3;
+            }
+            100% {
+                box-shadow: 0 0 5px #f4b8a3;
+            }
+        }
+
+        .completedSavingsDetailInfoContainer-col {
+            background-color: #fff; /* 박스 배경 색상 */
+            border: 1px solid #ddd; /* 테두리 스타일 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+            padding: 10px;
+            margin: 15px;
+            border-radius: 8px; /* 박스 모서리를 둥글게 만듦 */
+            text-align: center;
+            animation: border-glow 2s infinite;
+        }
+
         .countName {
             margin-bottom: 10px;
             font-family: "Hana2.0 CM";
@@ -243,6 +275,32 @@
             font-family: "Hana2.0 CM";
             color: #4a4949 !important;
 
+        }
+
+        #completedSavingsCount {
+            font-family: "Hana2.0 CM";
+            font-size: 30px;
+            display: flex;
+            text-align: center;
+            justify-content: flex-start;
+            margin-top: 6%;
+            margin-left: -200px;
+            color: #7f9899 !important;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+
+        .completedCheerMsg {
+            font-family: "Hana2.0 L";
+            font-size: 20px;
+            display: flex;
+            text-align: center;
+            justify-content: flex-start;
+            margin-top: 3%;
+            margin-bottom: 3%;
+            margin-left: -200px;
+            color: #4a4949 !important;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
 
         .custom-buttonContainer {
@@ -262,7 +320,8 @@
             transition: background-color 0.3s ease; /* 애니메이션 효과 */
             font-family: "Hana2.0 CM";
         }
-/*---------------이체내역 ---------------*/
+
+        /*---------------이체내역 ---------------*/
 
         /* 테이블 타이틀 스타일 */
         .transferRecordContainer .Title {
@@ -272,7 +331,7 @@
 
         /* 테이블 스타일 */
         .transferRecordContainer table {
-            width: 100%;
+            width: 96%;
             border-collapse: collapse;
             margin: auto;
         }
@@ -307,7 +366,7 @@
 
         /* 마우스 호버 스타일 */
         .transferRecordContainer tbody tr:hover {
-            background-color: #f8eec4;
+            background-color: #c3d5d1;
             cursor: pointer;
         }
 
@@ -316,7 +375,44 @@
             text-align: center;
         }
 
-</style>
+        /* Pagination 컨테이너 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            margin-top: 20px; /* 위쪽 여백 조정 */
+            font-size: 15px;
+        }
+
+        /* 이전 및 다음 버튼 스타일 */
+        #prevPage, #nextPage {
+            background-color: #c3d5d1;
+            color: #252525;
+            font-family: "Hana2.0 CM";
+            border: none;
+            border-radius: 10px;
+            padding: 5px 20px;
+            cursor: pointer;
+
+            font-size: 15px;
+        }
+
+        button#prevPage:hover {
+            background-color: #f2f2f2;
+        }
+
+        button#nextPage:hover {
+            background-color: #f2f2f2;
+        }
+        /* 현재 페이지 텍스트 스타일 */
+        #currentPage {
+            margin: 0 20px;
+            margin-top: 5px !important;
+            font-family: "Hana2.0 CM";
+            font-size: 15px;
+        }
+
+    </style>
     <!-- 부트스트랩 연결 -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
@@ -355,7 +451,7 @@
 
     <section id="profile" class="tab-content">
         <!-- 프로필 정보 표시 -->
-        <div class="Title"> 기본정보</div>
+        <div class="sectionTitle"> 기본정보</div>
         <div class="row">
             <div class="col mx-2">
                 <div class="profileDataImg">
@@ -410,7 +506,24 @@
     </section>
 
     <section id="detailInfo" class="tab-content">
-        <div class="Title"> 상세정보</div>
+        <div class="sectionTitle"> 상세정보</div>
+
+        <div class="Title">• 달성한 챌린지 개수</div>
+        <div class="col completedSavingsDetailInfoContainer-col">
+            <div class="row">
+                <div class="col completedSavingsImg-col"><img class="menu-icon"
+                                                              src="../../resources/img/iv_completedSavings.png"
+                                                              alt="아이콘 3" style="margin-left: -200px !important;"></div>
+                <div class="col completedSavingsMsg-col">
+                    <div class="count" id="completedSavingsCount"></div>
+                    <div class="completedCheerMsg">목표를 이루기까지 고생 많으셨습니다. 부자가 될 날이 멀지 않았어요!</div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="Title">• 등록 현황</div>
         <div class="detailInfoContainer text-center">
             <div class="row">
                 <div class="col detailInfoContainer-col">
@@ -441,6 +554,8 @@
                         $("#wishListItemCount").text(data.wishListItemCount + "개");
                         $("#purchasePlanCount").text(data.purchasePlanCount + "개");
                         $("#challengeSavingsCount").text(data.challengeSavingsCount + "개");
+                        $("#completedSavingsCount").text(data.completedSavingsCount + "개의 챌린지 달성!");
+
                     },
                     error: function () {
                         console.log("에러 발생");
@@ -462,7 +577,7 @@
             </div>
         </div>
         <div class="transferRecordContainer">
-            <div class="Title">이체 내역</div>
+            <div class="Title">• 이체 내역</div>
             <table>
                 <thead>
                 <tr>
@@ -479,36 +594,81 @@
                 </tbody>
             </table>
         </div>
+        <div class="pagination">
+            <button id="prevPage">이전</button>
+            <span id="currentPage">1</span>
+            <button id="nextPage">다음</button>
+        </div>
+
         <script>
             $(document).ready(function () {
+                var data; // AJAX로 가져온 데이터 저장
+                var currentPage = 1; // 현재 페이지
+                var recordsPerPage = 10; // 페이지당 표시할 레코드 수
+
+                var tbody = $("#transferRecords"); // 표 데이터가 들어갈 tbody 요소
+                var prevPageBtn = $("#prevPage");
+                var nextPageBtn = $("#nextPage");
+                var currentPageText = $("#currentPage");
+
+                // AJAX로 데이터 가져오는 부분
                 $.ajax({
                     type: "GET",
                     url: "/getTransferRecordByID",
-                    success: function (data) {
-                        console.log(data);
-                        var tbody = $("#transferRecords");
-
-                        for (var i = 0; i < data.length; i++) {
-                            var record = data[i];
-                            var newRow = $("<tr>");
-
-                            newRow.append($("<td>").text(i + 1));
-                            newRow.append($("<td>").text(record.depositAccount));
-                            newRow.append($("<td>").text(record.accountNumber));
-                            newRow.append($("<td>").text(record.transferAmount.toLocaleString() + "원"));
-                            newRow.append($("<td>").text(record.transferDate));
-                            newRow.append($("<td>").text(record.transferMethod));
-
-                            tbody.append(newRow);
-                        }
+                    success: function (responseData) {
+                        data = responseData;
+                        updateTable();
                     },
                     error: function () {
                         console.log("에러 발생");
                     }
                 });
-            });
-        </script>
 
+                // 이전 페이지로 이동
+                prevPageBtn.on("click", function () {
+                    if (currentPage > 1) {
+                        currentPage--;
+                        updateTable();
+                    }
+                });
+
+                // 다음 페이지로 이동
+                nextPageBtn.on("click", function () {
+                    var totalRecords = data.length;
+                    var totalPages = Math.ceil(totalRecords / recordsPerPage);
+                    if (currentPage < totalPages) {
+                        currentPage++;
+                        updateTable();
+                    }
+                });
+
+                // 테이블 업데이트 함수
+                function updateTable() {
+                    var start = (currentPage - 1) * recordsPerPage;
+                    var end = start + recordsPerPage;
+                    var displayedData = data.slice(start, end);
+
+                    tbody.empty();
+
+                    for (var i = 0; i < displayedData.length; i++) {
+                        var record = displayedData[i];
+                        var newRow = $("<tr>");
+
+                        newRow.append($("<td>").text(i + 1));
+                        newRow.append($("<td>").text(record.depositAccount));
+                        newRow.append($("<td>").text(record.accountNumber));
+                        newRow.append($("<td>").text(record.transferAmount.toLocaleString() + "원"));
+                        newRow.append($("<td>").text(record.transferDate));
+                        newRow.append($("<td>").text(record.transferMethod));
+
+                        tbody.append(newRow);
+                    }
+
+                    currentPageText.text(+currentPage);
+                }
+            });
+
+        </script>
     </section>
     <script>// JavaScript를 사용하여 탭 메뉴 구현
     document.addEventListener("DOMContentLoaded", function () {
@@ -534,7 +694,6 @@
         });
     });
     </script>
-
 
 
 </main>

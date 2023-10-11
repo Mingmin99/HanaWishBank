@@ -69,6 +69,14 @@
             margin-bottom: 0;
             width: 100%;
         }
+        .divider{
+            margin: 1rem 0;
+            color: inherit;
+            background-color: currentColor;
+            border: 0;
+            opacity: .25;
+            width: 95%;
+        }
 
         /* 사이드 바 ------------------------------------------------------------------------------------------------------- */
         .sidebar {
@@ -156,7 +164,7 @@
 
         .description-text1 {
             padding: 10px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 500;
             font-family: "Hana2.0 L";
             color: #5A5A5A;
@@ -165,7 +173,7 @@
 
         .description-text2 {
             padding: 10px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 500;
             font-family: "Hana2.0 L";
             color: #5A5A5A;

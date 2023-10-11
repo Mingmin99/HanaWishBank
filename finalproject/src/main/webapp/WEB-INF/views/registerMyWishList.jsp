@@ -84,9 +84,10 @@
             height: 3000px;
         }
 
-        .RegisterMyWishListtitle {
+        .RegisterMyWishListTitle {
+            margin-top: 48px;
             font-size: 32px;
-            font-weight: 600;
+            font-weight: 500;
             font-family: "Hana2.0 CM";
             color: #4F4F4F;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
@@ -102,7 +103,7 @@
 
         .description-text1 {
             padding: 10px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 500;
             font-family: "Hana2.0 L";
             color: #5A5A5A;
@@ -111,7 +112,7 @@
 
         .description-text2 {
             padding: 10px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 500;
             font-family: "Hana2.0 L";
             color: #5A5A5A;
@@ -375,7 +376,7 @@
 </div>
 <!---메인  ------------------------------------------------------------------------------------------------------- -->
 <main>
-    <div class="RegisterMyWishListtitle">
+    <div class="RegisterMyWishListTitle">
         <img src="<c:url value='../../resources/img/ic_wishList.svg' />" alt="Main Wish List"
              width="70" style="vertical-align: middle;"> 나의 위시리스트 등록
     </div>
@@ -389,7 +390,7 @@
     <hr class="divider">
     <!-- 검색 api  ------------------------------------------------------------------------------------------------------- -->
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-    <div class="wishListSearchTitle">◆ 나의 위시리스트 아이템 검색</div>
+    <div class="wishListSearchTitle">• 나의 위시리스트 아이템 검색</div>
     <form id="search-form" action="/search" method="get">
         <input type="text" id="search-query" name="text" placeholder="아이템 검색">
         <button type="submit" id="search-button">검색</button>

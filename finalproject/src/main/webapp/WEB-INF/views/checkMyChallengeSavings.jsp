@@ -170,7 +170,6 @@
         }
 
 
-
         .savingProgressInfo {
             color: #555;
             font-family: "Hana2.0 L";
@@ -188,15 +187,28 @@
         }
 
         .savingTerminateButton {
-            background-color: darkred; /* 배경색 설정 */
+            background-color: #a75c5c; /* 배경색 설정 */
             color: white; /* 글자색 설정 */
             border: none; /* 테두리 제거 */
             border-radius: 4px; /* 테두리 모서리 둥글게 */
-            padding:3px 10px; /* 안쪽 여백 설정 */
+            padding: 3px 10px; /* 안쪽 여백 설정 */
+            font-family: "Hana2.0 L";
+            font-size: 14px; /* 폰트 크기 설정 */
+            margin-top: 10px; /* 버튼 상단 여백 설정 */
+            margin-left: 5px;
+        }
+
+        .checkSavingsDetailButton {
+            background-color: #7ba299;
+            color: white; /* 글자색 설정 */
+            border: none; /* 테두리 제거 */
+            border-radius: 4px; /* 테두리 모서리 둥글게 */
+            padding: 3px 10px; /* 안쪽 여백 설정 */
             font-family: "Hana2.0 L";
             font-size: 14px; /* 폰트 크기 설정 */
             margin-top: 10px; /* 버튼 상단 여백 설정 */
         }
+
         .savingStatusWithButton {
             display: flex;
             align-items: center; /* 가운데 정렬 */
@@ -204,6 +216,7 @@
 
         /* 선택적으로 아이콘과 버튼 간격 조정 */
         .savingStatus {
+            font-family: "Hana2.0 CM";
             margin-right: 10px; /* 버튼과 간격 설정 */
         }
 
@@ -291,7 +304,7 @@
 
         .password-modal-content {
             position: absolute;
-            width: 30% !important;
+            width: 20% !important;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -314,6 +327,7 @@
         button#checkPasswordBtn {
             background-color: #fcb69f;
             color: #252525;
+            font-family: "Hana2.0 CM";
             border: none;
             border-radius: 4px;
             padding: 10px 20px;
@@ -463,7 +477,94 @@
             text-align: center;
         }
 
-        /*-----------------------------------*/
+        /*---------만기 적금 송금 모달 --------------*/
+        /* 모달 스타일 */
+        .completedSavingsTransferModal-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+            overflow: auto;
+        }
+
+        .completedSavingsTransferModal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            border-radius: 10px;
+            width: 40%;
+            font-family: "Hana2.0 CM";
+            color: #4a4949;
+            text-align: center; /* 내용 중앙 정렬 */
+        }
+
+
+        h2 {
+            text-align: center;
+            font-family: "Hana2.0 CM";
+            color: #4a4949;
+        }
+
+
+
+        .withdrawalAccount {
+            color: #4a4949;
+            margin-top: 5%;
+            font-size: 20px;
+            margin-bottom: 2%;
+        }
+
+        .withdrawalAccountBalance {
+            color: #4a4949;
+            margin-top: 5%;
+            margin-bottom: 2%;
+            font-size: 20px;
+        }
+        /* 레이블 및 드롭다운 스타일 */
+        label, select {
+            font-family: "Hana2.0 CM";
+            display: inline-block;
+            text-align: left; /* 텍스트를 왼쪽 정렬로 변경 */
+            margin: 10px 0;
+            margin-top: 5% !important;
+            margin-bottom: 5%;
+            font-size: 20px;
+        }
+
+        /* 버튼 스타일 */
+        button {
+            display: inline-block; /* 버튼들을 한 줄에 배치 */
+            padding: 10px 30px;
+            background-color: #7ba299;
+            color: #fff;
+            border: none;
+            border-radius: 10px !important;
+            cursor: pointer;
+        }
+
+        /* 닫기 버튼 스타일 */
+        #closeCompletedSavingsTransferModal {
+            background-color: #a75c5c;
+        }
+
+        #closeCompletedSavingsTransferModal:hover {
+            background-color: #d5bfb6;
+            color: #333333;
+            font-family: "Hana2.0 CM";
+        }
+
+        /* 버튼에 호버 효과 추가 */
+        button:hover {
+            background-color: #d5bfb6;
+            color: #333333;
+            font-family: "Hana2.0 CM";
+        }
+
 
     </style>
     <!-- 부트스트랩 연결 -->
@@ -498,12 +599,14 @@
     <div class="ChallengeSavingTitle">• 나의 챌린지 대시보드</div>
     <!-- 컨테이너 템플릿 -->
     <div id="container-template" style="display: none;">
+
         <div class="container">
             <div class="savingTitle"></div>
             <div class="savingAccountNumber"></div>
             <div class="savingProgressInfo"></div>
             <div class="savingStatusWithButton">
                 <div class="savingStatus">상태</div>
+                <button class="checkSavingsDetailButton">적금 상세보기</button>
                 <button class="savingTerminateButton">적금해지</button>
             </div>
 
@@ -528,6 +631,23 @@
             <button id="checkPasswordBtn">확인</button>
         </div>
     </div>
+
+    <div id="completedSavingsTransferModal" class="modal completedSavingsTransferModal-modal">
+        <div class="completedSavingsTransferModal-content">
+            <h2>적금 해지 및 송금</h2>
+            <div class="withdrawalAccount">적금 해지할 계좌:</div>
+            <div class="withdrawalAccountBalance">금액</div>
+            <label for="depositTransferAccount">송금할 계좌 선택:</label>
+            <select id="depositTransferAccount" name="depositTransferAccount"></select>
+            <div class="closeCompletedSavingsTransferButton">
+                <button id="closeCompletedSavingsTransferModal">닫기</button>
+                <button id="confirmTransfer">송금</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 여기에 송금할 계좌 목록을 동적으로 추가하세요. -->
 
     <div id="savingDetailModal" class="modal saving-detail-modal">
         <div class="modal-content saving-detail-modal-content">
@@ -654,9 +774,137 @@
 
                             // "적금해지" 버튼 클릭 이벤트 처리
                             terminateButton.click(function () {
-                                // 여기에 적금해지 처리 로직을 추가하세요.
-                                // 적금을 해지하는 동작을 수행합니다.
-                                alert("적금을 해지합니다.");
+                                // // 해당 컨테이너의 savingAccountNumber 가져오기
+                                // var accountNumber = newContainer.find(".savingAccountNumber").text();
+                                // console.log()
+                                //
+                                // // 여기에 모달 창을 띄우고 송금 계좌 설정 로직을 추가하세요.
+                                // openTransferModal(accountNumber);
+                                var passwordModal = $("#passwordModal");
+                                var passwordInput = $("#passwordInput");
+
+                                // 클로저로 현재 클릭한 컨테이너의 savingsData 유지
+                                var currentSavingsData = savingsData;
+                                // savingsData.challengeSavingsAccountPW 역시 숫자로 변환
+                                var savedPassword = parseInt(currentSavingsData.challengeSavingsAccountPW, 10);
+
+                                console.log("내가 클릭한 적금 계좌의 비밀번호 " + savedPassword);
+
+                                // 비밀번호 확인 모달 창 열기
+                                passwordModal.css("display", "block");
+
+                                $("#checkPasswordBtn").off("click"); // 이전 클릭 이벤트 핸들러 제거
+
+                                // 새로운 클릭 이벤트 핸들러 연결
+                                $("#checkPasswordBtn").on("click", function () {
+                                    // 내가 입력한거
+                                    var enteredPassword = parseInt(passwordInput.val(), 10); // 10진수로 변환
+                                    console.log("내가 입력한 비밀번호 " + enteredPassword + " " + savedPassword);
+                                    // 입력한 비밀번호와 저장된 비밀번호 비교
+                                    if (enteredPassword === savedPassword) {
+                                        // 비밀번호 일치하는 경우 적금 상세 내용 모달 창 열기
+                                        openCompletedSavingsTransferModal(currentSavingsData);
+                                        // alert("비밀번호가 일치");
+                                        passwordInput.val(""); // 입력 필드를 비웁니다.
+                                        passwordModal.css("display", "none"); // 모달 창 닫기
+                                        // ---------------------------------적금 상세 내용 모달 창 열기 함수---------------------------------
+                                        function openCompletedSavingsTransferModal(savingsData) {
+                                            console.log("만기된 적금의 계좌번호" + savingsData.challengeSavingsAccountNumber);
+                                            var withdrawalAccount = savingsData.challengeSavingsAccountNumber;
+                                            var withdrawalAccountBalance = savingsData.accountBalance;
+                                            var formattedWithdrawalAccountBalance = withdrawalAccountBalance.toLocaleString(); // 가격 형식으로 변환
+
+                                            console.log(savingsData.accountBalance + " 원");
+
+
+                                            // 송금할 계좌 선택 `<div>` 엘리먼트를 참조
+                                            var withdrawalAccountDiv = document.querySelector('.withdrawalAccount');
+                                            var withdrawalAccountBalanceDiv = document.querySelector('.withdrawalAccountBalance');
+
+                                            // `<div>` 엘리먼트의 내용을 설정
+                                            withdrawalAccountDiv.textContent = "적금 해지할 계좌: " + withdrawalAccount;
+                                            withdrawalAccountBalanceDiv.textContent = "금액: " + formattedWithdrawalAccountBalance + " 원";
+                                            // 모달 열기
+                                            $("#completedSavingsTransferModal").css("display", "block");
+
+                                            // 드롭다운을 참조
+                                            var dropdown = document.getElementById("depositTransferAccount");
+
+                                            // AJAX로 계좌 목록 가져오기
+                                            $.ajax({
+                                                url: "/getAllAccounts",
+                                                method: "GET",
+                                                dataType: "json",
+                                                success: function (data) {
+                                                    // 각 계좌 정보에 대한 option 엘리먼트를 생성하여 추가
+                                                    data.forEach(function (account) {
+                                                        var option = document.createElement("option");
+                                                        option.value = BigInt(account.accountNumber); // 문자열을 BigInt로 변환하여 할당
+                                                        option.text = account.accountNumber;
+
+                                                        // 드롭다운에 옵션 추가
+                                                        dropdown.appendChild(option);
+                                                    });
+
+                                                    // 받아온 데이터를 콘솔에 출력
+                                                    console.log("계좌 목록 데이터: ", data);
+
+                                                    // 드롭다운 값이 변경될 때 발생하는 이벤트 핸들러
+                                                    dropdown.addEventListener("change", function () {
+                                                        // 선택한 값 가져오기
+                                                        var selectedValue = dropdown.value;
+                                                        console.log("선택한 계좌 번호: " + selectedValue);
+                                                    });
+                                                },
+                                                error: function (error) {
+                                                    console.log("Error fetching account data: " + error);
+                                                }
+                                            });
+
+                                            // 닫기 버튼 클릭 이벤트
+                                            $("#closeCompletedSavingsTransferModal").click(function () {
+                                                // 모달 닫기
+                                                $("#completedSavingsTransferModal").css("display", "none");
+                                            });
+                                            // "송금" 버튼 클릭 이벤트 핸들러
+                                            $("#confirmTransfer").click(function () {
+                                                // 선택한 계좌 번호 가져오기
+                                                var selectedAccount = $("#depositTransferAccount").val();
+
+                                                // 선택한 계좌 번호 및 관련 데이터를 서버로 전송
+                                                $.ajax({
+                                                    url: "/completedSavingsTransferModal",
+                                                    method: "POST",
+                                                    data: {
+                                                        withdrawalAccount: withdrawalAccount,
+                                                        selectedAccount: selectedAccount,
+                                                        withdrawalAccountBalance: withdrawalAccountBalance
+                                                    },
+                                                    success: function (response) {
+                                                        // 서버 응답을 처리하고 사용자에게 메시지를 표시 (예: 성공 또는 실패 메시지)
+                                                        alert("송금이 완료되었습니다.");
+                                                        $("#completedSavingsTransferModal").css("display", "none");
+                                                        window.location.href = "/checkMyChallengeSavings"; // 원하는 URL로 리다이렉트
+                                                    },
+                                                    error: function (error) {
+                                                        // 오류 처리
+                                                        console.error("송금 중 오류 발생: " + error);
+                                                        alert("송금에 실패했습니다. 다시 시도해주세요.");
+                                                    }
+                                                });
+                                            });
+
+                                        }
+
+                                    } else {
+                                        // 비밀번호 불일치 메시지 표시 또는 처리
+                                        alert("비밀번호가 일치하지 않습니다.");
+                                        passwordInput.val(""); // 입력 필드를 비웁니다.
+                                    }
+                                    // 비밀번호 확인 모달 창 닫기
+                                    passwordModal.css("display", "none");
+                                    passwordInput.val(""); // 입력 필드를 비웁니다.
+                                });
                             });
                         } else {
                             newContainer.find(".savingStatus").text("진행 중인 적금");
@@ -718,8 +966,8 @@
                             }
                         });
 
-                        // 컨테이너 클릭 이벤트 핸들러
-                        newContainer.on("click", function () {
+                        // "적금 상세보기" 버튼 클릭 이벤트 처리
+                        newContainer.find(".checkSavingsDetailButton").on("click", function () {
                             var passwordModal = $("#passwordModal");
                             var passwordInput = $("#passwordInput");
 

@@ -97,7 +97,7 @@
 
         .description-text1 {
             padding: 10px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 500;
             font-family: "Hana2.0 L";
             color: #5A5A5A;
@@ -106,13 +106,22 @@
 
         .description-text2 {
             padding: 10px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 500;
             font-family: "Hana2.0 L";
             color: #5A5A5A;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             /* 	display: flex;
             justify-content: center; */
+        }
+
+        .divider {
+            margin: 1rem 0;
+            color: inherit;
+            background-color: currentColor;
+            border: 0;
+            opacity: .25;
+            width: 95%;
         }
 
         /* 위시리스트 조회------------------------------------------------------------------------------------------------------- */
@@ -181,17 +190,19 @@
         }
 
         .btn-primary {
+            color: #4a4949 !important;
             display: flex !important;
-            background-color: #ABCBCD !important;
-            border-color: #C7AFAF !important;
+            background-color: #b4d0ca !important;
+            border-color: #d0cfcf !important;
             text-align: center;
             justify-content: center;
             align-items: center;
         }
 
         .btn-primary:hover {
+            color: #ffffff !important;
             display: flex !important;
-            background-color: #ABCBCD !important;
+            background-color: #89a29b !important;
             border-color: #C7AFAF !important;
             text-align: center;
             justify-content: center;

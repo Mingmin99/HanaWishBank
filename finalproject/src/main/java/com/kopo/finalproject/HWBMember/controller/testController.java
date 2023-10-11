@@ -138,11 +138,14 @@ public class testController {
         int wishListItemCount = hwbMemberService.getCountWishListItemByID(memberID);
         int purchasePlanCount = hwbMemberService.getCountPurchasePlanListItemByID(memberID);
         int challengeSavingsCount = hwbMemberService.getCountChallengeSavingsByID(memberID);
+       int  completedSavingsCount = hwbMemberService.getCountChallengeSavingsByStatus(memberID);
 
         Map<String, Integer> counts = new HashMap<>();
         counts.put("wishListItemCount", wishListItemCount);
         counts.put("purchasePlanCount", purchasePlanCount);
         counts.put("challengeSavingsCount", challengeSavingsCount);
+        counts.put("completedSavingsCount", completedSavingsCount);
+
 
         return ResponseEntity.ok(counts);
     }

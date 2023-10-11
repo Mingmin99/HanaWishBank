@@ -22,7 +22,8 @@
             /* 	border-right: 1px solid #ccc; */
         }
 
-        .sidebar h4 {
+        .sidebar h3 {
+            white-space: nowrap;
             color: #009591;
             font-family: "Hana2.0 CM";
             margin-bottom: 20px;
@@ -30,12 +31,12 @@
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
 
-        .sidebar h4::before {
+        .sidebar h3::before {
             content: "";
             position: absolute;
             bottom: -5px;
             left: 0;
-            width: 100%;
+            width: 110%;
             height: 3px; /* 굵기 변경 */
             background-color: #009591; /* 구분선 색상 */
         }
@@ -95,12 +96,11 @@
             margin-top: 20px;
             padding: 4px; /* 텍스트 내용과 테두리 사이의 간격 */
             border-radius: 20px;
-            max-width: 800px;
         }
 
         .description-text1 {
             padding: 10px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 500;
             font-family: "Hana2.0 L";
             color: #5A5A5A;
@@ -109,7 +109,7 @@
 
         .description-text2 {
             padding: 10px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 500;
             font-family: "Hana2.0 L";
             color: #5A5A5A;
@@ -184,6 +184,7 @@
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
             font-family: "Hana2.0 CM";
+            font-size: 18px;
         }
 
         .card-header input[type="checkbox"] {
@@ -191,7 +192,7 @@
         }
 
         .list-group-item {
-            font-size: 0.7rem;
+            font-size: 14px;
             border: none;
             font-family: "Hana2.0 L";
             padding: 1rem !important;
@@ -244,10 +245,10 @@
 <body>
 <!-- 사이드바  ------------------------------------------------------------------------------------------------------- -->
 <div class="sidebar">
-    <h4>나의 구매계획리스트</h4>
+    <h3>나의 구매계획리스트</h3>
     <ul>
-        <li><a href="checkMyPurchasePlanList.jsp">나의 구매계획리스트 조회</a></li>
-        <li><a href="registerMyPurchasePlanList.jsp">나의 구매계획리스트 등록</a></li>
+        <li><a href="checkMyPurchasePlanList">나의 구매계획리스트 조회</a></li>
+        <li><a href="checkMyWishList">나의 구매계획리스트 등록</a></li>
         <!-- <li><a href="#">대출신청</a></li>
         <li><a href="#">카드신청</a></li>
         <li><a href="#">고객센터</a></li> -->
@@ -256,16 +257,15 @@
 <!---메인  ------------------------------------------------------------------------------------------------------- -->
 <main>
     <div class="title">
-        <img src="<c:url value='../../resources/img/ic_wishList.svg' />" alt="Main Wish List"
-             width="80" style="vertical-align: middle;"> 나의 구매계획리스트 조회
+        <img src="<c:url value='../../resources/img/ic_purchasePlanList.svg' />" alt="Main Wish List"
+             width="70" style="vertical-align: middle;"> 나의 구매계획리스트 조회
     </div>
 
     <div class="description-box">
         <div class="description-text1">🌻 구매계획을 바탕으로 적금 챌린지 계좌에 도전해보세요
             !
         </div>
-        <div class="description-text2">➡️ 동일한 목표기간을 가진 구매계획 리스트 아이템을 함께
-            묶어 계좌를 개설하여 효율적으로 챌린지를 달성해보세요!
+        <div class="description-text2">➡️ 동일한 목표기간을 가진 구매계획리스트 아이템을 함께 묶어 계좌를 개설하여 효율적으로 챌린지를 달성해보세요!
         </div>
     </div>
     <hr class="divider">
@@ -291,7 +291,7 @@
                     <!-- 이미지 클릭 시 모달 창 열기 -->
                     <img src="${plan.image}"
                          onclick="openModal('${plan.purchasePlanID}', '${plan.planName}', '${plan.planAmount}', '${plan.planPeriod}')"
-                         style="display: block; margin: 0 auto; width: 100px; height: 100px;"/>
+                         style="display: block; margin: 0 auto; width: 120px; height: 120px;"/>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item" style="display: none">구매계획아이디: ${plan.purchasePlanID}</li>
                         <li class="list-group-item" style="display: none">위시리스트아이디: ${plan.wishListID}</li>

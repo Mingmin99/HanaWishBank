@@ -101,7 +101,7 @@
 
         .description-text1 {
             padding: 10px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 500;
             font-family: "Hana2.0 L";
             color: #5A5A5A;
@@ -110,13 +110,22 @@
 
         .description-text2 {
             padding: 10px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 500;
             font-family: "Hana2.0 L";
             color: #5A5A5A;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             /* 	display: flex;
             justify-content: center; */
+        }
+
+        .divider {
+            margin: 1rem 0;
+            color: inherit;
+            background-color: currentColor;
+            border: 0;
+            opacity: .25;
+            width: 95%;
         }
 
         /* 차트  ------------------------------------------------------------------------------------------------------- */
@@ -130,21 +139,48 @@
         }
 
         .expense-section {
+            width: 95%;
+            padding: 20px;
             margin-top: 30px;
             margin-bottom: 50px;
-            display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fdfafa;
+            box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.3s ease-in-out;
         }
 
+        .expense-section:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+
         #expenseChart {
+            margin-top: 5%;
             width: 400px !important;
             height: 400px !important;
         }
 
+        .chartCanvasTitle {
+            font-size: 20px;
+            font-weight: 500;
+            font-family: "Hana2.0 CM";
+            color: #5A5A5A;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin-top: 3%;
+            text-align: center; /* 수평 가운데 정렬 */
+            display: flex;
+            align-items: center; /* 수직 가운데 정렬 */
+            justify-content: center; /* 수직 가운데 정렬 */
+            height: 100%; /* 수직 가운데 정렬 */
+        }
+
+
         /* 테이블  ------------------------------------------------------------------------------------------------------- */
         .expense-summary {
-            margin-top: 20px;
+            margin-top: 20%;
             margin-right: 5%;
             border: 1px solid #ccc;
             border-radius: 10px;
@@ -185,35 +221,51 @@
         }
 
         .result-box {
-            margin-top: 20px;
-            border-radius: 20px;
-            max-width: 900px;
+            width: 95%;
+            padding: 20px;
+            margin-top: 30px;
+            margin-bottom: 50px;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fdfafa;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .resultTitle {
+            margin-bottom: 2%;
+            font-size: 28px;
+            font-weight: 500;
+            font-family: "Hana2.0 CM";
+            color: #5A5A5A;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .result-text1 {
-
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 500;
             font-family: "Hana2.0 CM";
             color: #5A5A5A;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            /*text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);*/
         }
 
         .result-text2 {
-
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 500;
             font-family: "Hana2.0 CM";
             color: #5A5A5A;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            /* 	display: flex;
-            justify-content: center; */
+            text-align: center;
+            /*text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);*/
         }
 
         /* expense-amount 클래스에 대한 스타일 */
         .expense-amount {
             padding: 10px;
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
             font-family: "Hana2.0 CM";
             color: #6a978d;
@@ -223,7 +275,7 @@
         /* top-amount 클래스에 대한 스타일 */
         .top-amount {
             padding: 10px;
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
             font-family: "Hana2.0 CM";
             color: #4e72a0;
@@ -233,7 +285,7 @@
         /* category-count 클래스에 대한 스타일 */
         .category-count {
             padding: 10px;
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
             font-family: "Hana2.0 CM";
             color: #ff8e8e;
@@ -243,7 +295,7 @@
         /* top-category 클래스에 대한 스타일 */
         .top-category {
             padding: 10px;
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
             font-family: "Hana2.0 CM";
             color: orange;
@@ -253,45 +305,92 @@
 
         /* 이번 달 ------------------------------------------------------------------------------------------------------- */
         .thisMonthTitle {
+            display: inline-block;
             margin-left: 2%;
-            margin-top: 5%;
             font-size: 24px;
             font-weight: 600;
             font-family: "Hana2.0 CM";
-            color: #7ba299;
+            color: #5A5A5A;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 스타일을 위한 버튼 클래스 */
+        .showTagsButton {
+            display: inline-block;
+            background-color: #b4d0ca;
+            margin-left: 10px;
+            margin-top: -10px;
+            border: 1px solid #889b97;
+            color: #4a4949; /* 텍스트 색상을 흰색으로 설정 */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
+            font-family: "Hana2.0 CM";
+            font-size: 14px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .showTagsButton:hover {
+            color: #fff1eb;
+            background-color: #8da29d; /* 마우스 호버시 더 진한 분홍색 배경 */
+        }
+
+        .showTagsButton:active {
+            transform: scale(0.95); /* 클릭시 버튼 크기 약간 축소 */
         }
 
 
         .monthlyKing1 {
             margin-top: 5%;
-            margin-right: 12%;
+            margin-right: 24%;
             border-radius: 30px;
-            background-color: #88aba1;
+            background-color: #8da29d;
             color: #4a4949;
             margin-bottom: 20px;
-            margin-left: 30%;
+            margin-left: 24%;
             box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4); /* 그림자 효과 추가 */
         }
 
         .monthlyKing2 {
             margin-top: 5%;
-            margin-right: 12%;
+            margin-right: 24%;
             border-radius: 30px;
-            background-color: #88aba1;
+            background-color: #8da29d;
             color: #4a4949;
             margin-bottom: 20px;
-            margin-left: 30%;
+            margin-left: 24%;
             box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4); /* 그림자 효과 추가 */
         }
 
-        .tagTitle {
+        @keyframes fadeIn {
+            0% {
+                opacity: 0; /* 투명도를 0으로 시작 */
+            }
+            100% {
+                opacity: 1; /* 투명도를 1로 끝냄 */
+            }
+        }
+
+        /* monthlyKing1와 monthlyKing2에 애니메이션 적용 */
+        .monthlyKing1, .monthlyKing2 {
+            margin-top: 5%;
+            margin-right: 24%;
             border-radius: 30px;
+            background-color: #8da29d ;
+            color: #4a4949;
+            margin-bottom: 20px;
+            margin-left: 24%;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4); /* 그림자 효과 추가 */
+
+            animation: fadeIn 2s forwards; /* 한 번만 2초 동안 나타나고 멈추는 fadeIn 애니메이션 적용 */
+        }
+
+
+        .tagTitle {
             font-weight: 800;
-            font-size: 24px;
+            font-size: 20px;
             font-family: "Hana2.0 CM";
             background-color: #FAF1E4;
             display: flex;
+            padding: 10px;
             justify-content: center;
             align-content: center;
             color: #4a4949;
@@ -303,19 +402,23 @@
             display: flex; /* Flexbox 레이아웃을 사용합니다. */
             align-items: center; /* 요소를 수직 가운데 정렬합니다. */
             margin-left: 12%;
-            margin-top: 30px;
+            margin-top: 25px;
         }
 
         .CategoryTag {
-            margin-left: 40px; /* 이미지와 대표가격 사이의 간격을 조절합니다. */
+            margin-left: 30px; /* 이미지와 대표가격 사이의 간격을 조절합니다. */
             font-weight: 500;
-            font-size: 20px;
+            font-size: 18px;
             font-family: "Hana2.0 CM";
+            border: 1px solid #fff1eb;
+            padding: 5px 10px;
+            background-color: #fff1eb;
+            border-radius: 5px;
         }
 
         #icClip, #icClip2 {
             margin-top: -5%;
-            margin-left: 5%;
+            margin-left: 8%;
         }
 
         .logoAndQR {
@@ -323,18 +426,23 @@
             justify-content: flex-end; /* 요소들을 오른쪽으로 정렬 */
             align-items: center; /* 요소들을 수직 가운데 정렬 */
             position: relative; /* 상대 위치 지정 */
-            top: -20px; /* 위쪽으로 50px 이동 (원하는 만큼 조정 가능) */
+            top: -10px; /* 위쪽으로 50px 이동 (원하는 만큼 조정 가능) */
             right: 20px;
         }
 
-        /*.thisMonthContainer {*/
-        /*    margin-right: 10%;*/
-        /*    margin-top: 50px;*/
-        /*    width: 90%;*/
-        /*    border: 4px dashed #ccc;*/
-        /*    border-radius: 30px;*/
-        /*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
-        /*}*/
+        .thisMonthContainer {
+            width: 95%;
+            padding: 20px;
+            margin-top: 30px;
+            margin-bottom: 50px;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fdfafa;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.3s ease-in-out;
+        }
 
     </style>
     <!-- 부트스트랩 연결 -->
@@ -365,8 +473,7 @@
         <div class="description-text1">🔎 나는 어디에 가장 돈을 많이 쓸까? 나는 어디에 가장
             돈을 자주 쓸까? 🧐
         </div>
-        <div class="description-text2">➡️ 좌측메뉴에서 카드등록 후 나의 일상 소비를
-            확인해보세요!
+        <div class="description-text2">➡️ 월별 지출을 카테고리 별로 확인하고 소비 태그를 획득해 보세요!
         </div>
     </div>
     <hr class="divider">
@@ -374,157 +481,161 @@
     <div class="chart">
         <div class="chartTitle">• 나의 지출 차트</div>
     </div>
-
     <div class="expense-section">
+        <div class="row">
+            <div class="col">
+                <canvas id="expenseChart" width="400" height="400"></canvas>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var cardID = localStorage.getItem('cardID');
+                        console.log("이거 차트 불러올 카드 아이디 " + cardID);
 
-        <!-- 차트를 표시할 캔버스 -->
-        <canvas id="expenseChart" width="400" height="400"></canvas>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                var cardID = localStorage.getItem('cardID');
-                console.log("이거 차트 불러올 카드 아이디 " + cardID);
-
-                // 차트 초기화 함수
-                function initChart() {
-                    var ctx = document.getElementById('expenseChart').getContext('2d');
-                    window.myChart = new Chart(ctx, {
-                        type: 'pie',
-                        data: {
-                            labels: [],
-                            datasets: [{
-                                data: [],
-                                backgroundColor: [
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(255, 206, 86, 0.2)',
-                                    'rgba(75, 192, 192, 0.2)',
-                                    'rgba(153, 102, 255, 0.2)',
-                                    'rgba(255, 159, 64, 0.2)',
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(255, 206, 86, 0.2)',
-                                ],
-                                borderColor: [
-                                    'rgba(255, 99, 132, 1)',
-                                    'rgba(54, 162, 235, 1)',
-                                    'rgba(255, 206, 86, 1)',
-                                    'rgba(75, 192, 192, 1)',
-                                    'rgba(153, 102, 255, 1)',
-                                    'rgba(255, 159, 64, 1)',
-                                    'rgba(255, 99, 132, 1)',
-                                    'rgba(54, 162, 235, 1)',
-                                    'rgba(255, 206, 86, 1)',
-                                ],
-                                borderWidth: 1
-                            }]
+                        // 차트 초기화 함수
+                        function initChart() {
+                            var ctx = document.getElementById('expenseChart').getContext('2d');
+                            window.myChart = new Chart(ctx, {
+                                type: 'pie',
+                                data: {
+                                    labels: [],
+                                    datasets: [{
+                                        data: [],
+                                        backgroundColor: [
+                                            'rgb(255,179,179)',
+                                            'rgb(177,203,250)',
+                                            'rgb(251,205,136)',
+                                            'rgb(179,222,189)',
+                                            'rgb(217,205,244)',
+                                            'rgb(255,204,182)',
+                                            'rgb(186,174,162)',
+                                            'rgb(167,190,206)',
+                                            'rgba(255, 206, 86, 1)',
+                                        ],
+                                        // borderColor: [
+                                        //     'rgb(241,131,152)',
+                                        //     'rgb(143,200,232)',
+                                        //     'rgba(255, 206, 86, 1)',
+                                        //     'rgba(75, 192, 192, 1)',
+                                        //     'rgba(153, 102, 255, 1)',
+                                        //     'rgba(255, 159, 64, 1)',
+                                        //     'rgba(255, 99, 132, 1)',
+                                        //     'rgba(54, 162, 235, 1)',
+                                        //     'rgba(255, 206, 86, 1)',
+                                        // ],
+                                        borderWidth: 1
+                                    }]
+                                }
+                            });
                         }
+
+                        // 함수를 정의하여 데이터를 가져오고 차트를 업데이트하는 역할을 수행합니다.
+                        function updateChart() {
+                            console.log("updateChart 함수 호출");
+                            $.ajax({
+                                type: 'GET',
+                                url: '/getExpenseChartData',
+                                data: {cardID: cardID},
+                                dataType: 'json',
+                                success: function (data) {
+                                    console.log("지금 차트 데이터 넘어오고있니?" + JSON.stringify(data));
+
+                                    // 서버에서 받은 JSON 데이터를 파싱하여 x, y 축 데이터 추출
+                                    // 서버에서 받은 JSON 데이터를 파싱하여 x, y 축 데이터 추출
+                                    var labels = data.map(item => item.description); // description을 x축으로 사용
+                                    console.log(labels);
+                                    var values = data.map(item => item.totalExpenseCategoryExpenseAmount);
+                                    // totalExpenseCategoryExpenseAmount를 y축으로 사용
+
+                                    // 차트 업데이트
+                                    window.myChart.data.labels = labels;
+                                    window.myChart.data.datasets[0].data = values;
+                                    window.myChart.update();
+                                },
+                                error: function (error) {
+                                    console.log(error);
+                                }
+                            });
+                        }
+
+                        // 페이지 로드 시 차트 초기화 및 업데이트
+                        $(document).ready(function () {
+                            initChart(); // 차트 초기화
+                            updateChart(); // 차트 업데이트
+                        });
                     });
-                }
+                </script>
 
-                // 함수를 정의하여 데이터를 가져오고 차트를 업데이트하는 역할을 수행합니다.
-                function updateChart() {
-                    console.log("updateChart 함수 호출");
-                    $.ajax({
-                        type: 'GET',
-                        url: '/getExpenseChartData',
-                        data: {cardID: cardID},
-                        dataType: 'json',
-                        success: function (data) {
-                            console.log("지금 차트 데이터 넘어오고있니?" + JSON.stringify(data));
+                <script>
+                    // 페이지 로딩 시 localStorage에서 데이터 가져오기
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var cardID = localStorage.getItem('cardID');
 
-                            // 서버에서 받은 JSON 데이터를 파싱하여 x, y 축 데이터 추출
-                            // 서버에서 받은 JSON 데이터를 파싱하여 x, y 축 데이터 추출
-                            var labels = data.map(item => item.description); // description을 x축으로 사용
-                            console.log(labels);
-                            var values = data.map(item => item.totalExpenseCategoryExpenseAmount);
-                            // totalExpenseCategoryExpenseAmount를 y축으로 사용
+                        // Ajax 요청 설정
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('GET', '/checkMyExpenseData?cardID=' + cardID, true);
 
-                            // 차트 업데이트
-                            window.myChart.data.labels = labels;
-                            window.myChart.data.datasets[0].data = values;
-                            window.myChart.update();
-                        },
-                        error: function (error) {
-                            console.log(error);
-                        }
+                        // 요청 완료 후의 처리
+                        xhr.onload = function () {
+                            if (xhr.status === 200) {
+                                // 서버로부터 받은 데이터를 처리
+                                var responseData = JSON.parse(xhr.responseText);
+
+                                function formatNumber(number) {
+                                    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                                }
+
+
+                                // 데이터를 화면에 표시
+
+                                document.getElementById('topCategory').textContent = responseData.topCategory.expenseCategoryCode;
+                                document.getElementById('categoryCount').textContent = responseData.topCategory.categoryCount;
+                                document.getElementById('topAmount').textContent = responseData.topAmount.expenseCategoryCode;
+                                document.getElementById('totalAmount').textContent = formatNumber(responseData.topAmount.totalAmount);
+                                document.getElementById('totalExpenseAmount').textContent = formatNumber(responseData.totalExpenseAmount.totalExpenseAmount);
+                            } else {
+                                // 요청이 실패한 경우 에러 처리
+                                console.error('Request failed. Status: ' + xhr.status);
+                            }
+                        };
+
+                        // 요청 보내기
+                        xhr.send();
                     });
-                }
+                </script>
 
-                // 페이지 로드 시 차트 초기화 및 업데이트
-                $(document).ready(function () {
-                    initChart(); // 차트 초기화
-                    updateChart(); // 차트 업데이트
-                });
-            });
-        </script>
-
-        <script>
-            // 페이지 로딩 시 localStorage에서 데이터 가져오기
-            document.addEventListener('DOMContentLoaded', function () {
-                var cardID = localStorage.getItem('cardID');
-
-                // Ajax 요청 설정
-                var xhr = new XMLHttpRequest();
-                xhr.open('GET', '/checkMyExpenseData?cardID=' + cardID, true);
-
-                // 요청 완료 후의 처리
-                xhr.onload = function () {
-                    if (xhr.status === 200) {
-                        // 서버로부터 받은 데이터를 처리
-                        var responseData = JSON.parse(xhr.responseText);
-
-                        function formatNumber(number) {
-                            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                        }
-
-
-                        // 데이터를 화면에 표시
-
-                        document.getElementById('topCategory').textContent = responseData.topCategory.expenseCategoryCode;
-                        document.getElementById('categoryCount').textContent = responseData.topCategory.categoryCount;
-                        document.getElementById('topAmount').textContent = responseData.topAmount.expenseCategoryCode;
-                        document.getElementById('totalAmount').textContent = formatNumber(responseData.topAmount.totalAmount);
-                        document.getElementById('totalExpenseAmount').textContent = formatNumber(responseData.totalExpenseAmount.totalExpenseAmount);
-                    } else {
-                        // 요청이 실패한 경우 에러 처리
-                        console.error('Request failed. Status: ' + xhr.status);
-                    }
-                };
-
-                // 요청 보내기
-                xhr.send();
-            });
-        </script>
-
-        <div class="expense-summary" style="width: 40%;">
-            <table>
-                <tr>
-                    <th colspan="2">이번 달 총 소비 금액</th>
-                </tr>
-                <tr>
-                    <td colspan="2"><span id="totalExpenseAmount"></span>원</td>
-                </tr>
-                <tr>
-                    <th>이번 달 최대 지출 카테고리</th>
-                    <th>금액</th>
-                </tr>
-                <tr>
-                    <td><span id="topAmount"></span></td>
-                    <td><span id="totalAmount"> </span>원</td>
-                </tr>
-                <tr>
-                    <th>이번 달 최다 지출 카테고리</th>
-                    <th>횟수</th>
-                </tr>
-                <tr>
-                    <td><span id="topCategory"></span></td>
-                    <td><span id="categoryCount"> 회</span></td>
-                </tr>
-            </table>
+            </div>
+            <div class="col">
+                <div class="expense-summary">
+                    <table>
+                        <tr>
+                            <th colspan="2">이번 달 총 소비 금액</th>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><span id="totalExpenseAmount"></span>원</td>
+                        </tr>
+                        <tr>
+                            <th>이번 달 최대 지출 카테고리</th>
+                            <th>금액</th>
+                        </tr>
+                        <tr>
+                            <td><span id="topAmount"></span></td>
+                            <td><span id="totalAmount"> </span>원</td>
+                        </tr>
+                        <tr>
+                            <th>이번 달 최다 지출 카테고리</th>
+                            <th>횟수</th>
+                        </tr>
+                        <tr>
+                            <td><span id="topCategory"></span></td>
+                            <td><span id="categoryCount"> 회</span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
-
+        <div class="chartCanvasTitle">< 지출 카테고리 별 소비차트 및 소비 카테고리 분석 ></div>
     </div>
+
     <script>
         // 페이지 로딩 시 localStorage에서 데이터 가져오기
         document.addEventListener('DOMContentLoaded', function () {
@@ -573,8 +684,9 @@
     %>
 
     <div class="result-box">
-        <div class="result-text1">🏁 결산 : 이번 달 <%= name %> 님은 총 <span id="totalExpenseAmountValue"
-                                                                     class="expense-amount"></span>원을
+        <div class="resultTitle">🏁 결산</div>
+        <div class="result-text1">이번 달 <%= name %> 님은 총 <span id="totalExpenseAmountValue"
+                                                              class="expense-amount"></span>원을
             소비하셨습니다.
         </div>
         <div class="result-text2">
@@ -591,18 +703,22 @@
     <div class="thisMonthContainer">
         <div class="thisMonth">
             <div class="thisMonthTitle">
-                그 결과, 이번 달  <%= name %>  님은...
+                이번 달 <%= name %>님이 획득하신 소비태그는...!
             </div>
+            <button class="showTagsButton"
+                    id="showTagsButton"> ✓ 확인하기
+            </button>
         </div>
         <!-- if= 지출카테고리가 무엇일때 그에 맞는 이미지 띄우기 ! -->
-        <div class="monthlyKing1" id="monthlyKing1">
-            <img id="icClip" src="../../resources/img/ic_clip.svg" width="64">
-            <div class="tagTitle">< 이번 달 나의 소비태그 ></div>
+        <div class="monthlyKing1" id="monthlyKing1" style="display:none;">
+            <img id="icClip" src="../../resources/img/ic_clip.svg" width="70">
+            <div class="tagTitle">이번 달 나의 소비태그</div>
+
             <!-- 이미지의 src를 동적으로 설정 -->
             <div class="imageAndPriceContainer">
-                <img id="CategoryTagImage" width="240" title="tagImg"/>
+                <img id="CategoryTagImage" width="160" title="tagImg"/>
                 <div class="CategoryTag">
-                    대표가격: <span id="CategoryRepresentativePrice" class="top-category"></span>원
+                    평균 지출 가격: <span id="CategoryRepresentativePrice" class="top-category"></span>원
                 </div>
             </div>
             <div class="logoAndQR">
@@ -611,14 +727,14 @@
             </div>
         </div>
 
-        <div class="monthlyKing2" id="monthlyKing2">
-            <img id="icClip2" src="../../resources/img/ic_clip.svg" width="64">
-            <div class="tagTitle">< 이번 달 나의 소비태그 ></div>
+        <div class="monthlyKing2" id="monthlyKing2" style="display:none;">
+            <img id="icClip2" src="../../resources/img/ic_clip.svg" width="70">
+            <div class="tagTitle">이번 달 나의 소비태그</div>
             <!-- 이미지의 src를 동적으로 설정 -->
             <div class="imageAndPriceContainer">
-                <img class="tagImg" id="AmountTagImage" alt="Monthly King" width="240" title="tagImg"/>
+                <img class="tagImg" id="AmountTagImage" alt="Monthly King" width="160" title="tagImg"/>
                 <div class="CategoryTag">
-                    대표가격: <span id="AmountRepresentativePrice" class="top-category"></span>원
+                    평균 소비 가격: <span id="AmountRepresentativePrice" class="top-category"></span>원
                 </div>
             </div>
             <div class="logoAndQR">
@@ -640,8 +756,21 @@
 
     </div>
     <script>
-        // 페이지 로딩이 완료되면 실행
-        document.addEventListener('DOMContentLoaded', function () {
+        // 버튼 클릭 이벤트 리스너 추가
+        var showTagsButton = document.getElementById('showTagsButton');
+        showTagsButton.addEventListener('click', function () {
+            // Toggle monthlyKing1 and monthlyKing2 visibility
+            var monthlyKing1 = document.getElementById('monthlyKing1');
+            var monthlyKing2 = document.getElementById('monthlyKing2');
+
+            if (monthlyKing1.style.display === 'none') {
+                monthlyKing1.style.display = 'block';
+                monthlyKing2.style.display = 'none';
+            } else {
+                monthlyKing1.style.display = 'none';
+                monthlyKing2.style.display = 'block';
+            }
+
             var cardID = localStorage.getItem('cardID');
 
             // Ajax 요청 설정
