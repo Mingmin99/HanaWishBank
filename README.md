@@ -44,6 +44,7 @@
 <img src="readme_src/시스템 아키텍처.png"/>
 
 ### 2-3. 적용기술
+<img src="readme_src/적용기술.png"/>
 
 - Spring MVC 기반 웹 어플리케이션 제작
 - Spring Scheduler를 이용한 자동이체
@@ -57,12 +58,10 @@
 ### 3-1. 서비스 흐름도
 <img src="readme_src/서비스 흐름도.png"/>
 
-### 3-2. 시스템 아키텍처
-
-### 3-3. ERD
+### 3-2. ERD
 <img src="readme_src/erd.png"/>
 
-### 3-4. 기대 효과
+### 3-3. 기대 효과
 <img src="readme_src/기대효과.png"/>
 
 ## 발표 ppt
