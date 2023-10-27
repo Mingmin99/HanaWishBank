@@ -68,6 +68,8 @@
 [발표 ppt](/readme_src/HanaWishBank.pptx)
 
 ## 시연 동영상
+<img src="readme_src/시연 동영상.png"/>
+https://youtube.com/watch?v=y9ywZ2MKoYE
 
 # 4. 본인 소개
 
