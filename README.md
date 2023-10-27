@@ -65,8 +65,8 @@
 <img src="readme_src/기대효과.png"/>
 
 ## 발표 ppt
-<img src="readme_src/발표 ppt.png"/>
 [발표 ppt](/readme_src/HanaWishBank.pptx)
+<img src="readme_src/발표 ppt.png"/>
 
 ## 시연 동영상
 https://youtube.com/watch?v=y9ywZ2MKoYE
