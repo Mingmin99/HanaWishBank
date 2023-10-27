@@ -38,8 +38,10 @@
 # 2. 프로젝트 수행 계획
 
 ### 2-1. 프로젝트 개요
+<img src="readme_src/개요.png"/>
 
 ### 2-2. 시스템 아키텍처
+<img src="readme_src/시스템 아키텍처.png"/>
 
 ### 2-3. 적용기술
 
@@ -53,14 +55,18 @@
 # 3. 프로젝트 구축 완료
 
 ### 3-1. 서비스 흐름도
+<img src="readme_src/서비스 흐름도.png"/>
 
 ### 3-2. 시스템 아키텍처
 
 ### 3-3. ERD
+<img src="readme_src/erd.png"/>
 
 ### 3-4. 기대 효과
+<img src="readme_src/기대효과.png"/>
 
 ## 발표 ppt
+[발표 ppt](/readme_src/HanaWishBank.pptx)
 
 ## 시연 동영상
 
@@ -68,7 +74,7 @@
 
 | 구분 | 내용 | 비고 |
 | --- | --- | --- |
-| 이름 | 최민영 |  |
+| 이름 | 최민영 | <img src="readme_src/증명사진.jpg" width="100"/>  |
 | 연락처 | alsdud11737@naver.com |  |
 | 학력 사항 | 동국대학교 법학과 전공, 경제학과 복수 전공 | 2024.02 졸업 예정 |
 | Frontend skill | HTML, CSS, Javascript |  |
