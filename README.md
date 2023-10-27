@@ -65,11 +65,13 @@
 <img src="readme_src/기대효과.png"/>
 
 ## 발표 ppt
+<img src="readme_src/발표 ppt.png"/>
 [발표 ppt](/readme_src/HanaWishBank.pptx)
 
 ## 시연 동영상
-<img src="readme_src/시연 동영상.png"/>
 https://youtube.com/watch?v=y9ywZ2MKoYE
+<img src="readme_src/시연 동영상.png"/>
+
 
 # 4. 본인 소개
 
