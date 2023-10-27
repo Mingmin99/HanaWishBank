@@ -78,7 +78,7 @@
 | 연락처 | alsdud11737@naver.com |  |
 | 학력 사항 | 동국대학교 법학과 전공, 경제학과 복수 전공 | 2024.02 졸업 예정 |
 | Frontend skill | HTML, CSS, Javascript |  |
-| Backend skill | Java, SpringBoot, Oracle, Python, C, C++, Kotlin |  |
+| Backend skill | Java, SpringBoot, Oracle, SQL, Python, Kotlin |  |
 | 교육 활동 | 하나금융티아이 채용전환형 교육 1200시간( 한국폴리텍대학교 광명융합기술교육원 - 데이터분석과 ) |  |
 | 대외/내 활동 사항 |SOPT 대학생 연합 IT벤처 창업 동아리| 2022. 09 ~ 2023. 01 |  |
 
