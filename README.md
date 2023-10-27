@@ -79,5 +79,6 @@
 | Frontend skill | HTML, CSS, Javascript |  |
 | Backend skill | Java, SpringBoot, Oracle, SQL, Python, Kotlin |  |
 | 교육 활동 | 하나금융티아이 채용전환형 교육 1200시간( 한국폴리텍대학교 광명융합기술교육원 - 데이터분석과 ) |  |
-| 대외/내 활동 사항 |SOPT 대학생 연합 IT벤처 창업 동아리| 2022. 09 ~ 2023. 01 |  |
+| 대외/내 활동 사항 |SOPT 대학생 연합 IT벤처 창업 동아리 / Android | 2022. 09 ~ 2023. 01 |  |
+| 대외/내 활동 사항 |SOPT 대학생 연합 IT벤처 창업 동아리 / Android 앱 개발 참여 - NOTTODO 릴리즈 참여| 2022. 11 ~ 2023. 10 |  |
 
