@@ -88,6 +88,7 @@ https://youtube.com/watch?v=y9ywZ2MKoYE
 <img src="readme_src/시연 동영상.png"/>
 
 
+
 # 4. 본인 소개
 
 | 구분 | 내용 | 비고 |
@@ -118,5 +119,4 @@ https://youtube.com/watch?v=y9ywZ2MKoYE
 | --- | --- | --- |
 | 2023.12 – 2024.06 | 메가존클라우드 MSP 솔루션 아키텍트 양성과정 | 메가존클라우드 |
 | 2023.03 – 2023.12 | 하나금융TI 채용연계 교육생 교육 과정 | 하나금융TI / 한국폴리텍대학 광명융합기술교육원 |
-
 
