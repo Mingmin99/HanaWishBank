@@ -90,9 +90,6 @@ https://youtube.com/watch?v=y9ywZ2MKoYE
 
 # 4. 본인 소개
 
-
-# 4. 본인 소개
-
 | 구분 | 내용 | 비고 |
 | --- | --- | --- |
 | 이름 | 최민영 | <img src="readme_src/증명사진.jpg" width="100"/>  |
